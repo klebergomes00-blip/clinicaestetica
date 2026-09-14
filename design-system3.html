@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CharisLooks Beauty — Living Design System &amp; Pattern Library v2</title>
+    <meta name="description" content="Canonical living design system and pattern library for CharisLooks Beauty. 100% exact CSS classes, Tailwind tokens, typography, surfaces, components, and animations."/>
+
+    <!-- Google Fonts: Local Asset with CDN Fallback -->
+    <link rel="stylesheet" href="assets/5b89a915452447be_css2.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+
+    <!-- Local Production Tailwind & Lucide Scripts with Fallbacks -->
+    <script src="assets/176e894661aa9cdc_3.4.17"></script>
+    <script>
+      if (!window.tailwind) {
+        document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+      }
+    </script>
+    <script src="assets/468f56b91619c41d_lucide.min.js"></script>
+    <script>
+      if (!window.lucide) {
+        document.write('<script src="https://unpkg.com/lucide@latest"><\/script>');
+      }
+    </script>
+
+    <!-- Tailwind Configuration (Identical to reference site) -->
+    <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    serif: ['Playfair Display', 'serif'],
+                },
+                colors: {
+                    rose: {
+                        50: '#fff1f2',
+                        100: '#ffe4e6',
+                        200: '#fecdd3',
+                        300: '#fda4af',
+                        400: '#fb7185',
+                        500: '#f43f5e',
+                        900: '#881337',
+                    },
+                    dark: {
+                        900: '#0a0a0a',
+                        800: '#171717',
+                        700: '#262626'
+                    }
+                },
+                animation: {
+                    'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both',
+                    'fade-in': 'fadeIn 1s ease-out both',
+                    'blur-in': 'blurIn 0.8s ease-out both',
+                    'zoom-slow': 'zoomSlow 20s linear infinite alternate',
+                },
+                keyframes: {
+                    fadeInUp: {
+                        '0%': { opacity: '0', transform: 'translateY(30px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    fadeIn: {
+                        '0%': { opacity: '0' },
+                        '100%': { opacity: '1' },
+                    },
+                    blurIn: {
+                        '0%': { opacity: '0', filter: 'blur(10px)' },
+                        '100%': { opacity: '1', filter: 'blur(0)' },
+                    },
+                    zoomSlow: {
+                        '0%': { transform: 'scale(1)' },
+                        '100%': { transform: 'scale(1.1)' },
+                    }
+                }
+            }
+        }
+    }
+    </script>
+
+    <!-- Original Custom Styles & Utilities (Identical to reference site) -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+        }
+        /* Hide scrollbar for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Comparison Slider Styles */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .comparison-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .comparison-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #fff;
+            cursor: col-resize;
+            z-index: 10;
+        }
+        .comparison-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        /* Animation Observer Classes */
+        .reveal-on-scroll {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+        /* Modern Glass Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        /* Documentation spec styling helpers */
+        .doc-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.625rem;
+            border-radius: 9999px;
+            font-size: 0.625rem;
+            font-family: ui-monospace, monospace;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-neutral-900 dark:bg-dark-900 dark:text-neutral-100 transition-colors duration-300 antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- ============================================================ -->
+    <!-- TOP HORIZONTAL NAVIGATION (Exact reference nav + anchor links)-->
+    <!-- ============================================================ -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 backdrop-blur-none border-transparent transition-all duration-300 bg-white/0 dark:bg-dark-900/0" id="nav-bg"></div>
+        <div class="relative flex h-24 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <!-- Logo & DS Badge -->
+            <a class="flex items-center gap-3 group" href="#hero">
+                <div class="w-8 h-8 text-white" id="logo-icon">
+                    <svg height="100%" viewbox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L9 9l-7 3l7 3l3 7l3-7l7-3l-7-3z" fill="currentColor"></path></svg>
+                </div>
+                <div class="flex items-baseline gap-2">
+                    <span class="font-serif text-lg tracking-tight font-medium group-hover:opacity-80 transition-opacity text-white" id="logo-text">CharisLooks</span>
+                    <span class="text-[9px] uppercase tracking-widest text-indigo-300 font-mono font-semibold px-2 py-0.5 rounded-full glass-panel border border-white/10">Design System v2</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu (Anchor links to all 7 sections) -->
+            <div class="hidden lg:flex items-center gap-6 text-xs font-medium text-white/80" id="nav-links">
+                <a class="transition-colors text-white/80 hover:text-white" href="#hero">00. Hero</a>
+                <a class="transition-colors text-white/80 hover:text-white" href="#typography">01. Typography</a>
+                <a class="transition-colors text-white/80 hover:text-white" href="#colors">02. Colors &amp; Surfaces</a>
+                <a class="transition-colors text-white/80 hover:text-white" href="#components">03. UI Components</a>
+                <a class="transition-colors text-white/80 hover:text-white" href="#layout">04. Layout &amp; Spacing</a>
+                <a class="transition-colors text-white/80 hover:text-white" href="#motion">05. Motion</a>
+                <a class="transition-colors text-white/80 hover:text-white" href="#icons">06. Icons</a>
+            </div>
+
+            <!-- CTA: Link to Live Reference Site -->
+            <div class="hidden md:flex items-center gap-3">
+                <a class="bg-white text-neutral-900 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide hover:bg-neutral-200 transition-colors flex items-center gap-2 group" href="index.html">
+                    <span>Live Site</span>
+                    <svg class="lucide lucide-arrow-right w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" data-lucide="arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="lg:hidden p-2 text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg aria-hidden="true" class="lucide lucide-menu w-6 h-6" data-lucide="menu" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden absolute top-24 left-0 w-full bg-dark-900/95 backdrop-blur-xl border-b border-neutral-800 p-6 flex flex-col gap-4 lg:hidden" id="mobile-menu">
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#hero" onclick="document.getElementById('mobile-menu').classList.add('hidden')">00. Hero Clone</a>
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#typography" onclick="document.getElementById('mobile-menu').classList.add('hidden')">01. Typography</a>
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#colors" onclick="document.getElementById('mobile-menu').classList.add('hidden')">02. Colors &amp; Surfaces</a>
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#components" onclick="document.getElementById('mobile-menu').classList.add('hidden')">03. UI Components</a>
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#layout" onclick="document.getElementById('mobile-menu').classList.add('hidden')">04. Layout &amp; Spacing</a>
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#motion" onclick="document.getElementById('mobile-menu').classList.add('hidden')">05. Motion &amp; Interaction</a>
+            <a class="text-sm font-medium text-neutral-300 hover:text-white" href="#icons" onclick="document.getElementById('mobile-menu').classList.add('hidden')">06. Icons</a>
+            <a class="text-sm font-semibold text-indigo-400" href="index.html">View Live Site →</a>
+        </div>
+    </nav>
+
+
+    <!-- ============================================================ -->
+    <!-- 0) HERO SPEC (Exact Clone, Text Adapted to Design System)    -->
+    <!-- ============================================================ -->
+    <header class="relative w-full h-screen min-h-[750px] overflow-hidden bg-dark-900" id="hero">
+        <!-- Background Image with Slow Zoom -->
+        <div class="absolute inset-0 w-full h-full animate-zoom-slow">
+            <img alt="Luxury Beauty Design System" class="w-full h-full object-cover opacity-90" src="assets/0929a2193b7ba78b_photo-1616683693504-3ea7e9ad6f.avif"/>
+            <!-- Gradient Overlays for readability and style -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-dark-900"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+        </div>
+
+        <!-- Main Content Container -->
+        <div class="relative z-10 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
+            <!-- Typography & CTA Block -->
+            <div class="max-w-2xl mt-16">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-panel mb-8 animate-fade-in-up" style="animation-delay: 100ms;">
+                    <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-neutral-300 font-medium">Design System v2.0 • Pattern Library</span>
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-6xl md:text-8xl font-serif text-white leading-[0.9] tracking-tight mb-8 animate-fade-in-up" style="animation-delay: 200ms;">
+                    CharisLooks <br/>
+                    <span class="italic font-light text-white/80">Pattern Library</span>
+                </h1>
+
+                <!-- Subtext -->
+                <p class="text-lg text-neutral-300 font-light max-w-md mb-10 leading-relaxed animate-fade-in-up" style="animation-delay: 300ms;">
+                    A living specification of luxury aesthetics, typography hierarchy, glass surfaces, and responsive motion for modern digital experiences.
+                </p>
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row items-center gap-4 animate-fade-in-up" style="animation-delay: 400ms;">
+                    <a class="w-full sm:w-auto px-8 py-4 bg-white text-neutral-900 rounded-full text-sm font-semibold hover:bg-neutral-200 transition-colors text-center shadow-lg" href="#typography">
+                        Explore System
+                    </a>
+                    <a class="w-full sm:w-auto px-8 py-4 glass-panel text-white rounded-full text-sm font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2 group shadow-lg" href="#components">
+                        <span>View Components</span>
+                        <svg class="group-hover:translate-x-1 transition-transform" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Floating Card Element (Desktop Only - Exact Clone) -->
+            <div class="hidden lg:block absolute right-6 bottom-32 animate-fade-in-up" style="animation-delay: 600ms;">
+                <div class="glass-panel p-6 rounded-2xl max-w-xs backdrop-blur-xl border border-white/10 shadow-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Living Spec</span>
+                        <div class="flex -space-x-2">
+                            <img alt="" class="w-6 h-6 rounded-full border border-black object-cover" src="assets/55cf6231499bcdc4_32.jpg"/>
+                            <img alt="" class="w-6 h-6 rounded-full border border-black object-cover" src="assets/d8dab29a5736d5c2_44.jpg"/>
+                            <div class="w-6 h-6 rounded-full border border-black bg-neutral-800 flex items-center justify-center text-[8px] text-white">+12</div>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-serif text-white mb-1">Production Tokens</h3>
+                    <p class="text-xs text-neutral-400 mb-4">Canonical elements extracted directly from production DOM &amp; compiled CSS.</p>
+                    <div class="flex items-center gap-2 text-xs text-indigo-300">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                        Verified &amp; Active
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 animate-pulse">
+                <span class="text-[10px] uppercase tracking-widest text-white">Scroll</span>
+                <div class="w-px h-12 bg-gradient-to-b from-white to-transparent"></div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ============================================================ -->
+    <!-- 1) TYPOGRAPHY SPEC TABLE                                      -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-white dark:bg-dark-900 border-t border-neutral-100 dark:border-neutral-800" id="typography">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll is-visible">
+                <div>
+                    <span class="text-indigo-500 font-bold text-[10px] tracking-[0.2em] uppercase mb-2 block">01 / Typography Specification</span>
+                    <h2 class="text-3xl md:text-5xl font-serif text-neutral-900 dark:text-white tracking-tight">Typography Scale &amp; Rhythm</h2>
+                </div>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm font-light max-w-md mt-4 md:mt-0">
+                    Playfair Display editorial serif paired with Inter geometric sans-serif. Strict hierarchy, proportional line-heights, and curated tracking.
+                </p>
+            </div>
+
+            <!-- Spec Table / Vertical List -->
+            <div class="space-y-4">
+
+                <!-- Heading 1 -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Heading 1</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Playfair Display</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-6xl md:text-8xl font-serif leading-[0.9] tracking-tight</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <h1 class="text-4xl sm:text-6xl md:text-8xl font-serif text-neutral-900 dark:text-white leading-[0.9] tracking-tight">
+                            Unveil Your <br/>
+                            <span class="italic font-light text-neutral-400 dark:text-white/80">True Essence</span>
+                        </h1>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            96px / 86px (desktop)<br/>60px / 54px (mobile)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Heading 2 (Lead) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Heading 2 • Heroic</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Playfair Display</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-4xl md:text-5xl font-serif tracking-tight</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <h2 class="text-3xl md:text-5xl font-serif text-neutral-900 dark:text-white tracking-tight">
+                            Curated <span class="text-indigo-400 italic">Treatments</span>
+                        </h2>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            48px / 48px (desktop)<br/>36px / 40px (mobile)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Heading 2 (Section) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Heading 2 • Section</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Playfair Display</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-3xl md:text-4xl tracking-tight</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <h2 class="text-3xl md:text-4xl font-serif text-neutral-900 dark:text-white tracking-tight">
+                            Our Services &amp; Transformations
+                        </h2>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            36px / 40px (desktop)<br/>30px / 36px (mobile)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Heading 3 (Editorial Italic) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Heading 3 • Italic</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Playfair Italic</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-xl font-serif italic</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <h3 class="text-xl font-serif italic text-neutral-900 dark:text-white">
+                            Bridal Artistry &amp; Luxe Facials
+                        </h3>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            20px / 28px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Heading 3 (Standard Serif) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Heading 3 • Standard</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Playfair Display</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-lg font-serif</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <h3 class="text-lg font-serif text-neutral-900 dark:text-white">
+                            Hydra-Glow Facial
+                        </h3>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            18px / 28px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Heading 4 / Item Title -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Heading 4 • Sub-header</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Medium</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-sm font-medium</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <h4 class="text-sm font-medium text-neutral-900 dark:text-white">
+                            Select Date &amp; Time • Explore Treatment Menu
+                        </h4>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            14px / 20px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Bold L -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Bold L</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Medium</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-base font-medium</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <span class="text-base font-medium text-neutral-900 dark:text-white">
+                            Signature Blowout, Balayage &amp; Tone Package
+                        </span>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            16px / 24px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Bold M -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Bold M</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Semibold</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-sm font-semibold</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <span class="text-sm font-semibold text-neutral-900 dark:text-white">
+                            Book Appointment CTA • Price Label $280+
+                        </span>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            14px / 20px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Bold S (Tracked Uppercase) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Bold S • Eyebrow</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Bold Tracked</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-[10px] font-bold tracking-[0.2em] uppercase</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-indigo-500">
+                            Service Menu • The Results • Step Indicators
+                        </span>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            10px / 15px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Paragraph (Large Lead) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Paragraph (Lead)</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Light</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-lg font-light leading-relaxed</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <p class="text-lg text-neutral-600 dark:text-neutral-300 font-light leading-relaxed">
+                            Curated beauty experiences designed to enhance, not conceal. Discover artistry in hair, skin, and makeup.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            18px / 28px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Paragraph (Editorial Quote) -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Paragraph (Quote)</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Playfair Italic</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-lg font-serif italic</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <p class="text-lg font-serif italic text-neutral-700 dark:text-neutral-300">
+                            "Absolutely transformed my look for my wedding. The attention to detail was impeccable."
+                        </p>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            18px / 28px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Regular L -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Regular L</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Normal</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-base font-normal</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <p class="text-base text-neutral-700 dark:text-neutral-300">
+                            Each treatment is tailored to your unique features and natural aesthetic.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            16px / 24px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Regular M -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Regular M</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Light</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-sm font-light</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <p class="text-sm font-light text-neutral-500 dark:text-neutral-400">
+                            Curated treatments for the modern muse. Select your preferred treatment and time.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            14px / 20px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Regular S -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Regular S</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter Light</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-xs font-light</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden">
+                        <p class="text-xs font-light text-neutral-500 dark:text-neutral-400">
+                            Includes scalp massage, wash, and volume styling. Hand-painted highlights for natural gradation + gloss.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            12px / 16px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Micro Captions & Data -->
+                <div class="p-6 md:p-8 rounded-2xl bg-neutral-50 dark:bg-dark-800/60 border border-neutral-200/80 dark:border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
+                    <div class="lg:w-1/4">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">Micro Badges &amp; Mono</span>
+                            <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Inter &amp; Mono</span>
+                        </div>
+                        <code class="text-[11px] text-neutral-500 dark:text-neutral-400 font-mono block">text-[10px] uppercase • font-mono • text-[8px]</code>
+                    </div>
+                    <div class="lg:w-1/2 overflow-hidden flex flex-wrap items-center gap-4">
+                        <span class="text-[10px] uppercase tracking-widest text-neutral-400 font-medium">New Collection 2024</span>
+                        <span class="text-[10px] text-neutral-400 font-mono bg-neutral-200 dark:bg-neutral-700 px-2 py-0.5 rounded">45m duration</span>
+                        <div class="w-6 h-6 rounded-full bg-neutral-800 flex items-center justify-center text-[8px] text-white font-medium border border-black">+12</div>
+                    </div>
+                    <div class="lg:w-1/4 text-left lg:text-right">
+                        <span class="inline-block text-xs font-mono font-medium text-indigo-500 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">
+                            10px / 15px &amp; 8px / 12px
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 2) COLORS & SURFACES                                         -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-neutral-50 dark:bg-dark-800 border-t border-neutral-200 dark:border-neutral-700" id="colors">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll is-visible">
+                <div>
+                    <span class="text-indigo-500 font-bold text-[10px] tracking-[0.2em] uppercase mb-2 block">02 / Color Palette &amp; Surfaces</span>
+                    <h2 class="text-3xl md:text-5xl font-serif text-neutral-900 dark:text-white tracking-tight">Tones, Transparencies &amp; Glass</h2>
+                </div>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm font-light max-w-md mt-4 md:mt-0">
+                    Curated color palette configured in Tailwind theme. Deep obsidian blacks, warm rose accents, frosted glass panels, and atmospheric gradients.
+                </p>
+            </div>
+
+            <!-- Group A: Rose Palette -->
+            <div class="mb-16">
+                <h3 class="text-xl font-serif text-neutral-900 dark:text-white mb-6">Rose Brand Palette (Configured in Tailwind Theme)</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-50 border border-neutral-200 dark:border-neutral-700 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-50</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#fff1f2</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Subtle pill backings</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-100 border border-neutral-200 dark:border-neutral-700 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-100</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#ffe4e6</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Soft tint surfaces</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-200 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-200</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#fecdd3</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Border highlights</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-300 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-300</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#fda4af</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Accent highlights</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-400 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-400</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#fb7185</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Icon glow &amp; stars</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-500 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-500</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#f43f5e</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Face category icon</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-16 rounded-xl bg-rose-900 mb-3"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">rose-900</span>
+                        <span class="text-[10px] font-mono text-neutral-400 block">#881337</span>
+                        <span class="text-[10px] text-neutral-500 mt-1 block">Dark badge backing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group B: Dark Canvas & Surfaces -->
+            <div class="mb-16">
+                <h3 class="text-xl font-serif text-neutral-900 dark:text-white mb-6">Dark Surfaces &amp; Elevation (Tailwind Config)</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="p-5 rounded-2xl bg-dark-900 text-white border border-neutral-800 shadow-xl">
+                        <div class="w-full h-16 rounded-xl bg-[#0a0a0a] border border-neutral-800 mb-4 flex items-center justify-center text-xs font-mono text-neutral-400">#0a0a0a</div>
+                        <span class="text-sm font-bold block">dark-900 (Canvas Obsidian)</span>
+                        <span class="text-xs text-neutral-400 mt-1 block">Primary dark background for Hero, Booking, Footer, and page base in dark mode.</span>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-dark-900 text-white border border-neutral-800 shadow-xl">
+                        <div class="w-full h-16 rounded-xl bg-[#171717] border border-neutral-800 mb-4 flex items-center justify-center text-xs font-mono text-neutral-400">#171717</div>
+                        <span class="text-sm font-bold block">dark-800 (Card Surface)</span>
+                        <span class="text-xs text-neutral-400 mt-1 block">Container surface for service items, booking form cards, and review slides.</span>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-dark-900 text-white border border-neutral-800 shadow-xl">
+                        <div class="w-full h-16 rounded-xl bg-[#262626] border border-neutral-800 mb-4 flex items-center justify-center text-xs font-mono text-neutral-400">#262626</div>
+                        <span class="text-sm font-bold block">dark-700 (Elevated Borders)</span>
+                        <span class="text-xs text-neutral-400 mt-1 block">Interactive hover borders, dividers, calendar outlines, and active rings.</span>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-dark-900 text-white border border-neutral-800 shadow-xl">
+                        <div class="w-full h-16 rounded-xl bg-black border border-neutral-800 mb-4 flex items-center justify-center text-xs font-mono text-neutral-400">#000000</div>
+                        <span class="text-sm font-bold block">Pure Black &amp; White</span>
+                        <span class="text-xs text-neutral-400 mt-1 block">High-contrast anchors, overlay vignettes, and pure CTA buttons.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group C: Indigo Accents & Neutral Palette -->
+            <div class="mb-16">
+                <h3 class="text-xl font-serif text-neutral-900 dark:text-white mb-6">Indigo Accents &amp; Functional Highlights</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-14 rounded-xl bg-indigo-50 border border-neutral-200 dark:border-neutral-700 mb-2"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">indigo-50</span>
+                        <span class="text-[10px] font-mono text-neutral-400">#eef2ff • Icon container</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-14 rounded-xl bg-indigo-300 mb-2"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">indigo-300</span>
+                        <span class="text-[10px] font-mono text-neutral-400">#a5b4fc • Hero card link</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-14 rounded-xl bg-indigo-400 mb-2"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">indigo-400</span>
+                        <span class="text-[10px] font-mono text-neutral-400">#818cf8 • Brand pulse dot &amp; stars</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-14 rounded-xl bg-indigo-500 mb-2"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">indigo-500</span>
+                        <span class="text-[10px] font-mono text-neutral-400">#6366f1 • Hair category icon</span>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700">
+                        <div class="w-full h-14 rounded-xl bg-green-500 mb-2"></div>
+                        <span class="text-xs font-bold block text-neutral-900 dark:text-white">green-500</span>
+                        <span class="text-[10px] font-mono text-neutral-400">#22c55e • Online status dot</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group D: Surfaces, Glass & Gradients -->
+            <div>
+                <h3 class="text-xl font-serif text-neutral-900 dark:text-white mb-6">Surfaces, Glassmorphism &amp; Gradients</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Surface 1: Glass Panel -->
+                    <div class="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-neutral-900 to-black text-white border border-neutral-800">
+                        <div class="absolute -right-8 -top-8 w-36 h-36 bg-indigo-500/20 rounded-full blur-2xl"></div>
+                        <div class="relative z-10">
+                            <span class="text-[10px] font-mono text-indigo-300 uppercase tracking-widest block mb-4">.glass-panel utility</span>
+                            <div class="glass-panel p-6 rounded-2xl mb-4">
+                                <h4 class="text-sm font-serif mb-1">Frosted Glass Layer</h4>
+                                <p class="text-xs text-neutral-300 font-light">background: rgba(255, 255, 255, 0.03);<br/>backdrop-filter: blur(12px);<br/>border: 1px solid rgba(255, 255, 255, 0.05);</p>
+                            </div>
+                            <span class="text-xs text-neutral-400">Used in Hero floating card, badge containers, and secondary buttons.</span>
+                        </div>
+                    </div>
+
+                    <!-- Surface 2: Glass Card Hover -->
+                    <div class="rounded-3xl p-8 bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-800">
+                        <span class="text-[10px] font-mono text-indigo-500 uppercase tracking-widest block mb-4">.glass-card-hover utility</span>
+                        <div class="p-5 rounded-2xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 glass-card-hover cursor-pointer mb-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-medium text-neutral-900 dark:text-white">Hover Over This Surface</span>
+                                <span class="text-xs font-mono text-indigo-500">-2px lift</span>
+                            </div>
+                            <p class="text-xs text-neutral-500">transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);</p>
+                        </div>
+                        <span class="text-xs text-neutral-500 dark:text-neutral-400">Used across service menu items to create weightless micro-elevation.</span>
+                    </div>
+
+                    <!-- Surface 3: Gradients -->
+                    <div class="rounded-3xl p-8 bg-dark-900 text-white border border-neutral-800">
+                        <span class="text-[10px] font-mono text-indigo-300 uppercase tracking-widest block mb-4">Atmospheric Overlays</span>
+                        <div class="space-y-3">
+                            <div class="h-10 rounded-xl bg-gradient-to-r from-black/80 via-black/40 to-transparent flex items-center px-4 text-xs font-mono text-neutral-300 border border-white/10">
+                                from-black/80 via-black/40 to-transparent
+                            </div>
+                            <div class="h-10 rounded-xl bg-gradient-to-b from-black/40 via-transparent to-dark-900 flex items-center px-4 text-xs font-mono text-neutral-300 border border-white/10">
+                                from-black/40 via-transparent to-dark-900
+                            </div>
+                            <div class="h-10 rounded-xl bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-center px-4 text-xs font-mono text-neutral-300 border border-white/10">
+                                from-black/80 via-black/20 to-transparent
+                            </div>
+                        </div>
+                        <span class="text-xs text-neutral-400 mt-4 block">Used to ensure effortless text legibility over high-resolution imagery.</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 3) UI COMPONENTS                                             -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-white dark:bg-dark-900 border-t border-neutral-100 dark:border-neutral-800" id="components">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll is-visible">
+                <div>
+                    <span class="text-indigo-500 font-bold text-[10px] tracking-[0.2em] uppercase mb-2 block">03 / Canonical UI Components</span>
+                    <h2 class="text-3xl md:text-5xl font-serif text-neutral-900 dark:text-white tracking-tight">Buttons, Inputs &amp; Cards</h2>
+                </div>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm font-light max-w-md mt-4 md:mt-0">
+                    Interactive specimens with states displayed side-by-side: default, hover, active, focus, and disabled.
+                </p>
+            </div>
+
+            <!-- COMPONENT 1: BUTTONS -->
+            <div class="mb-20">
+                <div class="flex items-center gap-3 mb-8">
+                    <h3 class="text-2xl font-serif text-neutral-900 dark:text-white">Buttons &amp; Interactive Triggers</h3>
+                    <span class="doc-tag bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">All States</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Primary CTA Button States -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-300">1. Primary Pill CTA</span>
+                            <code class="text-[10px] font-mono text-neutral-400">rounded-full px-8 py-4</code>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                            <div>
+                                <span class="text-[10px] text-neutral-400 uppercase font-mono block mb-2">Default</span>
+                                <button class="w-full px-6 py-3.5 bg-white text-neutral-900 rounded-full text-xs font-semibold shadow-md">
+                                    Book Now
+                                </button>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-neutral-400 uppercase font-mono block mb-2">Hover State</span>
+                                <button class="w-full px-6 py-3.5 bg-neutral-200 text-neutral-900 rounded-full text-xs font-semibold shadow-md">
+                                    Book Now
+                                </button>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-neutral-400 uppercase font-mono block mb-2">Disabled State</span>
+                                <button class="w-full px-6 py-3.5 bg-white/40 text-neutral-600 rounded-full text-xs font-semibold cursor-not-allowed" disabled>
+                                    Unavailable
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Glass Panel Button States -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-300">2. Glass Panel Button with Arrow</span>
+                            <code class="text-[10px] font-mono text-neutral-400">glass-panel group</code>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                            <div>
+                                <span class="text-[10px] text-neutral-400 uppercase font-mono block mb-2">Default</span>
+                                <a class="w-full px-6 py-3.5 glass-panel text-white rounded-full text-xs font-medium flex items-center justify-center gap-2 group" href="#">
+                                    <span>Explore</span>
+                                    <svg class="group-hover:translate-x-1 transition-transform" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-neutral-400 uppercase font-mono block mb-2">Hover State</span>
+                                <a class="w-full px-6 py-3.5 bg-white/10 text-white rounded-full text-xs font-medium flex items-center justify-center gap-2 border border-white/20" href="#">
+                                    <span>Explore</span>
+                                    <svg class="translate-x-1 transition-transform" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-neutral-400 uppercase font-mono block mb-2">Disabled State</span>
+                                <a class="w-full px-6 py-3.5 bg-white/5 text-white/30 rounded-full text-xs font-medium flex items-center justify-center gap-2 cursor-not-allowed border border-white/5" href="#">
+                                    <span>Explore</span>
+                                    <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Selection Button States -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white">3. Booking Treatment Cards</span>
+                            <code class="text-[10px] font-mono text-neutral-400">Active vs Default</code>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Selected/Active -->
+                            <button class="text-left p-4 rounded-xl border-2 border-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20 relative">
+                                <div class="absolute top-3 right-3 text-indigo-400"><svg aria-hidden="true" class="lucide lucide-check-circle-2 w-5 h-5" data-lucide="check-circle-2" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg></div>
+                                <span class="block font-medium text-sm mb-1 text-neutral-900 dark:text-white">Selected Treatment</span>
+                                <span class="block text-xs text-indigo-600 dark:text-indigo-400 font-medium">60 mins • $95 (Active Ring)</span>
+                            </button>
+                            <!-- Default -->
+                            <button class="text-left p-4 rounded-xl border border-neutral-200 dark:border-neutral-700 hover:border-indigo-300 transition-colors bg-white dark:bg-dark-900">
+                                <span class="block font-medium text-sm mb-1 text-neutral-900 dark:text-white">Default Treatment</span>
+                                <span class="block text-xs text-neutral-500 dark:text-neutral-400">90 mins • $150 (Unselected)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Time Slot Buttons -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white">4. Time Slot Pills &amp; Carousel Arrows</span>
+                            <code class="text-[10px] font-mono text-neutral-400">rounded-lg py-2 px-3</code>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button class="py-2 px-4 rounded-lg text-xs bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-medium shadow-md">11:30 AM (Active)</button>
+                            <button class="py-2 px-4 rounded-lg text-xs border border-neutral-200 dark:border-neutral-700 hover:bg-indigo-50 dark:hover:bg-white/5 transition-colors">10:00 AM</button>
+                            <button class="py-2 px-4 rounded-lg text-xs border border-neutral-200 dark:border-neutral-700 opacity-40 cursor-not-allowed">2:00 PM (Booked)</button>
+                            <div class="h-6 w-px bg-neutral-300 dark:bg-neutral-700 mx-2"></div>
+                            <!-- Carousel Circular Buttons -->
+                            <button class="p-2 rounded-full border border-neutral-200 hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800 transition-colors">
+                                <svg class="lucide lucide-arrow-left w-4 h-4" data-lucide="arrow-left" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                            </button>
+                            <button class="p-2 rounded-full border border-neutral-200 hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800 transition-colors">
+                                <svg class="lucide lucide-arrow-right w-4 h-4" data-lucide="arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPONENT 2: FORMS & INPUTS -->
+            <div class="mb-20">
+                <div class="flex items-center gap-3 mb-8">
+                    <h3 class="text-2xl font-serif text-neutral-900 dark:text-white">Form Inputs &amp; Date Controls</h3>
+                    <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Dark Glass Styling</span>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Text Input States -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800 space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-300 block mb-2">Text Inputs</span>
+                        <div>
+                            <label class="text-xs text-neutral-400 mb-1 block">Default State</label>
+                            <input class="w-full bg-neutral-800/50 border border-neutral-700 rounded-xl px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-white transition-colors text-sm" placeholder="Full Name (e.g. Sarah Jenkins)" type="text"/>
+                        </div>
+                        <div>
+                            <label class="text-xs text-neutral-400 mb-1 block">Focused State (Simulated)</label>
+                            <input class="w-full bg-neutral-800/80 border-2 border-white rounded-xl px-4 py-3 text-white placeholder-neutral-500 text-sm ring-2 ring-white/20" type="text" value="sarah.jenkins@example.com"/>
+                        </div>
+                        <div>
+                            <label class="text-xs text-neutral-400 mb-1 block">Disabled State</label>
+                            <input class="w-full bg-neutral-800/20 border border-neutral-800 rounded-xl px-4 py-3 text-neutral-500 cursor-not-allowed text-sm" disabled type="text" value="Locked Preference"/>
+                        </div>
+                    </div>
+
+                    <!-- Select & Textarea -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800 space-y-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-300 block mb-2">Dropdown &amp; Textarea</span>
+                        <div>
+                            <label class="text-xs text-neutral-400 mb-1 block">Treatment Select</label>
+                            <select class="w-full bg-neutral-800/50 border border-neutral-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white transition-colors text-sm">
+                                <option>Signature Soft Glam (60m • $95)</option>
+                                <option>Balayage &amp; Tone (180m • $280+)</option>
+                                <option>Hydra-Glow Facial (50m • $140)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-neutral-400 mb-1 block">Special Requests / Notes</label>
+                            <textarea class="w-full bg-neutral-800/50 border border-neutral-700 rounded-xl px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-white transition-colors h-24 text-sm resize-none" placeholder="Allergies, bridal party details, or hair length notes..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Visual Widget -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-neutral-900 text-white border border-neutral-800">
+                        <span class="text-xs font-bold uppercase tracking-wider text-neutral-300 block mb-4">Calendar Picker Widget</span>
+                        <div class="bg-neutral-800/60 rounded-2xl p-4 border border-neutral-700">
+                            <div class="flex justify-between mb-4 text-sm font-medium">
+                                <span>October 2024</span>
+                                <div class="flex gap-2 text-neutral-400">
+                                    <svg class="lucide lucide-chevron-left w-4 h-4 cursor-pointer hover:text-white" data-lucide="chevron-left" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg>
+                                    <svg class="lucide lucide-chevron-right w-4 h-4 cursor-pointer hover:text-white" data-lucide="chevron-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-7 gap-2 text-center text-xs text-neutral-500 mb-2">
+                                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                            </div>
+                            <div class="grid grid-cols-7 gap-2 text-center text-xs font-medium">
+                                <span class="text-neutral-600">29</span><span class="text-neutral-600">30</span><span>1</span><span>2</span>
+                                <span class="bg-indigo-400 text-white rounded-full w-6 h-6 flex items-center justify-center mx-auto shadow-lg shadow-indigo-400/40">3</span>
+                                <span>4</span><span>5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center gap-2 text-xs text-neutral-400">
+                            <svg class="lucide lucide-calendar w-4 h-4 text-indigo-400" data-lucide="calendar" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M3 9h18"></path></svg>
+                            <span>October 3rd selected • 4 time slots available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMPONENT 3: CANONICAL CARDS -->
+            <div>
+                <div class="flex items-center gap-3 mb-8">
+                    <h3 class="text-2xl font-serif text-neutral-900 dark:text-white">Canonical Card Patterns</h3>
+                    <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Exact Markup</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Card 1: Service Card with 4:5 Aspect Ratio -->
+                    <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono uppercase text-indigo-500 block mb-3">Pattern: Aspect Ratio Card</span>
+                            <div class="aspect-[4/5] overflow-hidden rounded-2xl mb-5 bg-neutral-100 dark:bg-neutral-800 group relative">
+                                <img alt="Service Item" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/1e576bded29b223a_photo-1562322140-8baeececf3df.avif"/>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-xl mb-1 font-serif italic text-neutral-900 dark:text-white">Bridal Artistry</h3>
+                                    <p class="text-neutral-500 dark:text-neutral-400 text-xs">Hair &amp; Makeup packages</p>
+                                </div>
+                                <span class="text-sm font-medium text-neutral-900 dark:text-white">$250+</span>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 mt-6 block">Classes: aspect-[4/5] group-hover:scale-105 duration-700</span>
+                    </div>
+
+                    <!-- Card 2: Interactive Service Menu Item -->
+                    <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono uppercase text-indigo-500 block mb-3">Pattern: Interactive Menu Item</span>
+                            <div class="group relative p-5 rounded-2xl bg-neutral-100 dark:bg-neutral-800/50 border border-transparent hover:bg-white hover:border-neutral-200 dark:hover:bg-neutral-800 dark:hover:border-neutral-700 transition-all duration-300 glass-card-hover cursor-pointer mb-4">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-base font-medium text-neutral-900 dark:text-white">Balayage &amp; Tone</span>
+                                    <span class="text-sm font-medium text-neutral-900 dark:text-white">$280+</span>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <p class="text-xs text-neutral-500 dark:text-neutral-400 font-light max-w-[80%]">Hand-painted highlights for natural gradation + gloss.</p>
+                                    <span class="text-[10px] text-neutral-400 font-mono">180m</span>
+                                </div>
+                            </div>
+                            <div class="group relative p-5 rounded-2xl bg-neutral-100 dark:bg-neutral-800/50 border border-transparent hover:bg-white hover:border-neutral-200 dark:hover:bg-neutral-800 dark:hover:border-neutral-700 transition-all duration-300 glass-card-hover cursor-pointer">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-base font-medium text-neutral-900 dark:text-white">Signature Blowout</span>
+                                    <span class="text-sm font-medium text-neutral-900 dark:text-white">$65</span>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <p class="text-xs text-neutral-500 dark:text-neutral-400 font-light max-w-[80%]">Includes scalp massage, wash, and volume styling.</p>
+                                    <span class="text-[10px] text-neutral-400 font-mono">45m</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 mt-6 block">Classes: glass-card-hover p-5 rounded-2xl duration-300</span>
+                    </div>
+
+                    <!-- Card 3: Client Story / Review Card -->
+                    <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono uppercase text-indigo-500 block mb-3">Pattern: Testimonial Card</span>
+                            <div class="bg-white dark:bg-dark-900 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-700 shadow-sm">
+                                <div class="flex gap-1 text-indigo-400 mb-4">
+                                    <svg class="lucide lucide-star w-4 h-4 fill-current" data-lucide="star" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                    <svg class="lucide lucide-star w-4 h-4 fill-current" data-lucide="star" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                    <svg class="lucide lucide-star w-4 h-4 fill-current" data-lucide="star" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                    <svg class="lucide lucide-star w-4 h-4 fill-current" data-lucide="star" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                    <svg class="lucide lucide-star w-4 h-4 fill-current" data-lucide="star" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                </div>
+                                <p class="text-base font-serif italic mb-6 text-neutral-700 dark:text-neutral-300">"The atmosphere is so calming and high-end. Best facial I've had in the city."</p>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-neutral-200 rounded-full overflow-hidden">
+                                        <img alt="User" class="w-full h-full object-cover" src="assets/ee794ad2b1016f82_65.jpg"/>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-neutral-900 dark:text-white">Elena Rodriguez</p>
+                                        <p class="text-xs text-neutral-400">Skincare Client</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono text-neutral-400 mt-6 block">Classes: snap-center p-8 rounded-2xl</span>
+                    </div>
+
+                </div>
+
+                <!-- Live Before/After Comparison Component Specimen -->
+                <div class="mt-12 p-8 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <div>
+                            <span class="text-[10px] font-mono uppercase text-indigo-500 block mb-1">Pattern: Interactive Split Slider</span>
+                            <h4 class="text-xl font-serif text-neutral-900 dark:text-white">Before &amp; After Transformation Slider</h4>
+                        </div>
+                        <span class="text-xs text-neutral-400 font-mono mt-2 md:mt-0">Click &amp; drag slider handle below</span>
+                    </div>
+                    
+                    <div class="max-w-3xl mx-auto">
+                        <div class="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl comparison-slider" id="demoComparisonSlider">
+                            <!-- After Image (Base) -->
+                            <img alt="After" class="absolute inset-0 w-full h-full object-cover" src="assets/1359ba4f57c4d39a_photo-1487412720507-e7ab37603c.avif"/>
+                            <span class="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 text-xs rounded backdrop-blur-sm">AFTER</span>
+
+                            <!-- Before Image (Overlay) -->
+                            <div class="comparison-item" id="demoComparisonOverlay" style="width: 50%;">
+                                <img alt="Before" class="absolute top-0 left-0 h-full max-w-none w-[100vw] md:w-[48rem] object-cover" id="demoComparisonImageBefore" src="assets/9bd5c74260b90b1e_photo-1516975080664-ed2fc6a329.avif"/>
+                                <span class="absolute top-4 left-4 bg-black/50 text-white px-2 py-1 text-xs rounded backdrop-blur-sm">BEFORE</span>
+                            </div>
+
+                            <!-- Handle -->
+                            <div class="comparison-handle" id="demoComparisonHandle" style="left: 50%;">
+                                <div class="comparison-circle bg-white text-indigo-400 shadow-xl">
+                                    <svg class="lucide lucide-chevrons-left-right w-5 h-5" data-lucide="chevrons-left-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m9 7-5 5 5 5"></path><path d="m15 7 5 5-5 5"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 4) LAYOUT & SPACING                                          -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-neutral-50 dark:bg-dark-800 border-t border-neutral-200 dark:border-neutral-700" id="layout">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll is-visible">
+                <div>
+                    <span class="text-indigo-500 font-bold text-[10px] tracking-[0.2em] uppercase mb-2 block">04 / Layout &amp; Spacing Architecture</span>
+                    <h2 class="text-3xl md:text-5xl font-serif text-neutral-900 dark:text-white tracking-tight">Canonical Structural Patterns</h2>
+                </div>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm font-light max-w-md mt-4 md:mt-0">
+                    Real architectural blueprints from the site: Sticky 12-column split layout, 3-column service grid, and responsive masonry wall.
+                </p>
+            </div>
+
+            <div class="space-y-16">
+
+                <!-- Pattern A: Sticky Split Layout (12 cols) -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 shadow-sm">
+                    <div class="flex justify-between items-center mb-6 border-b border-neutral-100 dark:border-neutral-800 pb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white block">Pattern A: Modern Sticky Split Layout</span>
+                            <span class="text-xs text-neutral-500">grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20</span>
+                        </div>
+                        <span class="doc-tag bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500">5 cols + 7 cols</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        <!-- Left 5 cols -->
+                        <div class="lg:col-span-5 rounded-2xl bg-neutral-100 dark:bg-neutral-800 p-6 border border-dashed border-neutral-300 dark:border-neutral-700">
+                            <div class="aspect-[3/4] rounded-xl overflow-hidden relative group mb-4">
+                                <img alt="Sticky Anchor" class="w-full h-full object-cover" src="assets/565235c2de25a49e_photo-1481437156560-3205f6a557.avif"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md p-4 rounded-xl text-white border border-white/20">
+                                    <h5 class="font-serif italic text-lg mb-1">Sticky Anchor</h5>
+                                    <p class="text-[11px] text-white/80">Remains pinned on scroll while right column streams treatment options.</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 block text-center">lg:col-span-5 sticky top-32</span>
+                        </div>
+
+                        <!-- Right 7 cols -->
+                        <div class="lg:col-span-7 rounded-2xl bg-neutral-100 dark:bg-neutral-800 p-6 border border-dashed border-neutral-300 dark:border-neutral-700 space-y-4">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-500">
+                                    <svg class="lucide lucide-scissors w-4 h-4" data-lucide="scissors" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+                                </div>
+                                <h4 class="font-medium text-base text-neutral-900 dark:text-white">Hair Artistry Category Stream</h4>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium block text-neutral-900 dark:text-white">Signature Blowout</span>
+                                    <span class="text-xs text-neutral-400">Includes scalp massage, wash, volume styling</span>
+                                </div>
+                                <span class="text-sm font-semibold text-neutral-900 dark:text-white">$65</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium block text-neutral-900 dark:text-white">Balayage &amp; Tone</span>
+                                    <span class="text-xs text-neutral-400">Hand-painted highlights for natural gradation</span>
+                                </div>
+                                <span class="text-sm font-semibold text-neutral-900 dark:text-white">$280+</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm font-medium block text-neutral-900 dark:text-white">Keratin Smoothing Treatment</span>
+                                    <span class="text-xs text-neutral-400">Smooths frizz and restores silk shine for 4 months</span>
+                                </div>
+                                <span class="text-sm font-semibold text-neutral-900 dark:text-white">$350</span>
+                            </div>
+
+                            <span class="text-[10px] font-mono text-neutral-500 dark:text-neutral-400 block text-center pt-2">lg:col-span-7 flex flex-col gap-16</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pattern B: Masonry Photo Grid Layout -->
+                <div class="p-8 rounded-3xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 shadow-sm">
+                    <div class="flex justify-between items-center mb-6 border-b border-neutral-100 dark:border-neutral-800 pb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-white block">Pattern B: Responsive Masonry Gallery</span>
+                            <span class="text-xs text-neutral-500">columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6</span>
+                        </div>
+                        <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">CSS Multi-Column</span>
+                    </div>
+
+                    <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                        <div class="break-inside-avoid rounded-xl overflow-hidden relative group">
+                            <img alt="Masonry 1" class="w-full object-cover rounded-xl" src="assets/804b09524ae7a9f2_photo-1526045612212-70caf35c14.avif"/>
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-serif text-lg italic">Bridal Glow</span>
+                            </div>
+                        </div>
+                        <div class="break-inside-avoid rounded-xl overflow-hidden relative group">
+                            <img alt="Masonry 2" class="w-full object-cover rounded-xl" src="assets/585a27183f42ba3e_917d6f93-fb36-439a-8c48-884b67.jpg"/>
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-serif text-lg italic">Luxe Facials</span>
+                            </div>
+                        </div>
+                        <div class="break-inside-avoid rounded-xl overflow-hidden relative group">
+                            <img alt="Masonry 3" class="w-full object-cover rounded-xl" src="assets/f96900703422aab0_photo-1616683693504-3ea7e9ad6f.avif"/>
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white font-serif text-lg italic">Editorial Hair</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 5) MOTION & INTERACTION GALLERY                              -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-white dark:bg-dark-900 border-t border-neutral-100 dark:border-neutral-800" id="motion">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll is-visible">
+                <div>
+                    <span class="text-indigo-500 font-bold text-[10px] tracking-[0.2em] uppercase mb-2 block">05 / Motion &amp; Interaction</span>
+                    <h2 class="text-3xl md:text-5xl font-serif text-neutral-900 dark:text-white tracking-tight">Live Animation Gallery</h2>
+                </div>
+                <p class="text-neutral-500 dark:text-neutral-400 text-sm font-light max-w-md mt-4 md:mt-0">
+                    Live specimens of every animation token declared in Tailwind and custom CSS. Active loops, hover transitions, and scroll observers.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Motion 1: zoomSlow -->
+                <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-neutral-900 dark:text-white">animate-zoom-slow</span>
+                        <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">20s alternate</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mb-4">Slow breathing atmospheric zoom used on the Hero background image.</p>
+                    <div class="h-44 rounded-2xl overflow-hidden relative border border-neutral-300 dark:border-neutral-700">
+                        <img alt="Zoom Slow Demo" class="w-full h-full object-cover animate-zoom-slow" src="assets/5e34fa4177398e52_photo-1512496015851-a90fb38ba7.avif"/>
+                        <div class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded text-[10px] font-mono">scale(1) → scale(1.1)</div>
+                    </div>
+                </div>
+
+                <!-- Motion 2: fadeInUp -->
+                <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold text-neutral-900 dark:text-white">animate-fade-in-up</span>
+                            <span class="doc-tag bg-indigo-50 dark:bg-indigo-900/30 text-indigo-500">cubic-bezier</span>
+                        </div>
+                        <p class="text-xs text-neutral-500 mb-4">Entrance animation with 30px translation and cubic-bezier(0.2, 0.8, 0.2, 1) curve.</p>
+                        <div class="h-44 rounded-2xl bg-neutral-900 p-6 flex flex-col items-center justify-center text-center relative overflow-hidden" id="fadeInUpDemoContainer">
+                            <div class="animate-fade-in-up p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-white" id="fadeInUpTarget">
+                                <span class="font-serif italic text-sm block">Entrance Animation</span>
+                                <span class="text-[10px] text-neutral-400 font-mono">translateY(30px) → 0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mt-4 w-full py-2 bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-600 rounded-xl text-xs font-medium text-neutral-900 dark:text-white transition-colors" onclick="const t = document.getElementById('fadeInUpTarget'); t.classList.remove('animate-fade-in-up'); void t.offsetWidth; t.classList.add('animate-fade-in-up');">
+                        Replay fadeInUp Animation
+                    </button>
+                </div>
+
+                <!-- Motion 3: pulse -->
+                <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-neutral-900 dark:text-white">animate-pulse</span>
+                        <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">2s infinite</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mb-4">Breathing opacity animation used for live status indicators &amp; scroll cues.</p>
+                    <div class="h-44 rounded-2xl bg-dark-900 p-6 flex flex-col items-center justify-center gap-4 text-white border border-neutral-800">
+                        <div class="flex items-center gap-3 px-4 py-2 rounded-full glass-panel">
+                            <div class="w-2.5 h-2.5 rounded-full bg-indigo-400 animate-pulse"></div>
+                            <span class="text-xs text-neutral-300 font-mono">Live Indicator Active</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1 opacity-60 animate-pulse">
+                            <span class="text-[9px] uppercase tracking-widest text-white">Scroll Cue</span>
+                            <div class="w-px h-6 bg-gradient-to-b from-white to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motion 4: reveal-on-scroll -->
+                <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-neutral-900 dark:text-white">reveal-on-scroll</span>
+                        <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">IntersectionObserver</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mb-4">Blur(5px) + translateY(20px) clearing into focus as elements enter viewport.</p>
+                    <div class="space-y-2">
+                        <div class="reveal-on-scroll is-visible p-3 rounded-xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 flex justify-between items-center text-xs">
+                            <span class="font-medium text-neutral-900 dark:text-white">Stagger Block 01</span>
+                            <span class="text-[10px] font-mono text-neutral-400">delay-100</span>
+                        </div>
+                        <div class="reveal-on-scroll is-visible delay-200 p-3 rounded-xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 flex justify-between items-center text-xs">
+                            <span class="font-medium text-neutral-900 dark:text-white">Stagger Block 02</span>
+                            <span class="text-[10px] font-mono text-neutral-400">delay-200</span>
+                        </div>
+                        <div class="reveal-on-scroll is-visible delay-300 p-3 rounded-xl bg-white dark:bg-dark-900 border border-neutral-200 dark:border-neutral-700 flex justify-between items-center text-xs">
+                            <span class="font-medium text-neutral-900 dark:text-white">Stagger Block 03</span>
+                            <span class="text-[10px] font-mono text-neutral-400">delay-300</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motion 5: Hover Scale & Arrow Shift -->
+                <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-neutral-900 dark:text-white">group-hover:scale-105</span>
+                        <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">duration-700</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mb-4">Smooth image magnification paired with micro arrow translation on CTA hover.</p>
+                    <div class="h-44 rounded-2xl overflow-hidden relative group cursor-pointer border border-neutral-300 dark:border-neutral-700">
+                        <img alt="Hover Demo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="assets/be7e7f2c5a5b3968_photo-1522337660859-02fbefca47.avif"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                            <div class="flex items-center gap-2 text-white text-xs font-medium">
+                                <span>Hover to Inspect Zoom</span>
+                                <svg class="group-hover:translate-x-1.5 transition-transform" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Motion 6: Navbar Transition On Scroll -->
+                <div class="p-6 rounded-3xl bg-neutral-50 dark:bg-dark-800 border border-neutral-200 dark:border-neutral-700">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-xs font-bold text-neutral-900 dark:text-white">Nav Scroll Transition</span>
+                        <span class="doc-tag bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300">Scroll Listener</span>
+                    </div>
+                    <p class="text-xs text-neutral-500 mb-4">When scrollY &gt; 50px, the transparent dark navigation morphs into a frosted glass pill.</p>
+                    <div class="h-44 rounded-2xl bg-neutral-900 p-4 flex flex-col justify-center gap-3 border border-neutral-800 text-white">
+                        <div class="p-3 rounded-xl bg-white/0 border border-dashed border-white/20 text-center text-xs">
+                            <span class="text-neutral-400 font-mono text-[10px]">scrollY &lt; 50: bg-white/0 (Transparent)</span>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/90 dark:bg-dark-900/90 backdrop-blur-md border border-neutral-200 dark:border-neutral-800 text-center text-xs text-neutral-900 dark:text-white shadow-lg">
+                            <span class="font-mono text-[10px] font-bold">scrollY &gt; 50: bg-white/90 backdrop-blur-md</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- 6) ICON SYSTEM                                               -->
+    <!-- ============================================================ -->
+    <section class="py-24 px-6 bg-neutral-900 text-white border-t border-neutral-800" id="icons">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal-on-scroll is-visible">
+                <div>
+                    <span class="text-indigo-400 font-bold text-[10px] tracking-[0.2em] uppercase mb-2 block">06 / Iconography System</span>
+                    <h2 class="text-3xl md:text-5xl font-serif text-white tracking-tight">Lucide Icon Specimens</h2>
+                </div>
+                <p class="text-neutral-400 text-sm font-light max-w-md mt-4 md:mt-0">
+                    Stroke-based 1.5px icons initialized via Lucide library. Color inheritance and responsive size scales.
+                </p>
+            </div>
+
+            <!-- Complete Icon Specimens Grid (All 19 icons from original design) -->
+            <div class="mb-16">
+                <h3 class="text-lg font-serif text-white mb-6">Complete Reference Icon Set (19 Icons)</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4">
+
+                    <!-- Custom Sparkle Logo -->
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <div class="w-8 h-8 text-indigo-400 mb-2">
+                            <svg height="100%" viewbox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L9 9l-7 3l7 3l3 7l3-7l7-3l-7-3z" fill="currentColor"></path></svg>
+                        </div>
+                        <span class="text-xs font-medium text-white block">brand-star</span>
+                        <span class="text-[9px] font-mono text-neutral-400">custom svg</span>
+                    </div>
+
+                    <!-- Lucide Icons -->
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-scissors w-6 h-6 text-indigo-400 mb-2" data-lucide="scissors" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+                        <span class="text-xs font-medium text-white block">scissors</span>
+                        <span class="text-[9px] font-mono text-neutral-400">hair artistry</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-sparkles w-6 h-6 text-rose-400 mb-2" data-lucide="sparkles" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M9 3v4"></path><path d="M3 5h4"></path><path d="M3 9h4"></path></svg>
+                        <span class="text-xs font-medium text-white block">sparkles</span>
+                        <span class="text-[9px] font-mono text-neutral-400">face &amp; skin</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-eye w-6 h-6 text-neutral-300 mb-2" data-lucide="eye" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <span class="text-xs font-medium text-white block">eye</span>
+                        <span class="text-[9px] font-mono text-neutral-400">lashes &amp; brows</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-calendar w-6 h-6 text-indigo-400 mb-2" data-lucide="calendar" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M3 9h18"></path></svg>
+                        <span class="text-xs font-medium text-white block">calendar</span>
+                        <span class="text-[9px] font-mono text-neutral-400">booking date</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-check w-6 h-6 text-indigo-400 mb-2" data-lucide="check" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <span class="text-xs font-medium text-white block">check</span>
+                        <span class="text-[9px] font-mono text-neutral-400">confirmation</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-check-circle-2 w-6 h-6 text-indigo-400 mb-2" data-lucide="check-circle-2" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>
+                        <span class="text-xs font-medium text-white block">check-circle-2</span>
+                        <span class="text-[9px] font-mono text-neutral-400">selected state</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-arrow-right w-6 h-6 text-white mb-2" data-lucide="arrow-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        <span class="text-xs font-medium text-white block">arrow-right</span>
+                        <span class="text-[9px] font-mono text-neutral-400">cta navigation</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-arrow-left w-6 h-6 text-white mb-2" data-lucide="arrow-left" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+                        <span class="text-xs font-medium text-white block">arrow-left</span>
+                        <span class="text-[9px] font-mono text-neutral-400">carousel prev</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-chevrons-left-right w-6 h-6 text-indigo-400 mb-2" data-lucide="chevrons-left-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m9 7-5 5 5 5"></path><path d="m15 7 5 5-5 5"></path></svg>
+                        <span class="text-xs font-medium text-white block">chevrons-lr</span>
+                        <span class="text-[9px] font-mono text-neutral-400">slider handle</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-star w-6 h-6 text-indigo-400 fill-current mb-2" data-lucide="star" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                        <span class="text-xs font-medium text-white block">star</span>
+                        <span class="text-[9px] font-mono text-neutral-400">review rating</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-map-pin w-6 h-6 text-white mb-2" data-lucide="map-pin" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span class="text-xs font-medium text-white block">map-pin</span>
+                        <span class="text-[9px] font-mono text-neutral-400">address</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-phone w-6 h-6 text-white mb-2" data-lucide="phone" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                        <span class="text-xs font-medium text-white block">phone</span>
+                        <span class="text-[9px] font-mono text-neutral-400">concierge</span>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-neutral-800/60 border border-neutral-700/60 flex flex-col items-center justify-center text-center hover:border-indigo-400 transition-colors">
+                        <svg class="lucide lucide-instagram w-6 h-6 text-neutral-300 mb-2" data-lucide="instagram" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                        <span class="text-xs font-medium text-white block">instagram</span>
+                        <span class="text-[9px] font-mono text-neutral-400">social</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Icon Size Scales & Color Inheritance -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Size Matrix -->
+                <div class="p-6 rounded-3xl bg-neutral-800/60 border border-neutral-700/60">
+                    <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Size Scale Matrix</span>
+                    <div class="flex items-end gap-8 text-center">
+                        <div>
+                            <svg class="lucide lucide-scissors w-4 h-4 mx-auto mb-2 text-indigo-400" data-lucide="scissors" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+                            <span class="text-[10px] font-mono text-neutral-400">w-4 (16px)</span>
+                        </div>
+                        <div>
+                            <svg class="lucide lucide-scissors w-5 h-5 mx-auto mb-2 text-indigo-400" data-lucide="scissors" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+                            <span class="text-[10px] font-mono text-neutral-400">w-5 (20px)</span>
+                        </div>
+                        <div>
+                            <svg class="lucide lucide-scissors w-6 h-6 mx-auto mb-2 text-indigo-400" data-lucide="scissors" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+                            <span class="text-[10px] font-mono text-neutral-400">w-6 (24px)</span>
+                        </div>
+                        <div>
+                            <svg class="lucide lucide-scissors w-8 h-8 mx-auto mb-2 text-indigo-400" data-lucide="scissors" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" x2="8.12" y1="4" y2="15.88"></line><line x1="14.47" x2="20" y1="14.48" y2="20"></line><line x1="8.12" x2="12" y1="8.12" y2="12"></line></svg>
+                            <span class="text-[10px] font-mono text-neutral-400">w-8 (32px)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color Inheritance Matrix -->
+                <div class="p-6 rounded-3xl bg-neutral-800/60 border border-neutral-700/60">
+                    <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Color Inheritance Demonstration</span>
+                    <div class="flex items-center gap-6">
+                        <div class="text-white text-center">
+                            <svg class="lucide lucide-sparkles w-6 h-6 mx-auto mb-1" data-lucide="sparkles" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                            <span class="text-[9px] font-mono text-neutral-400">text-white</span>
+                        </div>
+                        <div class="text-indigo-400 text-center">
+                            <svg class="lucide lucide-sparkles w-6 h-6 mx-auto mb-1" data-lucide="sparkles" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                            <span class="text-[9px] font-mono text-neutral-400">text-indigo-400</span>
+                        </div>
+                        <div class="text-rose-400 text-center">
+                            <svg class="lucide lucide-sparkles w-6 h-6 mx-auto mb-1" data-lucide="sparkles" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                            <span class="text-[9px] font-mono text-neutral-400">text-rose-400</span>
+                        </div>
+                        <div class="text-neutral-400 text-center">
+                            <svg class="lucide lucide-sparkles w-6 h-6 mx-auto mb-1" data-lucide="sparkles" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                            <span class="text-[9px] font-mono text-neutral-400">text-neutral-400</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!-- FOOTER (Exact structure & attribution)                       -->
+    <!-- ============================================================ -->
+    <footer class="bg-neutral-900 text-neutral-300 py-16 px-6 border-t border-neutral-800" id="contact">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-7 h-7 text-indigo-400">
+                    <svg height="100%" viewbox="0 0 24 24" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L9 9l-7 3l7 3l3 7l3-7l7-3l-7-3z" fill="currentColor"></path></svg>
+                </div>
+                <div>
+                    <span class="font-serif text-lg text-white tracking-tight">CharisLooks Living Design System v2</span>
+                    <p class="text-xs text-neutral-500">Autonomous pattern library &amp; specification catalog.</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6 text-xs text-neutral-400">
+                <a class="hover:text-white transition-colors" href="#hero">Back to Top ↑</a>
+                <a class="hover:text-white transition-colors" href="#typography">Typography</a>
+                <a class="hover:text-white transition-colors" href="#colors">Colors</a>
+                <a class="hover:text-white transition-colors" href="#components">Components</a>
+                <a class="text-indigo-400 hover:underline font-semibold" href="index.html">Open Live Website →</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================ -->
+    <!-- INTERACTIVE JAVASCRIPT LOGIC (Exact from reference)           -->
+    <!-- ============================================================ -->
+    <script>
+        // 1. Initialize Lucide Icons
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons({
+                attrs: {
+                    'stroke-width': 1.5
+                }
+            });
+        }
+
+        // 2. Animation Observer (reveal-on-scroll)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // 3. Navbar Scroll Effect (Handle transition from Dark Hero to White content)
+        const navbar = document.getElementById('navbar');
+        const navBg = document.getElementById('nav-bg');
+        const logoText = document.getElementById('logo-text');
+        const navLinks = document.getElementById('nav-links');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                if (navBg) {
+                    navBg.classList.remove('bg-white/0', 'dark:bg-dark-900/0');
+                    navBg.classList.add('bg-white/90', 'dark:bg-dark-900/90', 'backdrop-blur-md', 'border-b', 'border-neutral-100', 'dark:border-neutral-800', 'shadow-sm');
+                }
+                if (!document.documentElement.classList.contains('dark')) {
+                    if (logoText) {
+                        logoText.classList.remove('text-white');
+                        logoText.classList.add('text-neutral-900');
+                    }
+                    if (navLinks) {
+                        Array.from(navLinks.children).forEach(link => {
+                            link.classList.remove('text-white/80', 'hover:text-white');
+                            link.classList.add('text-neutral-600', 'hover:text-neutral-900');
+                        });
+                    }
+                }
+            } else {
+                if (navBg) {
+                    navBg.classList.add('bg-white/0', 'dark:bg-dark-900/0');
+                    navBg.classList.remove('bg-white/90', 'dark:bg-dark-900/90', 'backdrop-blur-md', 'border-b', 'border-neutral-100', 'dark:border-neutral-800', 'shadow-sm');
+                }
+                if (!document.documentElement.classList.contains('dark')) {
+                    if (logoText) {
+                        logoText.classList.add('text-white');
+                        logoText.classList.remove('text-neutral-900');
+                    }
+                    if (navLinks) {
+                        Array.from(navLinks.children).forEach(link => {
+                            link.classList.add('text-white/80', 'hover:text-white');
+                            link.classList.remove('text-neutral-600', 'hover:text-neutral-900');
+                        });
+                    }
+                }
+            }
+        });
+
+        // 4. Before & After Slider Logic for Demo Component
+        const demoSlider = document.getElementById('demoComparisonSlider');
+        const demoOverlay = document.getElementById('demoComparisonOverlay');
+        const demoHandle = document.getElementById('demoComparisonHandle');
+        const demoBeforeImg = document.getElementById('demoComparisonImageBefore');
+        let isDownDemo = false;
+
+        function updateDemoSlider(clientX) {
+            if (!demoSlider || !demoOverlay || !demoHandle) return;
+            const rect = demoSlider.getBoundingClientRect();
+            let position = ((clientX - rect.left) / rect.width) * 100;
+            if (position < 0) position = 0;
+            if (position > 100) position = 100;
+            demoOverlay.style.width = `${position}%`;
+            demoHandle.style.left = `${position}%`;
+        }
+
+        if (demoSlider) {
+            demoSlider.addEventListener('mousedown', () => isDownDemo = true);
+            window.addEventListener('mouseup', () => isDownDemo = false);
+            demoSlider.addEventListener('mousemove', (e) => {
+                if (!isDownDemo) return;
+                updateDemoSlider(e.clientX);
+            });
+
+            // Touch support
+            demoSlider.addEventListener('touchstart', () => isDownDemo = true);
+            window.addEventListener('touchend', () => isDownDemo = false);
+            demoSlider.addEventListener('touchmove', (e) => {
+                if (!isDownDemo) return;
+                updateDemoSlider(e.touches[0].clientX);
+            });
+
+            const resizeDemoImg = () => {
+                if (!demoSlider || !demoBeforeImg) return;
+                const width = demoSlider.getBoundingClientRect().width;
+                demoBeforeImg.style.width = width + 'px';
+            };
+            window.addEventListener('resize', resizeDemoImg);
+            setTimeout(resizeDemoImg, 100);
+        }
+    </script>
+</body>
+</html>

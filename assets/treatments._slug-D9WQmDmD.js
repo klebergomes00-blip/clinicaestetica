@@ -1,0 +1,1 @@
+import{j as t}from"./index-XTt-56Vj.js";const o=()=>t.jsx("main",{children:t.jsx("section",{className:"treatments-intro",children:t.jsx("h1",{className:"treatments-title",children:"Not Found"})})});export{o as notFoundComponent};

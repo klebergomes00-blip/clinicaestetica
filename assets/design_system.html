@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full antialiased scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marnie Aesthetics — Living Design System &amp; Pattern Library v2.0</title>
+  <meta name="description" content="Canonical Living Design System, Component Specification, and Master Pattern Library for Marnie Aesthetics luxury clinic in Queenstown.">
+
+  <!-- Preconnect to Google Fonts & CDNs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Typography: Local & Google Fonts Fallback -->
+  <link rel="stylesheet" href="99c4515b30a30010_css2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Core Original Stylesheet (Tailwind Utilities & Theme Variables) -->
+  <link rel="stylesheet" href="00229412573a4838_styles-N9V2HjBQ.css">
+
+  <!-- Tailwind CSS Engine (Local with CDN fallback) -->
+  <script src="176e894661aa9cdc_3.4.17"></script>
+  <script>
+    if (!window.tailwind) {
+      document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+    }
+  </script>
+
+  <!-- Lucide & Iconify Engines (Local with CDN fallback) -->
+  <script src="468f56b91619c41d_lucide.min.js"></script>
+  <script>
+    if (!window.lucide) {
+      document.write('<script src="https://unpkg.com/lucide@latest"><\/script>');
+    }
+  </script>
+  <script src="bb5139cfaf0aeceb_iconify.min.js"></script>
+  <script>
+    if (!window.Iconify && !window.iconify) {
+      document.write('<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- Offline / Local Asset Resolvers -->
+  <script data-offline-resolve="1">
+    (function(){
+      var ASSET_MAP = {
+        "styles.css": "00229412573a4838_styles-N9V2HjBQ.css",
+        "fonts.css": "99c4515b30a30010_css2.css",
+        "logo.png": "61945671d7b11bb2_marnie-logo.png",
+        "hero.jpg": "6e5a86fae900757c_hero-marnie.jpg",
+        "founder.jpg": "2fded68c4e9f03e1_founder-marnie.jpg",
+        "anti-wrinkle.jpg": "104b472995a38098_anti-wrinkle.jpg",
+        "is-hero.png": "ef45cc90511f9509_is-clinical-hero.png",
+        "textures.jpg": "3579586482e68f8c_skincare-textures.jpg",
+        "cleanse.png": "62a856afa1743a67_is-cleanse.png",
+        "treat.webp": "1486249050710258_is-treat.webp",
+        "hydrate.jpeg": "9f76b7a79c5c53c4_is-hydrate.jpeg",
+        "protect.jpg": "77295362e1e03167_is-protect.jpg"
+      };
+      window.__ASSET_MAP = ASSET_MAP;
+    })();
+  </script>
+
+  <!-- Tailwind Extended Config -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cream: '#f6f1ea',
+            oat: '#e7ddd2',
+            taupe: '#c9b9aa',
+            chocolate: '#4a352a',
+            espresso: '#241a14',
+            gold: '#b08d57',
+            caramel: {
+              DEFAULT: '#835629',
+              dark: '#6a4520',
+              light: '#a16d3a',
+              50: '#fdf8f4',
+              100: '#f9eee3',
+              200: '#f2dbc5',
+              300: '#e5c09e',
+              400: '#d19e71',
+              500: '#835629',
+              600: '#6a4520',
+              700: '#533519',
+              800: '#3e2612',
+              900: '#28170a',
+            },
+            warmWhite: '#fffaf4',
+          },
+          fontFamily: {
+            heading: ['Athelas', 'Cormorant Garamond', 'Playfair Display', 'Georgia', 'serif'],
+            body: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+            cinzel: ['Cinzel', 'serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+          },
+          letterSpacing: {
+            cinematic: '0.32em',
+            editorial: '0.22em',
+            luxury: '0.42em',
+            tightest: '-0.02em',
+          },
+          animation: {
+            'beam-spin': 'beam-spin 3s linear infinite',
+            'slow-pan': 'pan 40s linear infinite alternate',
+            'aurora': 'aurora 18s ease-in-out infinite alternate',
+            'float': 'float 8s ease-in-out infinite',
+            'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
+            'zoom-slow': 'zoomSlow 25s linear infinite alternate',
+            'shimmer': 'shimmer 2.5s infinite linear',
+            'spin-slow': 'spin 60s linear infinite',
+            'badge-pulse': 'badgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            'beam-spin': { to: { transform: 'rotate(360deg)' } },
+            pan: {
+              '0%': { transform: 'scale(1.05) translate(0%, 0%)' },
+              '100%': { transform: 'scale(1.15) translate(-2%, -2%)' },
+            },
+            aurora: {
+              '0%': { opacity: '0.3', transform: 'scale(1) translate(0, 0)' },
+              '50%': { opacity: '0.6', transform: 'scale(1.2) translate(8%, -6%)' },
+              '100%': { opacity: '0.3', transform: 'scale(1.05) translate(-6%, 8%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            zoomSlow: {
+              '0%': { transform: 'scale(1)' },
+              '100%': { transform: 'scale(1.08)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            badgePulse: {
+              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+              '50%': { opacity: '0.4', transform: 'scale(1.2)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --cream: #f6f1ea;
+      --oat: #e7ddd2;
+      --taupe: #c9b9aa;
+      --chocolate: #4a352a;
+      --espresso: #241a14;
+      --gold: #b08d57;
+      --caramel: #835629;
+      --caramel-dark: #6a4520;
+      --ink: #241a14;
+      --white: #fffaf4;
+      --heading: "Athelas", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --body: "Montserrat", "Inter", Arial, sans-serif;
+    }
+
+    /* Base Styling */
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cream);
+      color: var(--espresso);
+    }
+    body {
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Film Grain Overlay */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Custom Luxury Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--cream);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--taupe);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--caramel);
+    }
+
+    /* Typography & Hierarchy */
+    h1, h2, h3 {
+      font-family: var(--heading);
+      font-weight: 400;
+      color: var(--espresso);
+    }
+    .font-heading { font-family: var(--heading); }
+    .font-body { font-family: var(--body); }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Interactive Beam Glow Button */
+    .beam-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1px;
+      border-radius: 9999px;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .beam-btn-conic {
+      position: absolute;
+      inset: -150%;
+      background: conic-gradient(from 0deg, transparent 0 300deg, var(--caramel) 340deg, var(--gold) 360deg);
+      animation: beam-spin 3.5s linear infinite;
+    }
+    .beam-btn-inner {
+      position: relative;
+      z-index: 10;
+      background: var(--caramel);
+      color: var(--cream);
+      padding: 14px 34px;
+      border-radius: 9999px;
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s ease;
+    }
+    .beam-btn:hover .beam-btn-inner {
+      background: var(--caramel-dark);
+    }
+    .beam-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px -8px rgba(131, 86, 41, 0.45);
+    }
+
+    /* Living Glassmorphic Surface */
+    .glass-surface {
+      background: rgba(246, 241, 234, 0.88);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(131, 86, 41, 0.14);
+    }
+    .glass-surface-dark {
+      background: rgba(36, 26, 20, 0.92);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(246, 241, 234, 0.12);
+    }
+
+    /* Interactive Copy Notification Toast */
+    #copy-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #copy-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Section Spacing Anchor */
+    section {
+      scroll-margin-top: 5rem;
+    }
+
+    /* Card Hover 3D Lift */
+    .lift-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .lift-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px -12px rgba(36, 26, 20, 0.14);
+    }
+
+    /* Accordion Details Marker Hide */
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+</head>
+<body class="selection:bg-caramel/20 selection:text-caramel-dark">
+
+  <!-- Ambient Cinematic Grain -->
+  <div class="film-grain"></div>
+
+  <!-- Interactive Copy Toast -->
+  <div id="copy-toast" class="flex items-center gap-3 px-5 py-3.5 rounded-full bg-espresso text-cream shadow-2xl border border-caramel/30 backdrop-blur-lg">
+    <div class="w-5 h-5 rounded-full bg-caramel/30 flex items-center justify-center text-gold">
+      <i data-lucide="check" class="w-3.5 h-3.5"></i>
+    </div>
+    <span id="copy-toast-msg" class="text-xs font-mono tracking-wide text-cream/90">Token Copied to Clipboard</span>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MASTER TOP HORIZONTAL NAVBAR (STICKY FROSTED GLASS)                       -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 glass-surface transition-all duration-300">
+    <div class="max-w-[1500px] mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex h-20 items-center justify-between gap-6">
+
+        <!-- Brand & System Badge -->
+        <div class="flex items-center gap-4">
+          <a href="#hero" class="flex items-center gap-3 group">
+            <img src="61945671d7b11bb2_marnie-logo.png" alt="Marnie Aesthetics Logo" class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105 duration-300"/>
+          </a>
+          <div class="hidden sm:flex items-center gap-2 pl-3 border-l border-chocolate/15">
+            <span class="w-2 h-2 rounded-full bg-caramel animate-badge-pulse"></span>
+            <span class="text-[10px] font-mono tracking-widest text-caramel uppercase font-medium bg-caramel/10 px-2.5 py-0.5 rounded-full border border-caramel/20">
+              Living System v2.0
+            </span>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Items -->
+        <nav class="hidden xl:flex items-center gap-1.5 text-[11px] font-medium tracking-editorial uppercase text-espresso/80">
+          <a href="#hero" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">00. Hero Matrix</a>
+          <a href="#typography" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">01. Typography</a>
+          <a href="#colors" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">02. Colors &amp; Surfaces</a>
+          <a href="#components" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">03. UI Components</a>
+          <a href="#layout" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">04. Layout</a>
+          <a href="#motion" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">05. Motion</a>
+          <a href="#icons" class="px-3.5 py-2 rounded-md hover:text-caramel hover:bg-caramel/5 transition-all duration-200">06. Icons</a>
+        </nav>
+
+        <!-- Right Quick Actions -->
+        <div class="flex items-center gap-3">
+          <a href="#components" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-caramel text-cream text-[11px] font-medium tracking-editorial uppercase hover:bg-caramel-dark transition-all duration-300 shadow-md shadow-caramel/20">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-gold"></i>
+            <span>Inspect Matrix</span>
+          </a>
+          <button id="mobileMenuBtn" class="xl:hidden p-2.5 rounded-lg text-espresso hover:bg-caramel/10 transition-colors" aria-label="Toggle Menu">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenuDrawer" class="hidden xl:hidden border-t border-chocolate/10 bg-cream/95 backdrop-blur-xl px-6 py-4 space-y-2 text-xs font-medium tracking-editorial uppercase text-espresso">
+      <a href="#hero" class="block py-2 text-caramel">00. Hero Showcase</a>
+      <a href="#typography" class="block py-2 hover:text-caramel">01. Typography System</a>
+      <a href="#colors" class="block py-2 hover:text-caramel">02. Colors &amp; Surfaces</a>
+      <a href="#components" class="block py-2 hover:text-caramel">03. UI Components</a>
+      <a href="#layout" class="block py-2 hover:text-caramel">04. Layout &amp; Spacing</a>
+      <a href="#motion" class="block py-2 hover:text-caramel">05. Motion &amp; Keyframes</a>
+      <a href="#icons" class="block py-2 hover:text-caramel">06. Vector Iconography</a>
+    </div>
+  </header>
+
+
+  <!-- ========================================================================= -->
+  <!-- 0) FIRST FOLD: HERO MASTER SHOWCASE (MAXIMUM CREATIVITY & DEPTH)          -->
+  <!-- ========================================================================= -->
+  <section id="hero" class="relative min-h-[92vh] flex flex-col justify-center overflow-hidden border-b border-chocolate/15 bg-[#f6f1ea]">
+    
+    <!-- LIVING ATMOSPHERIC BACKGROUND LAYERS -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <!-- Background Panoramic Photo with Soft Dynamic Zoom -->
+      <div class="absolute inset-0 bg-cover bg-right sm:bg-center animate-zoom-slow opacity-35 filter contrast-[1.05]" style="background-image: url('6e5a86fae900757c_hero-marnie.jpg');"></div>
+      
+      <!-- Glowing Animated Aurora Light Spheres -->
+      <div class="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full bg-caramel/15 blur-[120px] animate-aurora mix-blend-multiply"></div>
+      <div class="absolute -bottom-[20%] right-[5%] w-[55vw] h-[55vw] rounded-full bg-gold/15 blur-[100px] animate-float mix-blend-multiply" style="animation-delay: -4s;"></div>
+      <div class="absolute top-[30%] left-[40%] w-[40vw] h-[40vw] rounded-full bg-oat/40 blur-[90px] pointer-events-none"></div>
+
+      <!-- Linear Gradient Readability Fades -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#f6f1eaf2] via-[#f6f1eae0] sm:via-[#f6f1eab3] to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#f6f1ea] via-transparent to-transparent"></div>
+    </div>
+
+    <!-- MAIN HERO CONTENT WRAPPER -->
+    <div class="relative z-10 max-w-[1500px] w-full mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+        <!-- Left Copy & Action Column -->
+        <div class="lg:col-span-7 flex flex-col items-start animate-fade-in-up">
+          
+          <!-- Editorial Kicker Pill -->
+          <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-chocolate/5 border border-chocolate/15 backdrop-blur-md mb-8">
+            <span class="w-2 h-2 rounded-full bg-caramel animate-ping"></span>
+            <span class="text-[11px] font-body tracking-cinematic text-chocolate uppercase font-medium">
+              Mindful Aesthetics • Canonical System
+            </span>
+          </div>
+
+          <!-- Hero Monumental Heading -->
+          <h1 class="font-heading text-5xl sm:text-7xl lg:text-[5.4rem] leading-[1.03] tracking-tight text-espresso mb-8">
+            Natural Results.<br/>
+            <em class="font-heading italic text-caramel font-light drop-shadow-sm">Timeless Confidence.</em>
+          </h1>
+
+          <!-- Lead Narrative -->
+          <p class="font-body text-base sm:text-lg text-espresso/85 font-light leading-relaxed max-w-2xl mb-10">
+            A bespoke design system and living component laboratory crafted for Marnie Aesthetics in Queenstown. 
+            Blending subtle clinical rigor with organic luxury, meticulous typographic cadence, and fluid physical motion.
+          </p>
+
+          <!-- Interactive Action Button Suite -->
+          <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-12">
+            <!-- Conic Beam Button -->
+            <a href="#components" class="beam-btn group">
+              <div class="beam-btn-conic"></div>
+              <div class="beam-btn-inner">
+                <span>Explore Component Matrix</span>
+                <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+              </div>
+            </a>
+
+            <!-- Secondary Outline Link -->
+            <a href="#typography" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-caramel/40 text-espresso hover:bg-oat/60 transition-all duration-300 text-[11px] font-medium tracking-editorial uppercase backdrop-blur-sm">
+              <i data-lucide="type" class="w-3.5 h-3.5 text-caramel"></i>
+              <span>Typography Spec</span>
+            </a>
+
+            <!-- Quick Copy Master Token -->
+            <button onclick="copyToClipboard(':root { --caramel: #835629; --cream: #f6f1ea; --espresso: #241a14; }', 'Master CSS Variables Copied!')" class="inline-flex items-center gap-2 text-[11px] font-mono text-chocolate hover:text-caramel underline underline-offset-4 tracking-wider transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy CSS Vars</span>
+            </button>
+          </div>
+
+          <!-- Mini Feature Tags -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-chocolate/10 w-full max-w-xl">
+            <div class="flex items-center gap-2 text-xs text-espresso/80">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-caramel"></i>
+              <span class="font-body">WCAG AAA Contrast</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-espresso/80">
+              <i data-lucide="layers" class="w-4 h-4 text-caramel"></i>
+              <span class="font-body">Modular UI Atoms</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-espresso/80">
+              <i data-lucide="zap" class="w-4 h-4 text-caramel"></i>
+              <span class="font-body">Physics-based Motion</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Interactive Specimen Island (Desktop Floating Hub) -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          
+          <!-- Master Floating Card Container -->
+          <div class="relative w-full max-w-md space-y-5">
+            
+            <!-- Live Treatment Preview Card with Interactive Hover -->
+            <div class="glass-surface p-6 rounded-2xl shadow-xl shadow-chocolate/10 lift-card relative overflow-hidden group">
+              <div class="absolute top-0 right-0 w-32 h-32 bg-caramel/10 rounded-full blur-2xl pointer-events-none"></div>
+              
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-chocolate/10">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-caramel/15 flex items-center justify-center text-caramel">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                  </div>
+                  <span class="text-[11px] font-body font-semibold tracking-editorial uppercase text-espresso">Live Specimen Card</span>
+                </div>
+                <span class="text-[10px] font-mono text-caramel bg-caramel/10 px-2 py-0.5 rounded">.treatment-card</span>
+              </div>
+
+              <!-- Treatment Image Frame -->
+              <div class="relative h-48 rounded-xl overflow-hidden mb-5 bg-oat">
+                <img src="104b472995a38098_anti-wrinkle.jpg" alt="Anti Wrinkle Clinical" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"/>
+                <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-espresso/80 text-cream text-[10px] font-mono tracking-wider backdrop-blur-md">
+                  CLINICAL GRADE
+                </div>
+              </div>
+
+              <h3 class="font-heading text-2xl text-espresso mb-2">Anti-Wrinkle &amp; Regenerative</h3>
+              <p class="text-xs text-espresso/75 leading-relaxed mb-4">
+                Subtle micro-enhancements to soften expression lines while respecting anatomical balance.
+              </p>
+
+              <div class="flex items-center justify-between pt-3 border-t border-chocolate/10">
+                <span class="text-xs font-heading italic text-caramel">Bespoke Protocol</span>
+                <span class="inline-flex items-center gap-1 text-[11px] font-body tracking-editorial uppercase text-chocolate group-hover:text-caramel transition-colors">
+                  <span>Explore</span>
+                  <i data-lucide="chevron-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                </span>
+              </div>
+            </div>
+
+            <!-- Real-time Token Swatch Strip -->
+            <div class="glass-surface p-4 rounded-xl flex items-center justify-between gap-2 shadow-lg">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-cream border border-chocolate/20 flex items-center justify-center shadow-inner cursor-pointer" onclick="copyToClipboard('#f6f1ea', 'Cream Hex Copied!')" title="--cream: #f6f1ea"></div>
+                <div class="w-8 h-8 rounded-lg bg-caramel border border-chocolate/20 flex items-center justify-center shadow-inner cursor-pointer" onclick="copyToClipboard('#835629', 'Caramel Hex Copied!')" title="--caramel: #835629"></div>
+                <div class="w-8 h-8 rounded-lg bg-chocolate border border-chocolate/20 flex items-center justify-center shadow-inner cursor-pointer" onclick="copyToClipboard('#4a352a', 'Chocolate Hex Copied!')" title="--chocolate: #4a352a"></div>
+                <div class="w-8 h-8 rounded-lg bg-espresso border border-chocolate/20 flex items-center justify-center shadow-inner cursor-pointer" onclick="copyToClipboard('#241a14', 'Espresso Hex Copied!')" title="--espresso: #241a14"></div>
+              </div>
+              <div class="text-right">
+                <span class="block text-[10px] font-mono text-chocolate/80">Active Tokens</span>
+                <span class="text-[11px] font-mono font-semibold text-caramel">9 Palette Roles</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STATS ACCREDITATION BAR (ORIGINAL SYSTEM CLONE) -->
+    <div class="relative z-10 w-full bg-caramel text-cream py-7 px-5 sm:px-8 border-t border-caramel-dark/40 shadow-inner">
+      <div class="max-w-[1500px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-cream/20">
+        <div class="py-2 px-3">
+          <span class="block font-body text-xs sm:text-sm tracking-cinematic uppercase text-cream font-medium">Natural Results</span>
+          <span class="text-[10px] font-mono text-cream/70 tracking-widest">SUBTLE REFINEMENT</span>
+        </div>
+        <div class="py-2 px-3">
+          <span class="block font-body text-xs sm:text-sm tracking-cinematic uppercase text-cream font-medium">Personalised Care</span>
+          <span class="text-[10px] font-mono text-cream/70 tracking-widest">BESPOKE ANATOMY</span>
+        </div>
+        <div class="py-2 px-3">
+          <span class="block font-body text-xs sm:text-sm tracking-cinematic uppercase text-cream font-medium">Premium Actives</span>
+          <span class="text-[10px] font-mono text-cream/70 tracking-widest">iS CLINICAL &amp; PHARMA</span>
+        </div>
+        <div class="py-2 px-3">
+          <span class="block font-body text-xs sm:text-sm tracking-cinematic uppercase text-cream font-medium">Mindful Approach</span>
+          <span class="text-[10px] font-mono text-cream/70 tracking-widest">REGISTERED NURSE SAFETY</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 1) TYPOGRAPHY SPECIFICATION & LIVE HIERARCHY                              -->
+  <!-- ========================================================================= -->
+  <section id="typography" class="py-24 px-5 sm:px-8 lg:px-12 bg-white relative">
+    <div class="max-w-[1500px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 mb-12 border-b border-chocolate/15">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caramel/10 border border-caramel/20 text-[10px] font-mono tracking-widest text-caramel uppercase mb-3">
+            Section 01 • Typography Scale
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl text-espresso">Typographic Hierarchy &amp; Spec</h2>
+          <div class="w-16 h-0.5 bg-caramel mt-4"></div>
+        </div>
+        <p class="font-body text-sm text-espresso/70 max-w-md font-light">
+          Editorial display typography paired with crisp geometric grotesk sans-serif for medical clarity and luxury aesthetic tone.
+        </p>
+      </div>
+
+      <!-- FONT FAMILIES CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        
+        <!-- Primary Serif -->
+        <div class="p-8 rounded-2xl bg-cream/70 border border-chocolate/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono text-caramel uppercase tracking-widest">Primary Display</span>
+              <span class="text-[10px] font-mono bg-espresso text-cream px-2 py-0.5 rounded">Local &amp; Google CDN</span>
+            </div>
+            <h3 class="font-heading text-3xl text-espresso mb-2">Athelas / Cormorant</h3>
+            <p class="text-xs font-mono text-chocolate/80 mb-4">"Athelas", "Cormorant Garamond", Georgia, serif</p>
+            <p class="font-heading text-lg italic text-espresso/90 leading-relaxed border-l-2 border-caramel pl-4 py-1">
+              "Timeless confidence through mindful aesthetics."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-chocolate/10 flex justify-between text-[11px] font-mono text-espresso/60">
+            <span>Weights: 300, 400, 500</span>
+            <span>Style: Regular, Italic</span>
+          </div>
+        </div>
+
+        <!-- Secondary Sans -->
+        <div class="p-8 rounded-2xl bg-cream/70 border border-chocolate/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono text-caramel uppercase tracking-widest">Body &amp; UI Grotesk</span>
+              <span class="text-[10px] font-mono bg-espresso text-cream px-2 py-0.5 rounded">Geometric Sans</span>
+            </div>
+            <h3 class="font-body font-semibold text-2xl text-espresso mb-2">Montserrat</h3>
+            <p class="text-xs font-mono text-chocolate/80 mb-4">"Montserrat", "Inter", Arial, sans-serif</p>
+            <p class="font-body text-xs text-espresso/80 leading-relaxed border-l-2 border-caramel pl-4 py-1">
+              Natural looking results, bespoke consultation, and long-term skin health.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-chocolate/10 flex justify-between text-[11px] font-mono text-espresso/60">
+            <span>Weights: 300, 400, 500, 600</span>
+            <span>Tracking: 0.12em - 0.42em</span>
+          </div>
+        </div>
+
+        <!-- Monospace Metrics -->
+        <div class="p-8 rounded-2xl bg-cream/70 border border-chocolate/10 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono text-caramel uppercase tracking-widest">Spec &amp; Data Token</span>
+              <span class="text-[10px] font-mono bg-espresso text-cream px-2 py-0.5 rounded">Technical Code</span>
+            </div>
+            <h3 class="font-mono text-2xl text-espresso mb-2">JetBrains Mono</h3>
+            <p class="text-xs font-mono text-chocolate/80 mb-4">ui-monospace, SFMono, monospace</p>
+            <p class="font-mono text-xs text-caramel bg-espresso/5 p-3 rounded-lg border border-chocolate/10">
+              clamp(46px, 6.5vw, 92px);<br/>
+              letter-spacing: -0.01em;
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-chocolate/10 flex justify-between text-[11px] font-mono text-espresso/60">
+            <span>Role: Code, Tokens, Badges</span>
+            <span>Weights: 400, 500</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERACTIVE TYPE SPECIFICATION TABLE -->
+      <div class="border border-chocolate/15 rounded-2xl overflow-hidden bg-white shadow-sm">
+        
+        <!-- Table Header -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-4 bg-cream/80 border-b border-chocolate/15 text-[11px] font-mono font-semibold text-chocolate uppercase tracking-wider">
+          <div class="col-span-3 sm:col-span-2">Element &amp; Role</div>
+          <div class="col-span-6 sm:col-span-7">Live Type Specimen</div>
+          <div class="col-span-3 text-right">Computed Metrics</div>
+        </div>
+
+        <!-- Row 1: Heading 1 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-8 border-b border-chocolate/10 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Heading 1</span>
+            <span class="block font-mono text-[10px] text-caramel">h1, #hero-title</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7 overflow-x-auto">
+            <h1 class="font-heading text-4xl sm:text-6xl text-espresso leading-[1.05] tracking-tight">
+              Natural Results.<br/><em class="italic text-caramel font-light">Timeless Confidence.</em>
+            </h1>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">clamp(46px, 6.5vw, 92px)</span>
+            <span class="block">line-height: 1.05</span>
+            <span class="block">weight: 400 (Serif)</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Heading 2 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-7 border-b border-chocolate/10 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Heading 2</span>
+            <span class="block font-mono text-[10px] text-caramel">h2, .tg-heading</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7 overflow-x-auto">
+            <h2 class="font-heading text-3xl sm:text-4xl text-espresso leading-[1.08]">
+              A Personal Approach <em class="italic text-caramel">To Aesthetics</em>
+            </h2>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">clamp(34px, 4.5vw, 60px)</span>
+            <span class="block">line-height: 1.05</span>
+            <span class="block">weight: 400 (Serif)</span>
+          </div>
+        </div>
+
+        <!-- Row 3: Heading 3 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-6 border-b border-chocolate/10 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Heading 3</span>
+            <span class="block font-mono text-[10px] text-caramel">h3, .is-system-title</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7 overflow-x-auto">
+            <h3 class="font-heading text-2xl text-espresso leading-snug">
+              Cleanse <span class="text-caramel font-body">→</span> Treat <span class="text-caramel font-body">→</span> Hydrate <span class="text-caramel font-body">→</span> Protect
+            </h3>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">26px (1.625rem)</span>
+            <span class="block">line-height: 1.15</span>
+            <span class="block">weight: 400 (Serif)</span>
+          </div>
+        </div>
+
+        <!-- Row 4: Heading 4 -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 border-b border-chocolate/10 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Heading 4</span>
+            <span class="block font-mono text-[10px] text-caramel">h4, .pillar h4</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7 overflow-x-auto">
+            <h4 class="font-body text-sm font-semibold tracking-editorial uppercase text-espresso">
+              REGISTERED NURSE &amp; ADVANCED AESTHETICS PRACTITIONER
+            </h4>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">14px (0.875rem)</span>
+            <span class="block">letter-spacing: 0.22em</span>
+            <span class="block">weight: 600 (Uppercase)</span>
+          </div>
+        </div>
+
+        <!-- Row 5: Lead / Body Large -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 border-b border-chocolate/10 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Body Large</span>
+            <span class="block font-mono text-[10px] text-caramel">.lead, .intro p</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7">
+            <p class="font-body text-[17px] text-espresso font-light leading-[1.75]">
+              Subtle enhancements and personalised aesthetic treatments designed to help you look refreshed, confident and completely yourself.
+            </p>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">17px (1.0625rem)</span>
+            <span class="block">line-height: 1.75</span>
+            <span class="block">weight: 300 (Light)</span>
+          </div>
+        </div>
+
+        <!-- Row 6: Regular Body -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 border-b border-chocolate/10 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Body Regular</span>
+            <span class="block font-mono text-[10px] text-caramel">p, .tg-body</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7">
+            <p class="font-body text-sm text-espresso/85 font-light leading-relaxed">
+              Every treatment begins with understanding your unique facial anatomy, personal aesthetic goals, and medical history in a comfortable, relaxed consultation.
+            </p>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">14px / 15px</span>
+            <span class="block">line-height: 1.7</span>
+            <span class="block">weight: 300</span>
+          </div>
+        </div>
+
+        <!-- Row 7: Eyebrow / Kicker -->
+        <div class="grid grid-cols-12 gap-4 px-6 py-5 items-center hover:bg-cream/20 transition-colors">
+          <div class="col-span-3 sm:col-span-2">
+            <span class="font-mono font-semibold text-sm text-espresso">Eyebrow</span>
+            <span class="block font-mono text-[10px] text-caramel">.eyebrow, .tg-eyebrow</span>
+          </div>
+          <div class="col-span-6 sm:col-span-7">
+            <p class="font-body text-[11px] font-medium tracking-cinematic uppercase text-chocolate m-0">
+              MINDFUL AESTHETICS • QUEENSTOWN CLINIC
+            </p>
+          </div>
+          <div class="col-span-3 text-right font-mono text-xs text-espresso/70 space-y-1">
+            <span class="block text-espresso font-semibold">11px - 13px</span>
+            <span class="block">letter-spacing: 0.32em</span>
+            <span class="block">weight: 400/500</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2) COLOR SYSTEM, PALETTE TOKENS & SURFACES                                -->
+  <!-- ========================================================================= -->
+  <section id="colors" class="py-24 px-5 sm:px-8 lg:px-12 bg-cream relative">
+    <div class="max-w-[1500px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 mb-12 border-b border-chocolate/15">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caramel/10 border border-caramel/20 text-[10px] font-mono tracking-widest text-caramel uppercase mb-3">
+            Section 02 • Color Palette &amp; Surfaces
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl text-espresso">Color Tokens &amp; Surfaces</h2>
+          <div class="w-16 h-0.5 bg-caramel mt-4"></div>
+        </div>
+        <p class="font-body text-sm text-espresso/70 max-w-md font-light">
+          A deeply curated palette composed of earthy warm hues, noble caramels, deep espresso contrast, and silky cream backdrops.
+        </p>
+      </div>
+
+      <!-- PRIMARY PALETTE SWATCH GRID (1-CLICK COPY) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+
+        <!-- Cream -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-cream border border-chocolate/10 mb-4 shadow-inner relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#f6f1ea', 'Cream Hex Copied!')">
+              <span class="text-[10px] font-mono bg-white/80 px-2 py-0.5 rounded text-espresso">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Cream (Base)</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--cream</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Primary canvas background and subtle card foundation.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#F6F1EA</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>246, 241, 234</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>35°, 38%, 94%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Page Canvas</span></div>
+          </div>
+        </div>
+
+        <!-- Caramel (Brand CTA) -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-caramel mb-4 shadow-md relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#835629', 'Caramel Hex Copied!')">
+              <span class="text-[10px] font-mono bg-black/40 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Caramel (Primary)</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--caramel</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Main action color for buttons, active tabs, and badges.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#835629</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>131, 86, 41</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>30°, 52%, 34%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Primary Action</span></div>
+          </div>
+        </div>
+
+        <!-- Caramel Dark (Hover) -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-caramel-dark mb-4 shadow-md relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#6a4520', 'Caramel Dark Hex Copied!')">
+              <span class="text-[10px] font-mono bg-black/40 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Caramel Dark</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--caramel-dark</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Button hover states and focused interactive boundaries.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#6A4520</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>106, 69, 32</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>30°, 54%, 27%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Hover &amp; Focus</span></div>
+          </div>
+        </div>
+
+        <!-- Chocolate -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-chocolate mb-4 shadow-md relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#4a352a', 'Chocolate Hex Copied!')">
+              <span class="text-[10px] font-mono bg-black/40 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Chocolate</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--chocolate</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Dividers, subheads, eyebrows, and accent lines.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#4A352A</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>74, 53, 42</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>21°, 28%, 23%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Accent / Border</span></div>
+          </div>
+        </div>
+
+        <!-- Espresso (Ink) -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-espresso mb-4 shadow-md relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#241a14', 'Espresso Hex Copied!')">
+              <span class="text-[10px] font-mono bg-white/20 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Espresso (Ink)</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--espresso</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Primary typography color and dark section background.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#241A14</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>36, 26, 20</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>23°, 29%, 11%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Primary Text</span></div>
+          </div>
+        </div>
+
+        <!-- Gold -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-gold mb-4 shadow-md relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#b08d57', 'Gold Hex Copied!')">
+              <span class="text-[10px] font-mono bg-black/40 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Gold (Accent)</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--gold</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Luxury quote marks, metallic highlights, and star ratings.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#B08D57</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>176, 141, 87</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>36°, 36%, 52%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Luxury Accent</span></div>
+          </div>
+        </div>
+
+        <!-- Oat -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-oat mb-4 shadow-inner relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#e7ddd2', 'Oat Hex Copied!')">
+              <span class="text-[10px] font-mono bg-espresso/80 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Oat (Muted)</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--oat</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Secondary muted tone for testimonials and containers.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#E7DDD2</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>231, 221, 210</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>31°, 31%, 86%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Muted Surface</span></div>
+          </div>
+        </div>
+
+        <!-- Taupe -->
+        <div class="bg-white rounded-2xl p-5 border border-chocolate/10 shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="h-32 rounded-xl bg-taupe mb-4 shadow-inner relative flex items-end p-3 cursor-pointer" onclick="copyToClipboard('#c9b9aa', 'Taupe Hex Copied!')">
+              <span class="text-[10px] font-mono bg-espresso/80 px-2 py-0.5 rounded text-cream">Click to Copy</span>
+            </div>
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-heading text-xl text-espresso">Taupe</h3>
+              <span class="text-xs font-mono font-semibold text-caramel">--taupe</span>
+            </div>
+            <p class="text-xs text-espresso/70 font-light mb-3">Subtle neutral for borders and placeholder gradients.</p>
+          </div>
+          <div class="pt-3 border-t border-chocolate/10 space-y-1 font-mono text-[11px] text-espresso/80">
+            <div class="flex justify-between"><span>HEX:</span><span class="font-semibold">#C9B9AA</span></div>
+            <div class="flex justify-between"><span>RGB:</span><span>201, 185, 170</span></div>
+            <div class="flex justify-between"><span>HSL:</span><span>29°, 23%, 73%</span></div>
+            <div class="flex justify-between text-caramel"><span>Role:</span><span>Muted Neutral</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SURFACES & GRADIENT ATMOSPHERES -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Glassmorphism Specimen -->
+        <div class="glass-surface p-8 rounded-2xl relative overflow-hidden">
+          <span class="text-[10px] font-mono text-caramel tracking-widest uppercase block mb-2">Surface 01</span>
+          <h3 class="font-heading text-2xl text-espresso mb-3">Frosted Glassmorphism</h3>
+          <p class="text-xs text-espresso/80 font-light leading-relaxed mb-4">
+            <code>background: rgba(246,241,234,0.88); backdrop-filter: blur(16px);</code>
+          </p>
+          <div class="p-3 bg-white/70 rounded-xl text-xs font-mono text-chocolate border border-chocolate/10">
+            Used for Sticky Navigation &amp; Floating Cards
+          </div>
+        </div>
+
+        <!-- Dark Velvet Surface -->
+        <div class="p-8 rounded-2xl bg-espresso text-cream relative overflow-hidden border border-chocolate/20">
+          <span class="text-[10px] font-mono text-gold tracking-widest uppercase block mb-2">Surface 02</span>
+          <h3 class="font-heading text-2xl text-cream mb-3">Espresso Velvet</h3>
+          <p class="text-xs text-cream/75 font-light leading-relaxed mb-4">
+            <code>background: var(--espresso); color: var(--cream);</code>
+          </p>
+          <div class="p-3 bg-black/40 rounded-xl text-xs font-mono text-gold border border-gold/20">
+            Used for Footers &amp; Dark Consultation Banners
+          </div>
+        </div>
+
+        <!-- Gradient Mask Surface -->
+        <div class="p-8 rounded-2xl bg-gradient-to-r from-cream via-oat to-taupe/50 border border-chocolate/10 relative overflow-hidden">
+          <span class="text-[10px] font-mono text-caramel tracking-widest uppercase block mb-2">Surface 03</span>
+          <h3 class="font-heading text-2xl text-espresso mb-3">Organic Gradient Mask</h3>
+          <p class="text-xs text-espresso/80 font-light leading-relaxed mb-4">
+            <code>linear-gradient(90deg, #f6f1eaf0, #f6f1eab3 35%, #f6f1ea00 60%)</code>
+          </p>
+          <div class="p-3 bg-white/80 rounded-xl text-xs font-mono text-chocolate border border-chocolate/10">
+            Used for Hero Photographic Overlays
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 3) UI COMPONENTS SPECIFICATION & ANIMATED PLAYGROUND                      -->
+  <!-- ========================================================================= -->
+  <section id="components" class="py-24 px-5 sm:px-8 lg:px-12 bg-white relative">
+    <div class="max-w-[1500px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 mb-12 border-b border-chocolate/15">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caramel/10 border border-caramel/20 text-[10px] font-mono tracking-widest text-caramel uppercase mb-3">
+            Section 03 • Interactive Component Library
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl text-espresso">UI Component Matrix</h2>
+          <div class="w-16 h-0.5 bg-caramel mt-4"></div>
+        </div>
+        <p class="font-body text-sm text-espresso/70 max-w-md font-light">
+          Canonical interactive UI elements with comprehensive state machines: Default, Hover, Active, Focus, and Disabled.
+        </p>
+      </div>
+
+      <!-- COMPONENT 1: BUTTONS & CTAS -->
+      <div class="mb-20">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-2.5 h-2.5 rounded-full bg-caramel"></span>
+          <h3 class="font-body text-sm font-semibold tracking-editorial uppercase text-espresso">1. Button Component Suite</h3>
+        </div>
+
+        <!-- Buttons States Matrix -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 space-y-8">
+          
+          <!-- Primary Caramel Button -->
+          <div>
+            <span class="block text-xs font-mono text-chocolate mb-3">Primary Action: <code>.btn.primary</code> / <code>.btn-caramel</code></span>
+            <div class="flex flex-wrap items-center gap-4">
+              <!-- Default -->
+              <button class="btn primary">Book Consultation</button>
+              <!-- Hover Simulation -->
+              <button class="btn primary" style="background:var(--caramel-dark); border-color:var(--caramel-dark);">Hover State</button>
+              <!-- With Icon -->
+              <button class="btn primary inline-flex items-center gap-2">
+                <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                <span>With Icon</span>
+              </button>
+              <!-- Disabled -->
+              <button class="btn primary opacity-40 cursor-not-allowed" disabled>Disabled State</button>
+            </div>
+          </div>
+
+          <!-- Secondary Outline Button -->
+          <div class="pt-6 border-t border-chocolate/10">
+            <span class="block text-xs font-mono text-chocolate mb-3">Secondary Action: <code>.btn.secondary</code></span>
+            <div class="flex flex-wrap items-center gap-4">
+              <!-- Default -->
+              <button class="btn secondary">View Treatments</button>
+              <!-- Hover Simulation -->
+              <button class="btn secondary" style="background:var(--oat);">Hover State</button>
+              <!-- Disabled -->
+              <button class="btn secondary opacity-40 cursor-not-allowed" disabled>Disabled</button>
+            </div>
+          </div>
+
+          <!-- Header Nav CTA & Cream Banner CTA -->
+          <div class="pt-6 border-t border-chocolate/10">
+            <span class="block text-xs font-mono text-chocolate mb-3">Specialized CTAs: <code>.nav-cta</code>, <code>.tg-btn</code>, <code>.btn-cream</code></span>
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="#hero" class="nav-cta">&nbsp; BOOK APPOINTMENT &nbsp;</a>
+              <button class="btn primary tg-btn">Explore Treatments</button>
+              <div class="bg-caramel p-3 rounded-lg inline-flex">
+                <a href="#hero" class="btn-cream m-0">BOOK A CONSULTATION</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Links & Chips -->
+          <div class="pt-6 border-t border-chocolate/10">
+            <span class="block text-xs font-mono text-chocolate mb-3">Underline Links &amp; Filter Chips: <code>.btn-link</code>, <code>.filter-chip</code></span>
+            <div class="flex flex-wrap items-center gap-6">
+              <a href="#treatments" class="btn-link">Explore Treatments →</a>
+              <a href="#hero" class="tg-link">BOOK A CONSULTATION &nbsp;&nbsp;→</a>
+              <div class="flex items-center gap-2">
+                <button class="filter-chip active">All</button>
+                <button class="filter-chip">Injectables</button>
+                <button class="filter-chip">Profhilo</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMPONENT 2: CARDS & MODULES -->
+      <div class="mb-20">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-2.5 h-2.5 rounded-full bg-caramel"></span>
+          <h3 class="font-body text-sm font-semibold tracking-editorial uppercase text-espresso">2. Cards &amp; Surface Modules</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Treatment Card -->
+          <article class="treatment-card rounded-2xl">
+            <div class="card-img" style='background-image:url("104b472995a38098_anti-wrinkle.jpg")'></div>
+            <div class="card-body">
+              <span class="text-[10px] font-mono text-caramel uppercase tracking-widest">Injectable Care</span>
+              <h3 class="text-xl">Anti-Wrinkle Injections</h3>
+              <p class="text-sm">Soften dynamic expression lines while maintaining natural facial movement and elasticity.</p>
+              <a href="#hero" class="explore-link">EXPLORE TREATMENT →</a>
+            </div>
+          </article>
+
+          <!-- iS Clinical Collection Row Card -->
+          <article class="is-card rounded-2xl h-full flex flex-col justify-between">
+            <div class="w-full h-40 bg-cover bg-center rounded-lg mb-4" style='background-image:url("1486249050710258_is-treat.webp")'></div>
+            <div class="is-card-body">
+              <span class="text-[10px] font-mono text-caramel uppercase tracking-widest">Active Formula</span>
+              <h4 class="is-card-title text-2xl">Treat</h4>
+              <ul class="space-y-1">
+                <li>• Active Serum Advance</li>
+                <li>• Pro-Heal Serum Advance+</li>
+                <li>• GeneXC Serum Protocol</li>
+              </ul>
+            </div>
+            <div class="pt-4 mt-4 border-t border-chocolate/10 flex justify-between items-center">
+              <span class="text-xs text-caramel font-medium">View Collection</span>
+              <span class="is-card-arrow">›</span>
+            </div>
+          </article>
+
+          <!-- Testimonial Quote Card -->
+          <div class="quote-card rounded-2xl flex flex-col justify-between">
+            <div>
+              <span class="quote-mark">“</span>
+              <blockquote class="text-xl font-heading italic text-espresso leading-relaxed">
+                Marnie is extraordinary. The consultation was thorough, informative, and my results are completely natural.
+              </blockquote>
+            </div>
+            <div class="mt-6 pt-4 border-t border-chocolate/10">
+              <span class="quote-author">EMILY R. &nbsp;—&nbsp; QUEENSTOWN</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMPONENT 3: FORMS & INPUT CONTROLS -->
+      <div class="mb-20">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-2.5 h-2.5 rounded-full bg-caramel"></span>
+          <h3 class="font-body text-sm font-semibold tracking-editorial uppercase text-espresso">3. Form &amp; Input Controls</h3>
+        </div>
+
+        <div class="p-8 sm:p-10 rounded-2xl bg-cream/40 border border-chocolate/10 max-w-4xl">
+          <form class="contact-form space-y-6" onsubmit="return false;">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <label>
+                Full Legal Name
+                <input type="text" placeholder="e.g. Victoria Sterling" class="rounded-lg"/>
+              </label>
+              <label>
+                Email Address
+                <input type="email" placeholder="victoria@example.co.nz" class="rounded-lg"/>
+              </label>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <label>
+                Treatment Interest
+                <select class="rounded-lg">
+                  <option>Comprehensive Facial Consultation</option>
+                  <option>Anti-Wrinkle Injectables</option>
+                  <option>Dermal Fillers &amp; Volume Restoration</option>
+                  <option>Profhilo &amp; Bio-Remodelers</option>
+                  <option>iS Clinical Advanced Skincare</option>
+                </select>
+              </label>
+              <label>
+                Preferred Consultation Time
+                <select class="rounded-lg">
+                  <option>Morning (09:00 - 12:00)</option>
+                  <option>Afternoon (13:00 - 17:00)</option>
+                  <option>Flexible Weekend</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Aesthetic Goals &amp; Medical History
+              <textarea placeholder="Tell us about your specific goals, previous treatments, or any questions..." class="rounded-lg"></textarea>
+            </label>
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-xs text-espresso/60 flex items-center gap-1.5 font-mono">
+                <i data-lucide="shield-check" class="w-4 h-4 text-caramel"></i>
+                <span>Strict Medical Privacy Protected</span>
+              </span>
+              <button class="btn primary" type="button">Submit Consultation Request</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- COMPONENT 4: ACCORDIONS, MODALS & DISCLOSURES -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-2.5 h-2.5 rounded-full bg-caramel"></span>
+          <h3 class="font-body text-sm font-semibold tracking-editorial uppercase text-espresso">4. Accordions &amp; Clinical Disclosures</h3>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- FAQ Accordion -->
+          <div class="faq-list bg-cream/40 p-6 rounded-2xl border border-chocolate/10 space-y-2">
+            <span class="text-xs font-mono text-caramel uppercase tracking-widest block mb-4">Interactive FAQ Component</span>
+            <details open class="border-t border-chocolate/20 py-4">
+              <summary class="font-heading text-xl text-espresso cursor-pointer flex justify-between items-center">
+                Do I need a consultation before my appointment?
+              </summary>
+              <div class="faq-answer mt-3 text-sm text-espresso/80 font-light leading-relaxed">
+                Yes. Consultations are crucial to review facial anatomy, discuss expected outcomes, confirm medical suitability, and design a bespoke roadmap.
+              </div>
+            </details>
+            <details class="border-t border-chocolate/20 py-4">
+              <summary class="font-heading text-xl text-espresso cursor-pointer flex justify-between items-center">
+                What products are used for treatments?
+              </summary>
+              <div class="faq-answer mt-3 text-sm text-espresso/80 font-light leading-relaxed">
+                We strictly use premium, FDA and Medsafe-approved pharmaceutical grade injectables and iS Clinical botanical skincare.
+              </div>
+            </details>
+          </div>
+
+          <!-- Medical Disclosure Item -->
+          <div class="pmi-panel space-y-4">
+            <span class="text-xs font-mono text-caramel uppercase tracking-widest block mb-2">Prescription Medicine Disclosure Item</span>
+            <details class="pmi-item rounded-xl overflow-hidden shadow-sm" open>
+              <summary class="p-5 flex items-center gap-4 cursor-pointer bg-white">
+                <span class="pmi-icon">
+                  <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="22">
+                    <path d="M11 2v2"></path><path d="M5 2v2"></path><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"></path><path d="M8 15a6 6 0 0 0 12 0v-3"></path><circle cx="20" cy="10" r="2"></circle>
+                  </svg>
+                </span>
+                <span class="pmi-title flex-1">NZ Regulatory Suitability</span>
+                <span class="pmi-chev"></span>
+              </summary>
+              <div class="pmi-body text-xs leading-relaxed text-espresso/80 bg-white">
+                Prescription medicines are only provided following comprehensive assessment with a qualified healthcare practitioner. Results vary across patients.
+              </div>
+            </details>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 4) LAYOUT & SPACING PATTERNS                                              -->
+  <!-- ========================================================================= -->
+  <section id="layout" class="py-24 px-5 sm:px-8 lg:px-12 bg-cream relative">
+    <div class="max-w-[1500px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 mb-12 border-b border-chocolate/15">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caramel/10 border border-caramel/20 text-[10px] font-mono tracking-widest text-caramel uppercase mb-3">
+            Section 04 • Layout Architecture
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl text-espresso">Canonical Layout Patterns</h2>
+          <div class="w-16 h-0.5 bg-caramel mt-4"></div>
+        </div>
+        <p class="font-body text-sm text-espresso/70 max-w-md font-light">
+          Real architectural grids, asymmetrical balance, and container pacing extracted directly from production.
+        </p>
+      </div>
+
+      <!-- LAYOUT 1: ASYMMETRICAL 0.65fr / 1.35fr FOUNDER SPLIT -->
+      <div class="mb-16">
+        <span class="text-xs font-mono text-chocolate uppercase tracking-widest block mb-4">Pattern 1: Asymmetrical 0.65fr / 1.35fr Split (Founder Narrative)</span>
+        <div class="split rounded-3xl overflow-hidden border border-chocolate/15 shadow-md">
+          <div class="founder-image-wrap bg-oat">
+            <img src="2fded68c4e9f03e1_founder-marnie.jpg" alt="Founder Marnie" class="founder-image"/>
+          </div>
+          <div class="founder-copy py-12 px-6 sm:px-10 lg:px-16 bg-white">
+            <p class="eyebrow eyebrow-underline">ABOUT MARNIE AESTHETICS</p>
+            <h2 class="founder-title text-4xl sm:text-5xl">Meet Marnie</h2>
+            <p class="founder-subtitle">FOUNDER &amp; ADVANCED AESTHETICS PRACTITIONER</p>
+            <div class="founder-body text-sm space-y-4 text-espresso/80">
+              <p>As a Registered Nurse and aesthetic specialist, I believe aesthetic medicine should elevate individual confidence without altering innate character.</p>
+              <p>Through bespoke consultations, we formulate gentle, scientifically proven protocols designed for long-term health and luminosity.</p>
+            </div>
+            <div class="founder-divider my-8"></div>
+            <div class="founder-pillars grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="pillar p-0 border-none text-left sm:text-center items-start sm:items-center">
+                <svg fill="none" height="36" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 48 48" width="36" class="text-caramel">
+                  <path d="M16 14h16v6a8 8 0 0 1-16 0z"></path>
+                  <path d="M24 10v6M21 13h6"></path>
+                  <path d="M10 42c0-7 6-12 14-12s14 5 14 12"></path>
+                </svg>
+                <h4 class="text-xs font-semibold mt-2">REGISTERED NURSE</h4>
+                <p class="text-xs text-espresso/70">Clinical safety first.</p>
+              </div>
+              <div class="pillar p-0 border-none text-left sm:text-center items-start sm:items-center">
+                <svg fill="none" height="36" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 48 48" width="36" class="text-caramel">
+                  <path d="M30 6l12 12"></path><path d="M34 10l4 4"></path><path d="M28 12l8 8-16 16-8-2-2-6z"></path><path d="M8 40l-3 3"></path>
+                </svg>
+                <h4 class="text-xs font-semibold mt-2">ADVANCED TRAINING</h4>
+                <p class="text-xs text-espresso/70">Continuous mastery.</p>
+              </div>
+              <div class="pillar p-0 border-none text-left sm:text-center items-start sm:items-center">
+                <svg fill="none" height="36" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 48 48" width="36" class="text-caramel">
+                  <path d="M24 22s-5-3-5-7a3.5 3.5 0 0 1 5-3 3.5 3.5 0 0 1 5 3c0 4-5 7-5 7z"></path>
+                  <path d="M8 32c4-4 10-4 14-1l4 3 6-3c3-1 6 0 8 2-3 5-9 10-16 10-6 0-12-4-16-11z"></path>
+                </svg>
+                <h4 class="text-xs font-semibold mt-2">PERSONALISED CARE</h4>
+                <p class="text-xs text-espresso/70">Bespoke outcomes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAYOUT 2: 1:1 TREATMENT GATEWAY SPLIT -->
+      <div class="mb-16">
+        <span class="text-xs font-mono text-chocolate uppercase tracking-widest block mb-4">Pattern 2: 1:1 Gateway Split (<code>.treatments-gateway</code>)</span>
+        <div class="treatments-gateway rounded-3xl overflow-hidden border border-chocolate/15 shadow-md">
+          <div class="tg-image min-h-[420px]" style='background-image:url("104b472995a38098_anti-wrinkle.jpg")'></div>
+          <div class="tg-content p-8 sm:p-12 lg:p-16 bg-[#f7f3ee]">
+            <div class="tg-inner max-w-lg">
+              <p class="tg-eyebrow">TREATMENT PROTOCOLS</p>
+              <h2 class="tg-heading text-3xl sm:text-4xl text-espresso mb-4">Subtle enhancements.<br/><em>Natural results.</em></h2>
+              <span class="tg-rule mb-6"></span>
+              <p class="tg-body text-sm text-espresso/80 leading-relaxed mb-6">
+                From anti-wrinkle injections to biostimulators and medical skincare, every protocol is tailored to preserve your natural facial balance.
+              </p>
+              <div class="tg-actions flex flex-col sm:flex-row gap-4">
+                <a class="btn primary tg-btn" href="#hero">Explore Treatments</a>
+                <a class="tg-link" href="#hero">BOOK CONSULTATION →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPACING SCALE TOKENS -->
+      <div class="p-8 rounded-2xl bg-white border border-chocolate/10 shadow-sm">
+        <span class="text-xs font-mono text-caramel uppercase tracking-widest block mb-4">Spacing Scale &amp; Responsive Containers</span>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs text-espresso">
+          <div class="p-3 bg-cream rounded-lg border border-chocolate/10"><code>max-w-[1500px]</code> Master Grid</div>
+          <div class="p-3 bg-cream rounded-lg border border-chocolate/10"><code>padding: 80px 7vw</code> Desktop Section</div>
+          <div class="p-3 bg-cream rounded-lg border border-chocolate/10"><code>gap: 22px / 36px</code> Cards &amp; Grid</div>
+          <div class="p-3 bg-cream rounded-lg border border-chocolate/10"><code>@media (max-width: 980px)</code> Tablet</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 5) MOTION & KEYFRAME GALLERY                                              -->
+  <!-- ========================================================================= -->
+  <section id="motion" class="py-24 px-5 sm:px-8 lg:px-12 bg-white relative">
+    <div class="max-w-[1500px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 mb-12 border-b border-chocolate/15">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caramel/10 border border-caramel/20 text-[10px] font-mono tracking-widest text-caramel uppercase mb-3">
+            Section 05 • Motion Dynamics
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl text-espresso">Motion &amp; Keyframe Gallery</h2>
+          <div class="w-16 h-0.5 bg-caramel mt-4"></div>
+        </div>
+        <p class="font-body text-sm text-espresso/70 max-w-md font-light">
+          Physical easing curves, glowing aura loops, card lifts, and rotational disclosures for high-touch user feedback.
+        </p>
+      </div>
+
+      <!-- MOTION DEMO GRID -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Motion 1: Conic Beam Button -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 flex flex-col justify-between items-center text-center">
+          <span class="text-xs font-mono text-caramel uppercase tracking-widest mb-4">01. Conic Beam Rotation</span>
+          <div class="my-6">
+            <div class="beam-btn">
+              <div class="beam-btn-conic"></div>
+              <div class="beam-btn-inner">
+                <span>Beam Keyframe</span>
+              </div>
+            </div>
+          </div>
+          <code class="text-[11px] font-mono text-chocolate/80">@keyframes beam-spin { to { transform: rotate(360deg); } }</code>
+        </div>
+
+        <!-- Motion 2: Card Lift & Ambient Shadow -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 flex flex-col justify-between items-center text-center">
+          <span class="text-xs font-mono text-caramel uppercase tracking-widest mb-4">02. Hover Lift &amp; Shadow</span>
+          <div class="my-6 w-full max-w-[220px]">
+            <div class="bg-white p-4 rounded-xl border border-chocolate/15 lift-card cursor-pointer">
+              <span class="font-heading text-lg text-espresso">Hover Over Me</span>
+              <p class="text-[11px] text-espresso/70 mt-1">Lifts -6px with ambient elevation shadow.</p>
+            </div>
+          </div>
+          <code class="text-[11px] font-mono text-chocolate/80">transform: translateY(-6px); transition: 0.4s;</code>
+        </div>
+
+        <!-- Motion 3: Arrow Horizontal Translate -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 flex flex-col justify-between items-center text-center">
+          <span class="text-xs font-mono text-caramel uppercase tracking-widest mb-4">03. Nudge Translation</span>
+          <div class="my-6">
+            <div class="is-card p-4 rounded-xl cursor-pointer inline-flex items-center gap-4 bg-white border border-chocolate/15">
+              <span class="font-body text-xs font-semibold tracking-editorial uppercase">Explore Service</span>
+              <span class="is-card-arrow">›</span>
+            </div>
+          </div>
+          <code class="text-[11px] font-mono text-chocolate/80">.is-card:hover .is-card-arrow { transform: translate(4px); }</code>
+        </div>
+
+        <!-- Motion 4: Pulse Slow Aura -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 flex flex-col justify-between items-center text-center">
+          <span class="text-xs font-mono text-caramel uppercase tracking-widest mb-4">04. Ambient Aurora Pulse</span>
+          <div class="my-6 relative flex items-center justify-center">
+            <div class="w-14 h-14 rounded-full bg-caramel/20 animate-badge-pulse flex items-center justify-center">
+              <div class="w-8 h-8 rounded-full bg-caramel/40 flex items-center justify-center">
+                <div class="w-3 h-3 rounded-full bg-caramel"></div>
+              </div>
+            </div>
+          </div>
+          <code class="text-[11px] font-mono text-chocolate/80">animate-badge-pulse 2s cubic-bezier(0.4, 0, 0.6, 1)</code>
+        </div>
+
+        <!-- Motion 5: Chevron Rotation Indicator -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 flex flex-col justify-between items-center text-center">
+          <span class="text-xs font-mono text-caramel uppercase tracking-widest mb-4">05. Detail Toggle Rotation</span>
+          <div class="my-6 w-full max-w-[240px]">
+            <details class="acc-list p-3 bg-white rounded-lg border border-chocolate/15 cursor-pointer text-left">
+              <summary class="font-body text-xs text-espresso font-medium flex justify-between items-center">
+                <span>Click to Expand</span>
+                <span class="text-caramel font-bold">⌄</span>
+              </summary>
+              <p class="text-[11px] text-espresso/70 mt-2">Smooth rotate(180deg) transition on indicator.</p>
+            </details>
+          </div>
+          <code class="text-[11px] font-mono text-chocolate/80">details[open] summary:after { transform: rotate(180deg); }</code>
+        </div>
+
+        <!-- Motion 6: Backdrop Blur Frosted Header -->
+        <div class="p-8 rounded-2xl bg-cream/50 border border-chocolate/10 flex flex-col justify-between items-center text-center">
+          <span class="text-xs font-mono text-caramel uppercase tracking-widest mb-4">06. Frosted Glass Blur</span>
+          <div class="my-6 w-full p-4 rounded-xl bg-gradient-to-r from-caramel/40 to-oat">
+            <div class="glass-surface p-3 rounded-lg text-center text-xs font-mono text-espresso font-semibold">
+              backdrop-filter: blur(16px)
+            </div>
+          </div>
+          <code class="text-[11px] font-mono text-chocolate/80">-webkit-backdrop-filter: blur(16px);</code>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- 6) VECTOR ICONOGRAPHY & SYSTEM SVGS                                       -->
+  <!-- ========================================================================= -->
+  <section id="icons" class="py-24 px-5 sm:px-8 lg:px-12 bg-cream relative">
+    <div class="max-w-[1500px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 mb-12 border-b border-chocolate/15">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caramel/10 border border-caramel/20 text-[10px] font-mono tracking-widest text-caramel uppercase mb-3">
+            Section 06 • Vector Symbols
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl text-espresso">Clinical &amp; System Iconography</h2>
+          <div class="w-16 h-0.5 bg-caramel mt-4"></div>
+        </div>
+        <p class="font-body text-sm text-espresso/70 max-w-md font-light">
+          Bespoke linear vector icons rendered with stroke weight 1.4 – 1.5, inheriting dynamic CSS color via <code>currentColor</code>.
+        </p>
+      </div>
+
+      <!-- ICON GRID -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+        <!-- Icon 1: Registered Nurse -->
+        <div class="p-6 rounded-2xl bg-white border border-chocolate/10 shadow-sm flex flex-col items-center text-center group hover:border-caramel transition-colors cursor-pointer" onclick="copyToClipboard('<svg fill=\'none\' height=\'44\' stroke=\'currentColor\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.4\' viewBox=\'0 0 48 48\' width=\'44\'><path d=\'M16 14h16v6a8 8 0 0 1-16 0z\'></path><path d=\'M24 10v6M21 13h6\'></path><path d=\'M10 42c0-7 6-12 14-12s14 5 14 12\'></path></svg>', 'Nurse SVG Copied!')">
+          <div class="w-14 h-14 rounded-full bg-caramel/10 flex items-center justify-center text-caramel mb-3 group-hover:scale-110 transition-transform">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 48 48" width="32">
+              <path d="M16 14h16v6a8 8 0 0 1-16 0z"></path>
+              <path d="M24 10v6M21 13h6"></path>
+              <path d="M10 42c0-7 6-12 14-12s14 5 14 12"></path>
+            </svg>
+          </div>
+          <span class="font-body font-semibold text-xs text-espresso">Registered Nurse</span>
+          <span class="text-[10px] font-mono text-espresso/60 mt-1">48x48 / stroke 1.4</span>
+        </div>
+
+        <!-- Icon 2: Advanced Training -->
+        <div class="p-6 rounded-2xl bg-white border border-chocolate/10 shadow-sm flex flex-col items-center text-center group hover:border-caramel transition-colors cursor-pointer" onclick="copyToClipboard('<svg fill=\'none\' height=\'44\' stroke=\'currentColor\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.4\' viewBox=\'0 0 48 48\' width=\'44\'><path d=\'M30 6l12 12\'></path><path d=\'M34 10l4 4\'></path><path d=\'M28 12l8 8-16 16-8-2-2-6z\'></path><path d=\'M8 40l-3 3\'></path></svg>', 'Training SVG Copied!')">
+          <div class="w-14 h-14 rounded-full bg-caramel/10 flex items-center justify-center text-caramel mb-3 group-hover:scale-110 transition-transform">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 48 48" width="32">
+              <path d="M30 6l12 12"></path><path d="M34 10l4 4"></path><path d="M28 12l8 8-16 16-8-2-2-6z"></path><path d="M8 40l-3 3"></path>
+            </svg>
+          </div>
+          <span class="font-body font-semibold text-xs text-espresso">Advanced Training</span>
+          <span class="text-[10px] font-mono text-espresso/60 mt-1">48x48 / stroke 1.4</span>
+        </div>
+
+        <!-- Icon 3: Personalised Care -->
+        <div class="p-6 rounded-2xl bg-white border border-chocolate/10 shadow-sm flex flex-col items-center text-center group hover:border-caramel transition-colors cursor-pointer" onclick="copyToClipboard('<svg fill=\'none\' height=\'44\' stroke=\'currentColor\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.4\' viewBox=\'0 0 48 48\' width=\'44\'><path d=\'M24 22s-5-3-5-7a3.5 3.5 0 0 1 5-3 3.5 3.5 0 0 1 5 3c0 4-5 7-5 7z\'></path><path d=\'M8 32c4-4 10-4 14-1l4 3 6-3c3-1 6 0 8 2-3 5-9 10-16 10-6 0-12-4-16-11z\'></path></svg>', 'Care SVG Copied!')">
+          <div class="w-14 h-14 rounded-full bg-caramel/10 flex items-center justify-center text-caramel mb-3 group-hover:scale-110 transition-transform">
+            <svg fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 48 48" width="32">
+              <path d="M24 22s-5-3-5-7a3.5 3.5 0 0 1 5-3 3.5 3.5 0 0 1 5 3c0 4-5 7-5 7z"></path>
+              <path d="M8 32c4-4 10-4 14-1l4 3 6-3c3-1 6 0 8 2-3 5-9 10-16 10-6 0-12-4-16-11z"></path>
+            </svg>
+          </div>
+          <span class="font-body font-semibold text-xs text-espresso">Personalised Care</span>
+          <span class="text-[10px] font-mono text-espresso/60 mt-1">48x48 / stroke 1.4</span>
+        </div>
+
+        <!-- Icon 4: Evidence Based -->
+        <div class="p-6 rounded-2xl bg-white border border-chocolate/10 shadow-sm flex flex-col items-center text-center group hover:border-caramel transition-colors cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-caramel/10 flex items-center justify-center text-caramel mb-3 group-hover:scale-110 transition-transform">
+            <svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 24 24" width="26">
+              <path d="M9 3h6M10 3v6L5 19a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 19l-5-10V3"></path>
+            </svg>
+          </div>
+          <span class="font-body font-semibold text-xs text-espresso">Evidence-Based</span>
+          <span class="text-[10px] font-mono text-espresso/60 mt-1">24x24 / Flask</span>
+        </div>
+
+        <!-- Icon 5: Shield Check -->
+        <div class="p-6 rounded-2xl bg-white border border-chocolate/10 shadow-sm flex flex-col items-center text-center group hover:border-caramel transition-colors cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-caramel/10 flex items-center justify-center text-caramel mb-3 group-hover:scale-110 transition-transform">
+            <svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 24 24" width="26">
+              <path d="M12 3l8 3v5c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6z"></path><path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <span class="font-body font-semibold text-xs text-espresso">Shield / Safety</span>
+          <span class="text-[10px] font-mono text-espresso/60 mt-1">24x24 / Verified</span>
+        </div>
+
+        <!-- Icon 6: Radiance Sparkle -->
+        <div class="p-6 rounded-2xl bg-white border border-chocolate/10 shadow-sm flex flex-col items-center text-center group hover:border-caramel transition-colors cursor-pointer">
+          <div class="w-14 h-14 rounded-full bg-caramel/10 flex items-center justify-center text-caramel mb-3 group-hover:scale-110 transition-transform">
+            <svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewBox="0 0 24 24" width="26">
+              <path d="M12 4l1.5 4.5L18 10l-4.5 1.5L12 16l-1.5-4.5L6 10l4.5-1.5z"></path>
+              <path d="M19 16l.7 2L22 18.7 19.7 19.5 19 22l-.7-2.5L16 18.7 18.3 18z"></path>
+            </svg>
+          </div>
+          <span class="font-body font-semibold text-xs text-espresso">Visible Results</span>
+          <span class="text-[10px] font-mono text-espresso/60 mt-1">24x24 / Sparkle</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================================= -->
+  <!-- MASTER FOOTER (CANONICAL MARNIE AESTHETICS CLONE)                         -->
+  <!-- ========================================================================= -->
+  <footer class="site-footer bg-espresso text-cream py-16 px-5 sm:px-8 lg:px-12 border-t border-chocolate/30">
+    <div class="max-w-[1500px] mx-auto flex flex-col items-center text-center gap-10">
+      
+      <!-- Footer Logo & Accreditation -->
+      <div class="flex flex-col items-center">
+        <img src="61945671d7b11bb2_marnie-logo.png" alt="Marnie Aesthetics" class="footer-logo brightness-0 invert w-36 sm:w-44 mb-3"/>
+        <p class="footer-accreditation text-xs font-mono tracking-widest text-cream/70 uppercase">
+          Cosmetic Nurse Consultancy Accredited • Queenstown, NZ
+        </p>
+      </div>
+
+      <!-- Navigation Matrix -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-16 text-left max-w-2xl w-full pt-6 border-t border-cream/15">
+        <div>
+          <h4 class="font-body text-xs font-semibold tracking-editorial uppercase text-gold mb-3">Location</h4>
+          <p class="text-xs text-cream/80 leading-relaxed font-light">
+            4A Sandford Terrace<br/>
+            Lower Shotover<br/>
+            Queenstown, Otago 9304
+          </p>
+        </div>
+        <div>
+          <h4 class="font-body text-xs font-semibold tracking-editorial uppercase text-gold mb-3">Connect</h4>
+          <ul class="space-y-2 text-xs text-cream/80 font-light">
+            <li><a href="https://www.instagram.com/marnieaesthetics/" target="_blank" class="hover:text-gold transition-colors">Instagram</a></li>
+            <li><a href="#hero" class="hover:text-gold transition-colors">Book Online Consultation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-body text-xs font-semibold tracking-editorial uppercase text-gold mb-3">Architecture</h4>
+          <ul class="space-y-2 text-xs text-cream/80 font-light">
+            <li><a href="#hero" class="hover:text-gold transition-colors">Living System v2.0</a></li>
+            <li><a href="#typography" class="hover:text-gold transition-colors">Typography Spec</a></li>
+            <li><a href="#components" class="hover:text-gold transition-colors">Component Matrix</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-cream/10 w-full text-center">
+        <p class="text-[11px] font-mono text-cream/50 tracking-wider">
+          &copy; Marnie Aesthetics. Living Design System &amp; Canonical Pattern Library.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- Interactive Logic Scripts -->
+  <script>
+    // Initialize Lucide Icons
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileMenuDrawer');
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('hidden');
+      });
+    }
+
+    // Interactive 1-Click Clipboard Copy with Toast
+    function copyToClipboard(text, message) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(message || 'Copied to Clipboard!');
+        });
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast(message || 'Copied to Clipboard!');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('copy-toast');
+      const toastMsg = document.getElementById('copy-toast-msg');
+      if (toast && toastMsg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2600);
+      }
+    }
+  </script>
+
+</body>
+</html>

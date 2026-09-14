@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shery Beauty Center | Living Design System &amp; Pattern Library v2</title>
+  
+  <!-- Font assets (identical to reference index.html) -->
+  <link href="assets/89f9c8d2ee8c4b5e_css2.css" rel="stylesheet"/>
+  <!-- Google Fonts fallback for standalone preview -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <!-- Script assets (identical to reference index.html) -->
+  <script src="assets/176e894661aa9cdc_3.4.17"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/bb5139cfaf0aeceb_iconify.min.js"></script>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+  <script src="assets/468f56b91619c41d_lucide.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind Config (Exact clone from index.html) -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+            cinzel: ['Cinzel', 'serif'],
+          },
+          letterSpacing: {
+            'cinematic': '0.3em',
+            'editorial': '0.15em',
+          },
+          colors: {
+            gold: {
+              50: '#F9F5EC',
+              100: '#F5EBD4',
+              200: '#EAD4A6',
+              300: '#D9B56F',
+              400: '#C49F58',
+              500: '#A6823C',
+              800: '#4D3B1C',
+              900: '#2A200A',
+            },
+            obsidian: '#020202',
+            charcoal: '#0A0A0A',
+          },
+          backgroundImage: {
+            'noise': "url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E')",
+          },
+          animation: {
+            'slow-pan': 'pan 60s linear infinite alternate',
+            'float': 'float 10s ease-in-out infinite',
+            'reveal-up': 'revealUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+            'hero-enter': 'heroEnter 2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+            'typing': 'typing 1.4s infinite ease-in-out both',
+            'spin-slow': 'spin 60s linear infinite',
+            'aurora': 'aurora 20s ease-in-out infinite alternate',
+            'marquee': 'marquee 25s linear infinite',
+          },
+          keyframes: {
+            pan: { '0%': { transform: 'scale(1.1) translate(0%, 0%)' }, '100%': { transform: 'scale(1.25) translate(-2%, -2%)' } },
+            float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-15px)' } },
+            revealUp: { '0%': { opacity: '0', transform: 'translateY(60px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            heroEnter: { '0%': { opacity: '0', transform: 'translateY(40px) scale(0.98)' }, '100%': { opacity: '1', transform: 'translateY(0) scale(1.02)' } },
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            typing: { '0%, 80%, 100%': { transform: 'scale(0)' }, '40%': { transform: 'scale(1)' } },
+            aurora: { '0%': { opacity: '0.3', transform: 'scale(1) translate(0,0)' }, '100%': { opacity: '0.6', transform: 'scale(1.2) translate(10%, -10%)' } },
+            marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS Styles & Keyframes (Exact clone from index.html) -->
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #020202;
+      color: #e5e5e5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Cinematic Atmosphere */
+    .cinema-grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      opacity: 0.05; background-image: var(--tw-bg-noise); mix-blend-mode: overlay;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D9B56F; }
+    /* Typography Utilities */
+    ::selection { background: rgba(217, 181, 111, 0.25); color: #fff; }
+    /* Service Cards */
+    .service-active-img { opacity: 1 !important; transform: scale(1.05); }
+    .service-card:hover .service-line { width: 100%; background-color: #D9B56F; }
+    /* Navigation Hover */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+      background: #D9B56F; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    /* Floating Animation */
+    .floating-card { transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .floating-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); }
+    /* Beam Button Keyframes */
+    @keyframes beam-spin { to { transform: rotate(360deg); } }
+    @keyframes dots-move {
+      0% { background-position: 0 0; }
+      100% { background-position: 24px 24px; }
+    }
+    /* Typing Animation Dots */
+    .typing-dot { animation-delay: 0s; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    /* Marquee Mask */
+    .marquee-mask {
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    /* Design System Navigation active pill */
+    .ds-nav-active {
+      color: #D9B56F !important;
+    }
+    /* Smooth Anchor target scroll offset */
+    section {
+      scroll-margin-top: 6rem;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen selection:bg-gold-300/20 selection:text-gold-100 relative pb-24 md:pb-0 cursor-default bg-[#020202]">
+
+  <!-- Overlays -->
+  <div class="cinema-grain"></div>
+
+  <!-- ================================================================= -->
+  <!-- TOP HORIZONTAL DESIGN SYSTEM NAVIGATION                          -->
+  <!-- ================================================================= -->
+  <nav id="nav-wrapper" class="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] pt-6 mix-blend-difference">
+    <div id="nav-container" class="pointer-events-auto transition-all duration-500 flex items-center gap-6 lg:gap-8 border border-transparent bg-transparent w-full max-w-[1920px] px-8 lg:px-12 py-6 backdrop-blur-none justify-between md:justify-center">
+      
+      <!-- DS Navigation Links (Left) -->
+      <div class="hidden md:flex items-center gap-6 lg:gap-8">
+        <a href="#hero" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Hero</a>
+        <a href="#typography" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Typografie</a>
+        <a href="#colors" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Farben &amp; Surfaces</a>
+        <a href="#components" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Komponenten</a>
+      </div>
+
+      <!-- Center Logo -->
+      <div class="flex items-center gap-3 group cursor-pointer relative z-10 px-4">
+        <a href="#hero" class="flex items-center gap-2">
+          <span id="nav-logo" class="font-cinzel font-semibold text-xl lg:text-2xl text-white tracking-widest transition-all duration-500 drop-shadow-[0_0_15px_rgba(217,181,111,0.5)]">SHERY</span>
+          <span class="text-[9px] font-mono uppercase px-2 py-0.5 border border-gold-300/40 text-gold-300 rounded-full tracking-widest bg-gold-300/10 backdrop-blur-sm">DESIGN SYSTEM</span>
+        </a>
+      </div>
+
+      <!-- DS Navigation Links (Right) -->
+      <div class="hidden md:flex items-center gap-6 lg:gap-8">
+        <a href="#layout" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Layout</a>
+        <a href="#motion" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Motion</a>
+        <a href="#icons" class="nav-link text-[11px] font-medium text-neutral-300 hover:text-white transition-all uppercase tracking-editorial">Icons</a>
+        <a href="index.html" class="bg-white/10 hover:bg-gold-300/10 border border-white/20 hover:border-gold-300/30 text-white hover:text-gold-300 rounded-full px-5 py-2 transition-all duration-500 group backdrop-blur-md">
+          <span class="text-[10px] font-semibold tracking-editorial uppercase flex items-center gap-1.5">
+            <span>Live Site</span>
+            <span class="iconify" data-icon="lucide:arrow-up-right" width="12"></span>
+          </span>
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button onclick="toggleMobileNav()" class="md:hidden text-white p-2">
+        <span class="iconify" data-icon="lucide:menu" width="24"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Nav Menu -->
+    <div id="mobile-nav" class="hidden absolute top-full left-4 right-4 bg-neutral-950/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 pointer-events-auto flex flex-col gap-4 text-center mt-2 shadow-2xl">
+      <a href="#hero" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">00. Hero Clone</a>
+      <a href="#typography" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">01. Typografie</a>
+      <a href="#colors" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">02. Farben &amp; Oberflächen</a>
+      <a href="#components" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">03. UI-Komponenten</a>
+      <a href="#layout" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">04. Layout &amp; Spacing</a>
+      <a href="#motion" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">05. Motion &amp; Interaktion</a>
+      <a href="#icons" onclick="toggleMobileNav()" class="text-xs uppercase tracking-editorial text-neutral-300 hover:text-gold-300 py-2">06. Icons</a>
+      <a href="index.html" class="bg-gold-300 text-black rounded-full py-2.5 text-xs uppercase font-semibold tracking-wider">Live Website &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ================================================================= -->
+  <!-- 0. HERO (EXACT CLONE, TEXT ADAPTED)                               -->
+  <!-- ================================================================= -->
+  <section id="hero" class="relative">
+    <main class="relative flex flex-col h-screen w-full items-center justify-center overflow-hidden z-10">
+      <!-- Living Background Layers -->
+      <div class="absolute inset-0 w-full h-full bg-[#020202]">
+        <div class="absolute inset-0 animate-slow-pan transform-gpu">
+          <img class="w-full h-full object-cover filter brightness-[0.3] contrast-100 grayscale-[40%] blur-[1px]" src="assets/585a27183f42ba3e_917d6f93-fb36-439a-8c48-884b67.jpg"/>
+        </div>
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+          <div class="absolute -top-[30%] -left-[10%] w-[80vw] h-[80vw] bg-gold-500/10 rounded-full blur-[120px] animate-aurora mix-blend-screen opacity-40"></div>
+          <div class="absolute -bottom-[30%] -right-[10%] w-[70vw] h-[70vw] bg-neutral-700/20 rounded-full blur-[100px] animate-float opacity-30" style="animation-delay: -5s"></div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vmax] h-[150vmax] opacity-[0.08] animate-spin-slow pointer-events-none mix-blend-overlay">
+            <div class="w-full h-full bg-[conic-gradient(from_0deg,transparent_0deg,rgba(217,181,111,0.8)_20deg,transparent_60deg)] blur-3xl"></div>
+          </div>
+        </div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020202_85%)] opacity-90"></div>
+        <div class="absolute inset-0 bg-noise opacity-[0.03] animate-pulse-slow mix-blend-overlay"></div>
+      </div>
+      
+      <!-- Content -->
+      <div class="relative z-30 flex flex-col items-center px-6 text-center w-full max-w-[1920px]">
+        <div class="mb-6 md:mb-12 animate-hero-enter opacity-0" style="animation-delay: 0.2s">
+          <div class="flex items-center gap-4">
+            <span class="h-px w-8 bg-gold-300/60"></span>
+            <span class="text-[10px] font-semibold text-gold-200 tracking-[0.4em] uppercase text-shadow-sm">Design System &amp; Pattern Library</span>
+            <span class="h-px w-8 bg-gold-300/60"></span>
+          </div>
+        </div>
+        
+        <h1 class="font-cinzel leading-[0.85] relative group cursor-default mix-blend-screen animate-hero-enter opacity-0" style="animation-delay: 0.4s">
+          <span class="block text-[18vw] md:text-[14rem] font-medium tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500 transform scale-y-105">SHERY</span>
+          <div class="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full z-10 mix-blend-normal">
+            <span class="font-serif italic text-[5vw] md:text-[4rem] text-gold-100 font-light tracking-wide drop-shadow-[0_0_25px_rgba(217,181,111,0.4)] opacity-90">Design <span class="text-white/60 text-[0.7em] not-italic font-cinzel mx-2">&amp;</span> System</span>
+          </div>
+        </h1>
+
+        <p class="mt-8 md:mt-12 text-sm md:text-lg text-neutral-300 font-light text-center max-w-lg leading-relaxed animate-hero-enter opacity-0" style="animation-delay: 0.6s">
+          Kanonische Spezifikation für Haute-Couture Haarästhetik. <br/>
+          <span class="text-gold-200/80">Typografie, Tokens, Komponenten und Motion auf internationalem Niveau.</span>
+        </p>
+
+        <div class="mt-10 animate-hero-enter opacity-0" style="animation-delay: 0.8s">
+          <a class="group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(217,181,111,0.5)] focus:outline-none text-xs font-semibold text-white tracking-widest font-sans rounded-full pt-4 pr-10 pb-4 pl-10 relative items-center justify-center w-fit mx-auto" href="#typography">
+            <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+              <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#D9B56F_360deg)]" style="animation: beam-spin 3s linear infinite;"></div>
+              <div class="absolute inset-[1px] rounded-full bg-[#020202]"></div>
+            </div>
+            <div class="-z-10 overflow-hidden bg-[#020202] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+              <div class="absolute inset-0 bg-gradient-to-b from-neutral-800/40 to-transparent"></div>
+              <div class="opacity-30 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"></div>
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-[#D9B56F]/20 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-[#D9B56F]/40"></div>
+            </div>
+            <span class="relative z-10 text-neutral-200 transition-colors group-hover:text-white">System Erkunden</span>
+            <span class="iconify relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1 text-[#D9B56F]" data-icon="lucide:arrow-down" width="16"></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom Scroll Line Indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 animate-hero-enter opacity-0" style="animation-delay: 1s">
+        <div class="w-[1px] h-12 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
+      </div>
+    </main>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 1. TYPOGRAPHY SPECIFICATION                                       -->
+  <!-- ================================================================= -->
+  <section id="typography" class="relative z-20 w-full py-32 bg-[#020202] border-t border-white/5">
+    <div class="max-w-[1600px] mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center mb-20 reveal-on-scroll">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold-400/20 blur-[60px] rounded-full opacity-40"></div>
+          <h2 class="relative text-4xl md:text-7xl font-serif text-white mb-4 tracking-tight z-10">
+            01. <span class="text-gold-300 italic font-light">Typografie</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 mt-2 opacity-80">
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+          <span class="text-[11px] uppercase tracking-cinematic text-neutral-400">Hierarchie, Skalierung &amp; Rhythmische Spezifikation</span>
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+        </div>
+        <p class="mt-4 text-neutral-400 text-sm font-light max-w-xl">
+          Die Typografie von Shery Beauty vereint klassische römische Majuskeln (<span class="text-gold-200">Cinzel</span>), italienische redaktionelle Serifen (<span class="text-gold-200">Playfair Display</span>) und schweizerische funktionale Lesbarkeit (<span class="text-gold-200">Inter</span>).
+        </p>
+      </div>
+
+      <!-- Typography Spec Table -->
+      <div class="bg-neutral-900/40 backdrop-blur-sm border border-white/5 rounded-3xl p-6 md:p-12 shadow-2xl">
+        <div class="space-y-12 divide-y divide-white/5">
+          
+          <!-- Row: Heading 1 -->
+          <div class="pt-8 first:pt-0 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 1</span>
+              <span class="text-xs text-neutral-400 block font-mono">Hero Display Title</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Cinzel + Playfair Italic</span>
+            </div>
+            <div class="lg:col-span-6 overflow-hidden py-4">
+              <h1 class="font-cinzel leading-[0.85] relative group cursor-default mix-blend-screen">
+                <span class="block text-5xl md:text-8xl font-medium tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500 transform scale-y-105">SHERY</span>
+                <div class="mt-2 mix-blend-normal">
+                  <span class="font-serif italic text-2xl md:text-4xl text-gold-100 font-light tracking-wide drop-shadow-[0_0_25px_rgba(217,181,111,0.4)] opacity-90">
+                    Kunst <span class="text-white/60 text-[0.7em] not-italic font-cinzel mx-2">&amp;</span> Pflege
+                  </span>
+                </div>
+              </h1>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">224px / 190px</span>
+              <span class="text-[11px] text-neutral-500 block">Mobile: 18vw / 0.85</span>
+              <span class="text-[10px] text-neutral-600 block mt-1">tracking-tighter</span>
+            </div>
+          </div>
+
+          <!-- Row: Heading 2 (Primary Editorial) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 2</span>
+              <span class="text-xs text-neutral-400 block font-mono">Editorial Section Title</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Playfair Display</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <h2 class="text-4xl md:text-6xl font-serif text-white tracking-tight">
+                Exklusive <span class="text-gold-300 italic font-light">Leistungen</span>
+              </h2>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">72px / 72px</span>
+              <span class="text-[11px] text-neutral-500 block">Mobile: 36px / 40px</span>
+              <span class="text-[10px] text-neutral-600 block mt-1">tracking-tight</span>
+            </div>
+          </div>
+
+          <!-- Row: Heading 2 (Secondary Section) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 2 (Alt)</span>
+              <span class="text-xs text-neutral-400 block font-mono">Process / Gallery Header</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Playfair Display</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <h2 class="text-3xl md:text-5xl font-serif text-white">
+                Das <span class="italic text-gold-300">Ritual</span>
+              </h2>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">48px / 48px</span>
+              <span class="text-[11px] text-neutral-500 block">Mobile: 30px / 36px</span>
+              <span class="text-[10px] text-neutral-600 block mt-1">font-serif</span>
+            </div>
+          </div>
+
+          <!-- Row: Heading 3 (Card Title) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 3</span>
+              <span class="text-xs text-neutral-400 block font-mono">Service Card Title</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Playfair Display</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <h3 class="text-2xl font-serif text-white">
+                Calligraphy Cut &amp; Balayage
+              </h3>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">24px / 32px</span>
+              <span class="text-[11px] text-neutral-500 block">text-2xl font-serif</span>
+              <span class="text-[10px] text-neutral-600 block mt-1">hover:text-gold-100</span>
+            </div>
+          </div>
+
+          <!-- Row: Heading 3 (Cinzel Stylist Name) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 3 (Cinzel)</span>
+              <span class="text-xs text-neutral-400 block font-mono">Stylist / Team Name</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Cinzel Display</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <h3 class="text-2xl font-cinzel text-white">
+                Shery &amp; Daniel
+              </h3>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">24px / 32px</span>
+              <span class="text-[11px] text-neutral-500 block">text-2xl font-cinzel</span>
+            </div>
+          </div>
+
+          <!-- Row: Heading 3 (Process Subtitle) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 3 (Step)</span>
+              <span class="text-xs text-neutral-400 block font-mono">Process Step Header</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Playfair Display</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <h3 class="text-xl font-serif text-white">
+                Konsultation &amp; Handwerk
+              </h3>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">20px / 28px</span>
+              <span class="text-[11px] text-neutral-500 block">text-xl font-serif</span>
+            </div>
+          </div>
+
+          <!-- Row: Heading 4 (Cinzel Atelier / Footer) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Heading 4</span>
+              <span class="text-xs text-neutral-400 block font-mono">Location &amp; Footer Menu</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Cinzel Display</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <h4 class="text-white font-cinzel text-lg">Unser Atelier Dortmund</h4>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">18px / 28px</span>
+              <span class="text-[11px] text-neutral-500 block">text-lg font-cinzel</span>
+            </div>
+          </div>
+
+          <!-- Row: Bold L -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Bold L</span>
+              <span class="text-xs text-neutral-400 block font-mono">Brand Heading / Partner</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Cinzel / Sans</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <span class="font-cinzel font-semibold text-2xl text-white tracking-widest">SHERY ATELIER</span>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">24px / 32px</span>
+              <span class="text-[11px] text-neutral-500 block">font-semibold tracking-widest</span>
+            </div>
+          </div>
+
+          <!-- Row: Bold M -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Bold M</span>
+              <span class="text-xs text-neutral-400 block font-mono">Client Testimonial Name</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Bold</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <span class="block text-white text-xs uppercase tracking-widest font-bold">SARAH M. — KUNDENREZENSION</span>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">12px / 16px</span>
+              <span class="text-[11px] text-neutral-500 block">font-bold tracking-widest</span>
+            </div>
+          </div>
+
+          <!-- Row: Bold S -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Bold S</span>
+              <span class="text-xs text-neutral-400 block font-mono">Category Eyebrow</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Semibold / Bold</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block">PRÄZISION &amp; EXPERTISE</span>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">10px / 15px</span>
+              <span class="text-[11px] text-neutral-500 block">text-[10px] uppercase</span>
+            </div>
+          </div>
+
+          <!-- Row: Paragraph (Large / Lead Body) -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Paragraph (Large)</span>
+              <span class="text-xs text-neutral-400 block font-mono">Hero Lead / Editorial Quote</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Light / Playfair Italic</span>
+            </div>
+            <div class="lg:col-span-6 py-2 space-y-3">
+              <p class="text-sm md:text-lg text-neutral-300 font-light leading-relaxed">
+                Das Dortmunder Refugium für kompromisslose Haarästhetik auf internationalem Niveau.
+              </p>
+              <p class="text-white text-lg font-serif italic leading-relaxed">
+                &ldquo;Endlich jemand, der Blond wirklich versteht. Kein Gelbstich, kein Haarbruch.&rdquo;
+              </p>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">18px / 28px</span>
+              <span class="text-[11px] text-neutral-500 block">text-lg leading-relaxed</span>
+            </div>
+          </div>
+
+          <!-- Row: Regular L -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Regular L</span>
+              <span class="text-xs text-neutral-400 block font-mono">Price List Item Name</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Light</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <span class="text-neutral-200 font-light text-base">Damen Haarschnitt &amp; Balayage Signature</span>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">16px / 24px</span>
+              <span class="text-[11px] text-neutral-500 block">text-base font-light</span>
+            </div>
+          </div>
+
+          <!-- Row: Regular M -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Regular M</span>
+              <span class="text-xs text-neutral-400 block font-mono">Card Body Description</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Light</span>
+            </div>
+            <div class="lg:col-span-6 py-2">
+              <p class="text-neutral-400 text-sm font-light leading-relaxed">
+                Die patentierte Schnitt-Technik für 270% mehr Volumen und weniger Spliss. Das Haar wird schräg angeschnitten, was ihm mehr Schwung und Dynamik verleiht.
+              </p>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">14px / 20px</span>
+              <span class="text-[11px] text-neutral-500 block">text-sm leading-relaxed</span>
+            </div>
+          </div>
+
+          <!-- Row: Regular S -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Regular S</span>
+              <span class="text-xs text-neutral-400 block font-mono">Metadata / Duration Label</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Regular</span>
+            </div>
+            <div class="lg:col-span-6 py-2 flex items-center gap-6">
+              <span class="text-xs text-neutral-400 tracking-widest uppercase">Founder &amp; Creative Director</span>
+              <span class="text-[11px] text-neutral-500 flex items-center gap-2">
+                <span class="iconify" data-icon="lucide:clock"></span> 60 Min Behandlungsdauer
+              </span>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">12px / 16px</span>
+              <span class="text-[11px] text-neutral-500 block">text-xs / text-[11px]</span>
+            </div>
+          </div>
+
+          <!-- Row: Micro Label / Caption -->
+          <div class="pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-3">
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Micro / Caption</span>
+              <span class="text-xs text-neutral-400 block font-mono">Badge &amp; Copyright</span>
+              <span class="text-[11px] text-neutral-500 block mt-1">Inter Tracking Cinematic</span>
+            </div>
+            <div class="lg:col-span-6 py-2 flex items-center gap-4 flex-wrap">
+              <span class="px-2 py-0.5 border border-white/20 rounded text-[9px] text-white uppercase tracking-wider backdrop-blur-sm">MASTER COLORIST</span>
+              <span class="text-neutral-600 text-[10px] uppercase tracking-widest">&copy; 2024 SHERY BEAUTY CENTER. ALL RIGHTS RESERVED.</span>
+            </div>
+            <div class="lg:col-span-3 text-left lg:text-right font-mono">
+              <span class="text-sm text-gold-300 font-semibold block">9px &ndash; 10px</span>
+              <span class="text-[11px] text-neutral-500 block">tracking-cinematic (0.3em)</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 2. COLORS & SURFACES                                              -->
+  <!-- ================================================================= -->
+  <section id="colors" class="relative z-20 w-full py-32 bg-[#0A0A0A] border-t border-white/5">
+    <div class="max-w-[1600px] mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center mb-20 reveal-on-scroll">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold-400/20 blur-[60px] rounded-full opacity-40"></div>
+          <h2 class="relative text-4xl md:text-7xl font-serif text-white mb-4 tracking-tight z-10">
+            02. <span class="text-gold-300 italic font-light">Farben &amp; Surfaces</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 mt-2 opacity-80">
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+          <span class="text-[11px] uppercase tracking-cinematic text-neutral-400">Atmosphärische Tiefe, Obsidian &amp; Champagner-Gold</span>
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+        </div>
+      </div>
+
+      <!-- Gold Palette Swatches -->
+      <div class="mb-20">
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Primäre Gold-Palette (8 Nuancen)
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+          
+          <!-- gold-50 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#F9F5EC] border border-white/20 shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-50</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#F9F5EC</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Heller Schimmer</span>
+            </div>
+          </div>
+
+          <!-- gold-100 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#F5EBD4] border border-white/20 shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-100</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#F5EBD4</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Cursive Accent</span>
+            </div>
+          </div>
+
+          <!-- gold-200 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#EAD4A6] border border-white/20 shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-200</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#EAD4A6</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Badge Subtitle</span>
+            </div>
+          </div>
+
+          <!-- gold-300 (Primary Accent) -->
+          <div class="bg-neutral-900/50 border border-gold-300/40 rounded-2xl p-4 flex flex-col justify-between h-48 relative shadow-[0_0_20px_rgba(217,181,111,0.15)]">
+            <div class="absolute -top-2.5 right-3 bg-gold-300 text-black text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Primary</div>
+            <div class="w-full h-20 rounded-xl bg-[#D9B56F] shadow-lg"></div>
+            <div>
+              <span class="text-xs font-bold text-gold-200 block">gold-300</span>
+              <span class="text-[11px] font-mono text-neutral-300 block">#D9B56F</span>
+              <span class="text-[10px] text-gold-300/80 block mt-1">Brand Signature</span>
+            </div>
+          </div>
+
+          <!-- gold-400 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#C49F58] shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-400</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#C49F58</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Section Glow</span>
+            </div>
+          </div>
+
+          <!-- gold-500 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#A6823C] shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-500</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#A6823C</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Aurora Backdrop</span>
+            </div>
+          </div>
+
+          <!-- gold-800 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#4D3B1C] shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-800</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#4D3B1C</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Deep Shadow</span>
+            </div>
+          </div>
+
+          <!-- gold-900 -->
+          <div class="bg-neutral-900/50 border border-white/5 rounded-2xl p-4 flex flex-col justify-between h-48">
+            <div class="w-full h-20 rounded-xl bg-[#2A200A] shadow-md"></div>
+            <div>
+              <span class="text-xs font-bold text-white block">gold-900</span>
+              <span class="text-[11px] font-mono text-neutral-400 block">#2A200A</span>
+              <span class="text-[10px] text-neutral-500 block mt-1">Subtle Base</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Core Surfaces & Backgrounds -->
+      <div class="mb-20">
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Oberflächen &amp; Glassmorphism
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Obsidian Base -->
+          <div class="bg-[#020202] border border-white/10 rounded-3xl p-8 flex flex-col justify-between h-64 relative overflow-hidden">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Page Canvas</span>
+                <h4 class="text-xl font-cinzel text-white">Obsidian Base</h4>
+              </div>
+              <span class="px-2.5 py-1 bg-white/5 rounded-full text-xs font-mono text-neutral-400 border border-white/10">#020202</span>
+            </div>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Tiefschwarzer Haupt-Hintergrund für maximalen Bildkontrast und Blend-Effekte.
+            </p>
+            <span class="text-[11px] font-mono text-neutral-500">bg-[#020202] / bg-obsidian</span>
+          </div>
+
+          <!-- Charcoal Section -->
+          <div class="bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 flex flex-col justify-between h-64 relative overflow-hidden">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Section Canvas</span>
+                <h4 class="text-xl font-cinzel text-white">Charcoal Base</h4>
+              </div>
+              <span class="px-2.5 py-1 bg-white/5 rounded-full text-xs font-mono text-neutral-400 border border-white/10">#0A0A0A</span>
+            </div>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Weicherer Schwarzton zur subtilen Abgrenzung einzelner Hauptabschnitte (z. B. The Ritual, Reviews).
+            </p>
+            <span class="text-[11px] font-mono text-neutral-500">bg-[#0A0A0A] / bg-charcoal</span>
+          </div>
+
+          <!-- Glass Card Surface -->
+          <div class="bg-neutral-900/40 backdrop-blur-sm border border-white/5 hover:border-gold-300/30 rounded-3xl p-8 flex flex-col justify-between h-64 relative overflow-hidden transition-all duration-300 floating-card cursor-pointer">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Interactive Glass</span>
+                <h4 class="text-xl font-serif text-white">Card Glass Blur</h4>
+              </div>
+              <span class="px-2.5 py-1 bg-white/5 rounded-full text-xs font-mono text-gold-300 border border-gold-300/20">backdrop-blur-sm</span>
+            </div>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Transparente Milchglasschicht mit diffusem Schatten und goldener Randaktivierung beim Hovern.
+            </p>
+            <div class="service-line absolute bottom-0 left-0 h-[2px] w-full bg-gold-300 rounded-b-3xl"></div>
+            <span class="text-[11px] font-mono text-neutral-500">bg-neutral-900/40 border-white/5</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Borders & Gradient System -->
+      <div>
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Gradienten &amp; Divider-Spezifikationen
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Text Gradient -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-56">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Silver Metallic</span>
+              <h5 class="text-lg font-cinzel text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-200 to-neutral-500">
+                Text Gradient
+              </h5>
+            </div>
+            <p class="text-[11px] text-neutral-400">Verleiht der H1 'SHERY' den skulpturalen, glänzenden Platin-Look.</p>
+            <span class="text-[10px] font-mono text-neutral-500 truncate">from-white via-neutral-200 to-neutral-500</span>
+          </div>
+
+          <!-- Conic Beam Spin -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-56 relative overflow-hidden">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Laser Beam</span>
+              <h5 class="text-lg font-cinzel text-white">Conic Spin Beam</h5>
+            </div>
+            <div class="w-full h-12 rounded-xl overflow-hidden relative flex items-center justify-center bg-black">
+              <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#D9B56F_360deg)]" style="animation: beam-spin 3s linear infinite;"></div>
+              <div class="absolute inset-[2px] bg-[#020202] rounded-lg flex items-center justify-center text-[10px] text-gold-300 font-mono">Rotating Border</div>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500 truncate">conic-gradient(#D9B56F 360deg)</span>
+          </div>
+
+          <!-- Dot Grid Matrix -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-56 relative overflow-hidden">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Micro Matrix</span>
+              <h5 class="text-lg font-cinzel text-white">Radial Dot Pattern</h5>
+            </div>
+            <div class="w-full h-12 rounded-xl border border-white/10" style="background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"></div>
+            <span class="text-[10px] font-mono text-neutral-500">radial-gradient(1px, transparent 1px)</span>
+          </div>
+
+          <!-- Marquee Edge Mask -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-56">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Seamless Fade</span>
+              <h5 class="text-lg font-cinzel text-white">Marquee Alpha Mask</h5>
+            </div>
+            <div class="w-full h-12 bg-neutral-800 rounded-xl marquee-mask flex items-center justify-center text-[11px] text-white">
+              Gefadete Ränder ohne Hard Cut
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500">linear-gradient(transparent, black 10%, ...)</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 3. UI COMPONENTS                                                  -->
+  <!-- ================================================================= -->
+  <section id="components" class="relative z-20 w-full py-32 bg-[#020202] border-t border-white/5">
+    <div class="max-w-[1600px] mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center mb-20 reveal-on-scroll">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold-400/20 blur-[60px] rounded-full opacity-40"></div>
+          <h2 class="relative text-4xl md:text-7xl font-serif text-white mb-4 tracking-tight z-10">
+            03. <span class="text-gold-300 italic font-light">UI-Komponenten</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 mt-2 opacity-80">
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+          <span class="text-[11px] uppercase tracking-cinematic text-neutral-400">Status-Matrix: Default / Hover / Active / Focus / Disabled</span>
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+        </div>
+      </div>
+
+      <!-- COMPONENT 1: BUTTONS -->
+      <div class="mb-20">
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Button-Systematik &amp; Interaktionsstufen
+        </h3>
+
+        <!-- Beam Button Showcase -->
+        <div class="bg-neutral-900/30 border border-white/5 rounded-3xl p-8 mb-8">
+          <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block">Signature CTA</span>
+              <h4 class="text-xl font-cinzel text-white">Beam Laser Button</h4>
+            </div>
+            <span class="text-xs font-mono text-neutral-500">Conic Beam Spin + Dots Move + Backlight Glow</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center py-6 border-y border-white/5">
+            <!-- Default / Live -->
+            <div class="text-center">
+              <span class="text-[11px] font-mono text-neutral-400 uppercase block mb-4">Live Interactive</span>
+              <a class="group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(217,181,111,0.5)] focus:outline-none text-xs font-semibold text-white tracking-widest font-sans rounded-full pt-4 pr-10 pb-4 pl-10 relative items-center justify-center w-fit mx-auto cursor-pointer">
+                <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+                  <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#D9B56F_360deg)]" style="animation: beam-spin 3s linear infinite;"></div>
+                  <div class="absolute inset-[1px] rounded-full bg-[#020202]"></div>
+                </div>
+                <div class="-z-10 overflow-hidden bg-[#020202] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+                  <div class="absolute inset-0 bg-gradient-to-b from-neutral-800/40 to-transparent"></div>
+                  <div class="opacity-30 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"></div>
+                  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-[#D9B56F]/20 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-[#D9B56F]/40"></div>
+                </div>
+                <span class="relative z-10 text-neutral-200 transition-colors group-hover:text-white">Termin Vereinbaren</span>
+                <span class="iconify relative z-10 ml-2 transition-transform duration-300 group-hover:translate-x-1 text-[#D9B56F]" data-icon="lucide:arrow-right" width="16"></span>
+              </a>
+            </div>
+
+            <!-- Simulated Hover State -->
+            <div class="text-center">
+              <span class="text-[11px] font-mono text-neutral-400 uppercase block mb-4">Hover State (Glow Active)</span>
+              <div class="flex overflow-hidden uppercase scale-[1.02] shadow-[0_0_40px_-10px_rgba(217,181,111,0.6)] text-xs font-semibold text-white tracking-widest font-sans rounded-full pt-4 pr-10 pb-4 pl-10 relative items-center justify-center w-fit mx-auto cursor-pointer">
+                <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+                  <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#D9B56F_360deg)]" style="animation: beam-spin 1.5s linear infinite;"></div>
+                  <div class="absolute inset-[1px] rounded-full bg-[#020202]"></div>
+                </div>
+                <div class="-z-10 overflow-hidden bg-[#020202] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+                  <div class="absolute inset-0 bg-gradient-to-b from-neutral-800/40 to-transparent"></div>
+                  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-[#D9B56F]/50 blur-2xl rounded-full"></div>
+                </div>
+                <span class="relative z-10 text-white">Termin Vereinbaren</span>
+                <span class="iconify relative z-10 ml-2 translate-x-1 text-[#D9B56F]" data-icon="lucide:arrow-right" width="16"></span>
+              </div>
+            </div>
+
+            <!-- Disabled State -->
+            <div class="text-center">
+              <span class="text-[11px] font-mono text-neutral-400 uppercase block mb-4">Disabled State</span>
+              <div class="flex overflow-hidden uppercase text-xs font-semibold text-neutral-600 tracking-widest font-sans rounded-full pt-4 pr-10 pb-4 pl-10 relative items-center justify-center w-fit mx-auto border border-white/10 opacity-40 cursor-not-allowed bg-neutral-900">
+                <span class="relative z-10">Nicht Verfügbar</span>
+                <span class="iconify relative z-10 ml-2 text-neutral-600" data-icon="lucide:lock" width="16"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pill Button & Other Buttons Matrix -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Secondary Pill Button -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-72">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Secondary Button</span>
+              <h5 class="text-base font-cinzel text-white mb-4">Pill Outline Button</h5>
+            </div>
+            <div class="space-y-3">
+              <button class="w-full px-6 py-2.5 border border-white/20 rounded-full text-xs uppercase tracking-widest text-white hover:bg-gold-300 hover:border-gold-300 hover:text-black transition-all duration-300">
+                Default: Mehr Laden
+              </button>
+              <button class="w-full px-6 py-2.5 border border-gold-300 bg-gold-300 rounded-full text-xs uppercase tracking-widest text-black font-medium">
+                Hover State
+              </button>
+              <button disabled class="w-full px-6 py-2.5 border border-white/5 rounded-full text-xs uppercase tracking-widest text-neutral-600 cursor-not-allowed opacity-40">
+                Disabled State
+              </button>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500">border-white/20 hover:bg-gold-300</span>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-72">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Filter System</span>
+              <h5 class="text-base font-cinzel text-white mb-4">Category Pills</h5>
+            </div>
+            <div class="space-y-3">
+              <button class="w-full filter-btn text-black bg-gold-300 border border-gold-300 px-5 py-2 rounded-full text-[11px] font-medium uppercase tracking-widest">
+                Active: #Balayage
+              </button>
+              <button class="w-full filter-btn text-neutral-400 bg-transparent border border-white/10 px-5 py-2 rounded-full text-[11px] font-medium uppercase tracking-widest hover:border-gold-300 hover:text-white transition-all">
+                Inactive: #BlondExpert
+              </button>
+              <button disabled class="w-full text-neutral-600 border border-white/5 px-5 py-2 rounded-full text-[11px] font-medium uppercase tracking-widest opacity-40 cursor-not-allowed">
+                Disabled: #Archive
+              </button>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500">filter-btn rounded-full text-[11px]</span>
+          </div>
+
+          <!-- Form Submit CTA -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-72">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Form CTA</span>
+              <h5 class="text-base font-cinzel text-white mb-4">Solid High-Contrast Button</h5>
+            </div>
+            <div class="space-y-3">
+              <button class="w-full bg-white text-black font-medium py-3 hover:bg-gold-100 transition-colors uppercase tracking-editorial text-xs rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                Default: Anfrage Senden
+              </button>
+              <button class="w-full bg-gold-100 text-black font-medium py-3 uppercase tracking-editorial text-xs rounded-lg shadow-[0_0_25px_rgba(217,181,111,0.4)]">
+                Hover / Glow
+              </button>
+              <button disabled class="w-full bg-neutral-800 text-neutral-600 font-medium py-3 uppercase tracking-editorial text-xs rounded-lg cursor-not-allowed">
+                Disabled State
+              </button>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500">bg-white hover:bg-gold-100</span>
+          </div>
+
+          <!-- Concierge Action Button & Circle Icons -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6 flex flex-col justify-between h-72">
+            <div>
+              <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Floating Action</span>
+              <h5 class="text-base font-cinzel text-white mb-4">Concierge &amp; Circles</h5>
+            </div>
+            <div class="flex items-center justify-around py-2">
+              <!-- Chat Trigger -->
+              <div class="relative">
+                <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-gold-300 rounded-full border-2 border-[#020202] animate-pulse"></span>
+                <button class="w-14 h-14 bg-white hover:bg-gold-100 text-black rounded-full flex items-center justify-center shadow-[0_4px_30px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all">
+                  <span class="iconify" data-icon="lucide:message-square" width="20"></span>
+                </button>
+              </div>
+
+              <!-- Circle Social Icon -->
+              <a class="w-11 h-11 border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all cursor-pointer">
+                <span class="iconify" data-icon="lucide:instagram" width="18"></span>
+              </a>
+
+              <!-- Circle Social Hover -->
+              <a class="w-11 h-11 border border-gold-300 bg-gold-300 rounded-full flex items-center justify-center text-black shadow-md cursor-pointer">
+                <span class="iconify" data-icon="lucide:phone" width="18"></span>
+              </a>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500">rounded-full shadow-[0_4px_30px...]</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMPONENT 2: FORM INPUTS -->
+      <div class="mb-20">
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Formular-Elemente &amp; Eingabefelder
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Text Input Default -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6">
+            <label class="block text-[11px] text-neutral-400 uppercase tracking-widest mb-2 font-mono">Default State</label>
+            <input type="text" value="Dr. Alexander Vogel" placeholder="Ihr vollständiger Name" class="w-full bg-neutral-900/60 border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-gold-300 transition-colors">
+            <span class="text-[10px] text-neutral-500 block mt-2 font-mono">border-white/10</span>
+          </div>
+
+          <!-- Text Input Focus -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6">
+            <label class="block text-[11px] text-gold-300 uppercase tracking-widest mb-2 font-mono">Focus Active</label>
+            <input type="text" value="alexander@luxury.de" class="w-full bg-neutral-900/60 border border-gold-300 ring-1 ring-gold-300/30 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none transition-colors">
+            <span class="text-[10px] text-neutral-500 block mt-2 font-mono">focus:border-gold-300</span>
+          </div>
+
+          <!-- Select Dropdown -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6">
+            <label class="block text-[11px] text-neutral-400 uppercase tracking-widest mb-2 font-mono">Select Dropdown</label>
+            <select class="w-full bg-neutral-900/60 border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-gold-300 transition-colors">
+              <option>Balayage &amp; Farbveredelung</option>
+              <option>Calligraphy Cut Master</option>
+              <option>Keratin Infusion Treatment</option>
+              <option>Extensions Erstberatung</option>
+            </select>
+            <span class="text-[10px] text-neutral-500 block mt-2 font-mono">select bg-neutral-900/60</span>
+          </div>
+
+          <!-- Disabled Input -->
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-6">
+            <label class="block text-[11px] text-neutral-500 uppercase tracking-widest mb-2 font-mono">Disabled State</label>
+            <input type="text" disabled value="Nicht editierbar" class="w-full bg-neutral-900/30 border border-white/5 rounded-lg px-4 py-3.5 text-sm text-neutral-600 cursor-not-allowed opacity-50">
+            <span class="text-[10px] text-neutral-500 block mt-2 font-mono">disabled:cursor-not-allowed</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMPONENT 3: CARDS & WIDGETS -->
+      <div>
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Karten, Add-Ons &amp; Concierge-Widget
+        </h3>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Canonical Service Card (Live Hover) -->
+          <div class="group/card relative bg-neutral-900/40 backdrop-blur-sm border border-white/5 rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:bg-neutral-800/60 hover:border-gold-300/30 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] floating-card">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest mb-1 block">Präzision</span>
+                <h3 class="text-2xl font-serif text-white group-hover/card:text-gold-100 transition-colors">Calligraphy Cut</h3>
+              </div>
+              <span class="text-white font-cinzel text-lg">85 &euro;</span>
+            </div>
+            <p class="text-neutral-400 text-sm font-light leading-relaxed mb-6">
+              Die patentierte Schnitt-Technik für 270% mehr Volumen und weniger Spliss. Das Haar wird schräg angeschnitten, was ihm mehr Bewegung verleiht.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/5 pt-4">
+              <span class="text-[11px] text-neutral-500 flex items-center gap-2">
+                <span class="iconify" data-icon="lucide:clock"></span> 60 Min
+              </span>
+              <span class="text-[11px] text-white uppercase tracking-wider group-hover/card:translate-x-1 transition-transform flex items-center gap-1">
+                Details <span class="iconify" data-icon="lucide:arrow-right" width="12"></span>
+              </span>
+            </div>
+            <!-- Expanding Gold Line on Hover -->
+            <div class="service-line absolute bottom-0 left-0 h-[2px] w-0 bg-gold-300 transition-all duration-500 rounded-b-3xl"></div>
+          </div>
+
+          <!-- Editorial Review Card -->
+          <div class="bg-white/5 border border-white/10 p-8 rounded-3xl relative hover:bg-white/10 transition-colors flex flex-col justify-between">
+            <span class="text-6xl text-gold-300 font-serif absolute top-4 left-6 opacity-20">&ldquo;</span>
+            <div class="relative z-10 mb-6 pt-4">
+              <p class="text-white text-base font-serif italic leading-relaxed">
+                Endlich jemand, der Blond wirklich versteht. Kein Gelbstich, kein Haarbruch. Das Team arbeitet mit einer Präzision, die ich so in Dortmund noch nicht erlebt habe.
+              </p>
+            </div>
+            <div class="flex items-center gap-4 border-t border-white/5 pt-4">
+              <div class="w-px h-8 bg-gold-300"></div>
+              <div>
+                <span class="block text-white text-xs uppercase tracking-widest font-bold">Sarah M.</span>
+                <span class="block text-neutral-500 text-[10px] mt-0.5">Balayage &amp; Schnitt</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Concierge Chatbot Widget Simulated State -->
+          <div class="bg-[#0A0A0A] border border-white/10 rounded-3xl p-6 shadow-2xl relative flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-gold-300/20 flex items-center justify-center text-gold-300">
+                    <span class="iconify" data-icon="lucide:sparkles" width="16"></span>
+                  </div>
+                  <div>
+                    <span class="block text-white text-xs font-medium">Concierge Service</span>
+                    <span class="block text-[10px] text-neutral-400">Antwortet sofort &bull; Online</span>
+                  </div>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              </div>
+
+              <!-- Message Bubbles -->
+              <div class="space-y-3 mb-4">
+                <div class="bg-neutral-900 border border-white/5 rounded-2xl rounded-tl-sm p-3 max-w-[85%] text-xs text-neutral-200">
+                  Herzlich Willkommen bei Shery Beauty. Wie dürfen wir Ihren nächsten Termin gestalten?
+                </div>
+                <!-- Typing Dots simulation -->
+                <div class="flex items-center gap-1.5 p-2 bg-neutral-900/60 rounded-full w-fit px-4 border border-white/5">
+                  <span class="w-1.5 h-1.5 bg-gold-300 rounded-full animate-typing typing-dot"></span>
+                  <span class="w-1.5 h-1.5 bg-gold-300 rounded-full animate-typing typing-dot"></span>
+                  <span class="w-1.5 h-1.5 bg-gold-300 rounded-full animate-typing typing-dot"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Pills -->
+            <div class="flex gap-2 flex-wrap pt-2 border-t border-white/5">
+              <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-white">Termin buchen</span>
+              <span class="px-3 py-1 bg-white/5 border border-[#25D366]/30 text-[#25D366] rounded-full text-[10px] flex items-center gap-1">WhatsApp &rarr;</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 4. LAYOUT & SPACING                                               -->
+  <!-- ================================================================= -->
+  <section id="layout" class="relative z-20 w-full py-32 bg-[#0A0A0A] border-t border-white/5">
+    <div class="max-w-[1600px] mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center mb-20 reveal-on-scroll">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold-400/20 blur-[60px] rounded-full opacity-40"></div>
+          <h2 class="relative text-4xl md:text-7xl font-serif text-white mb-4 tracking-tight z-10">
+            04. <span class="text-gold-300 italic font-light">Layout &amp; Spacing</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 mt-2 opacity-80">
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+          <span class="text-[11px] uppercase tracking-cinematic text-neutral-400">Containers, Spaltengitter &amp; Kanonische Referenz-Muster</span>
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+        </div>
+      </div>
+
+      <!-- Pattern 1: Process Timeline / The Ritual (3 Columns with golden connecting line) -->
+      <div class="mb-24 bg-neutral-900/40 border border-white/5 rounded-3xl p-8 md:p-12">
+        <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
+          <div>
+            <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block">Layout Pattern A</span>
+            <h4 class="text-xl font-cinzel text-white">The Ritual &ndash; 3-Phasen Prozess-Timeline</h4>
+          </div>
+          <span class="text-xs font-mono text-neutral-500">grid md:grid-cols-3 gap-8 with relative line</span>
+        </div>
+
+        <div class="relative grid md:grid-cols-3 gap-8 pt-4">
+          <!-- Connecting Line -->
+          <div class="hidden md:block absolute top-12 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-300/40 to-transparent z-0"></div>
+          
+          <!-- Step 1 -->
+          <div class="relative z-10 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-[#050505] border border-white/10 flex items-center justify-center mb-6 shadow-xl relative group hover:border-gold-300/50 transition-colors">
+              <span class="font-cinzel text-2xl text-white group-hover:text-gold-300 transition-colors">I</span>
+              <div class="absolute -bottom-2 w-px h-6 bg-gold-300/50"></div>
+            </div>
+            <h5 class="text-lg font-serif text-white mb-2">Konsultation</h5>
+            <p class="text-neutral-500 text-xs font-light leading-relaxed px-4">
+              Wir analysieren Ihre Haarstruktur und Gesichtsform, um die perfekte Nuance zu definieren.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative z-10 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-[#050505] border border-white/10 flex items-center justify-center mb-6 shadow-xl relative group hover:border-gold-300/50 transition-colors">
+              <span class="font-cinzel text-2xl text-white group-hover:text-gold-300 transition-colors">II</span>
+              <div class="absolute -bottom-2 w-px h-6 bg-gold-300/50"></div>
+            </div>
+            <h5 class="text-lg font-serif text-white mb-2">Handwerk</h5>
+            <p class="text-neutral-500 text-xs font-light leading-relaxed px-4">
+              Präzise Painting-Techniken und der Calligraphy Cut kommen mit absoluter Ruhe zum Einsatz.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative z-10 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-[#050505] border border-white/10 flex items-center justify-center mb-6 shadow-xl relative group hover:border-gold-300/50 transition-colors">
+              <span class="font-cinzel text-2xl text-white group-hover:text-gold-300 transition-colors">III</span>
+              <div class="absolute -bottom-2 w-px h-6 bg-gold-300/50"></div>
+            </div>
+            <h5 class="text-lg font-serif text-white mb-2">Veredelung</h5>
+            <p class="text-neutral-500 text-xs font-light leading-relaxed px-4">
+              Das Glossing versiegelt die Farbe, gefolgt von einem Styling für vollendeten Glanz.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pattern 2: Two-Column Split Sticky Layout -->
+      <div class="mb-24 bg-neutral-900/40 border border-white/5 rounded-3xl p-8 md:p-12">
+        <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
+          <div>
+            <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block">Layout Pattern B</span>
+            <h4 class="text-xl font-cinzel text-white">Split Sticky Layout (Left Visual / Right Cards)</h4>
+          </div>
+          <span class="text-xs font-mono text-neutral-500">grid lg:grid-cols-2 gap-12 lg:gap-24</span>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Left Column Image Showcase -->
+          <div class="relative h-[380px] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <img src="assets/a7ee6a0c702de8b2_c543a9e1-f226-4ced-80b0-feb844.jpg" class="w-full h-full object-cover filter brightness-[0.7]"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+              <span class="block text-white/90 font-cinzel text-xs tracking-widest border border-white/20 backdrop-blur-md px-4 py-1.5 rounded-full w-fit">
+                Atelier Dynamic Preview
+              </span>
+            </div>
+          </div>
+
+          <!-- Right Column Cards Stack -->
+          <div class="space-y-4">
+            <div class="bg-neutral-900/60 border border-white/10 rounded-2xl p-5 hover:border-gold-300/30 transition-all">
+              <div class="flex justify-between items-center mb-2">
+                <h6 class="text-white font-serif text-lg">Balayage Deluxe</h6>
+                <span class="text-gold-300 font-cinzel text-sm">ab 180 &euro;</span>
+              </div>
+              <p class="text-neutral-400 text-xs font-light">Freihand-Painting für natürlich verlaufende Highlights inklusive Glossing.</p>
+            </div>
+            <div class="bg-neutral-900/60 border border-white/10 rounded-2xl p-5 hover:border-gold-300/30 transition-all">
+              <div class="flex justify-between items-center mb-2">
+                <h6 class="text-white font-serif text-lg">Keratin Infusion</h6>
+                <span class="text-gold-300 font-cinzel text-sm">ab 150 &euro;</span>
+              </div>
+              <p class="text-neutral-400 text-xs font-light">Tiefenwirksame Glättung und Reparatur für seidigen Glanz bis zu 4 Monate.</p>
+            </div>
+            <div class="bg-neutral-900/60 border border-white/10 rounded-2xl p-5 hover:border-gold-300/30 transition-all">
+              <div class="flex justify-between items-center mb-2">
+                <h6 class="text-white font-serif text-lg">Olaplex Treatment</h6>
+                <span class="text-gold-300 font-cinzel text-sm">45 &euro;</span>
+              </div>
+              <p class="text-neutral-400 text-xs font-light">Intensives Aufbau-Treatment repariert geschädigte Disulfidbrücken dauerhaft.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pattern 3: Price List Two-Column Split Grid -->
+      <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8 md:p-12">
+        <div class="flex justify-between items-center mb-8 border-b border-white/5 pb-4">
+          <div>
+            <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block">Layout Pattern C</span>
+            <h4 class="text-xl font-cinzel text-white">Two-Column Price Matrix</h4>
+          </div>
+          <span class="text-xs font-mono text-neutral-500">grid md:grid-cols-2 gap-x-16 gap-y-8</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-x-16 gap-y-8">
+          <!-- Col 1 -->
+          <div class="space-y-4">
+            <h5 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-4">Styling</h5>
+            <div class="flex justify-between items-baseline border-b border-white/5 pb-3">
+              <div>
+                <span class="text-neutral-200 font-light text-sm block">Damen Haarschnitt</span>
+                <span class="text-[10px] text-neutral-500">Beratung, Waschen &amp; Style</span>
+              </div>
+              <span class="text-white font-medium text-xs">ab 45 &euro;</span>
+            </div>
+            <div class="flex justify-between items-baseline border-b border-white/5 pb-3">
+              <div>
+                <span class="text-neutral-200 font-light text-sm block">Calligraphy Cut</span>
+                <span class="text-[10px] text-neutral-500">Volumen Schnitt-Technik</span>
+              </div>
+              <span class="text-white font-medium text-xs">85 &euro;</span>
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="space-y-4">
+            <h5 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-4">Color</h5>
+            <div class="flex justify-between items-baseline border-b border-white/5 pb-3">
+              <div>
+                <span class="text-neutral-200 font-light text-sm block">Balayage Signature</span>
+                <span class="text-[10px] text-neutral-500">Glossing &amp; Olaplex inkl.</span>
+              </div>
+              <span class="text-white font-medium text-xs">ab 180 &euro;</span>
+            </div>
+            <div class="flex justify-between items-baseline border-b border-white/5 pb-3">
+              <div>
+                <span class="text-neutral-200 font-light text-sm block">Face Framing</span>
+                <span class="text-[10px] text-neutral-500">Contouring Highlights</span>
+              </div>
+              <span class="text-white font-medium text-xs">65 &euro;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 5. MOTION & INTERACTION                                           -->
+  <!-- ================================================================= -->
+  <section id="motion" class="relative z-20 w-full py-32 bg-[#020202] border-t border-white/5">
+    <div class="max-w-[1600px] mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center mb-20 reveal-on-scroll">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold-400/20 blur-[60px] rounded-full opacity-40"></div>
+          <h2 class="relative text-4xl md:text-7xl font-serif text-white mb-4 tracking-tight z-10">
+            05. <span class="text-gold-300 italic font-light">Motion &amp; Interaktion</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 mt-2 opacity-80">
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+          <span class="text-[11px] uppercase tracking-cinematic text-neutral-400">Keyframes, Easing Curves &amp; Interaktive Mikrobewegungen</span>
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+        </div>
+      </div>
+
+      <!-- Continuous Brand Marquee (Live Clone) -->
+      <div class="mb-20">
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-6">
+          Kanonische Endlos-Laufschrift &bull; animate-marquee
+        </h3>
+        <div class="relative w-full py-8 bg-[#0A0A0A] border border-white/5 rounded-2xl overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-transparent to-[#0A0A0A] z-10 pointer-events-none"></div>
+          <div class="flex gap-20 items-center animate-marquee whitespace-nowrap opacity-70 hover:opacity-100 transition-opacity duration-500 marquee-mask">
+            <span class="text-2xl font-serif text-white/80">OLAPLEX</span>
+            <span class="text-xl font-sans font-light tracking-widest text-white/80">KERASTASE</span>
+            <span class="text-2xl font-serif italic text-white/80">GHD Professional</span>
+            <span class="text-xl font-sans font-bold text-white/80">DYSON</span>
+            <span class="text-2xl font-serif text-white/80">L'OREAL</span>
+            <span class="text-xl font-sans tracking-widest text-white/80">SCHWARZKOPF</span>
+            <span class="text-2xl font-serif italic text-white/80">Redken</span>
+            <!-- Repeat -->
+            <span class="text-2xl font-serif text-white/80">OLAPLEX</span>
+            <span class="text-xl font-sans font-light tracking-widest text-white/80">KERASTASE</span>
+            <span class="text-2xl font-serif italic text-white/80">GHD Professional</span>
+            <span class="text-xl font-sans font-bold text-white/80">DYSON</span>
+            <span class="text-2xl font-serif text-white/80">L'OREAL</span>
+            <span class="text-xl font-sans tracking-widest text-white/80">SCHWARZKOPF</span>
+            <span class="text-2xl font-serif italic text-white/80">Redken</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motion Gallery Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- animate-float -->
+        <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8 flex flex-col justify-between h-72">
+          <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Vertical Oscillation</span>
+          <div class="flex items-center justify-center my-auto">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-300 to-gold-500 flex items-center justify-center text-black shadow-lg animate-float">
+              <span class="iconify" data-icon="lucide:sparkles" width="28"></span>
+            </div>
+          </div>
+          <div>
+            <h6 class="text-white text-sm font-mono font-bold">animate-float</h6>
+            <span class="text-[10px] text-neutral-500 font-mono">float 10s ease-in-out infinite</span>
+          </div>
+        </div>
+
+        <!-- beam-spin -->
+        <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8 flex flex-col justify-between h-72">
+          <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Rotational Laser</span>
+          <div class="flex items-center justify-center my-auto">
+            <div class="relative w-20 h-20 rounded-full overflow-hidden p-[2px]">
+              <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#D9B56F_360deg)]" style="animation: beam-spin 2s linear infinite;"></div>
+              <div class="absolute inset-[2px] rounded-full bg-[#0A0A0A] flex items-center justify-center text-gold-300">
+                <span class="iconify" data-icon="lucide:rotate-cw" width="24"></span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h6 class="text-white text-sm font-mono font-bold">beam-spin</h6>
+            <span class="text-[10px] text-neutral-500 font-mono">rotate(360deg) 3s linear</span>
+          </div>
+        </div>
+
+        <!-- animate-pulse-slow -->
+        <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8 flex flex-col justify-between h-72">
+          <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Atmospheric Breathing</span>
+          <div class="flex items-center justify-center my-auto">
+            <div class="w-16 h-16 rounded-full bg-gold-400/30 border border-gold-300/40 flex items-center justify-center animate-pulse-slow">
+              <div class="w-8 h-8 rounded-full bg-gold-300/60"></div>
+            </div>
+          </div>
+          <div>
+            <h6 class="text-white text-sm font-mono font-bold">animate-pulse-slow</h6>
+            <span class="text-[10px] text-neutral-500 font-mono">pulse 8s cubic-bezier(0.4,0,0.6,1)</span>
+          </div>
+        </div>
+
+        <!-- animate-typing -->
+        <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8 flex flex-col justify-between h-72">
+          <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Staggered Dots</span>
+          <div class="flex items-center justify-center my-auto">
+            <div class="flex items-center gap-2 p-3 bg-black/60 rounded-full border border-white/10">
+              <span class="w-2.5 h-2.5 bg-gold-300 rounded-full animate-typing typing-dot"></span>
+              <span class="w-2.5 h-2.5 bg-gold-300 rounded-full animate-typing typing-dot"></span>
+              <span class="w-2.5 h-2.5 bg-gold-300 rounded-full animate-typing typing-dot"></span>
+            </div>
+          </div>
+          <div>
+            <h6 class="text-white text-sm font-mono font-bold">animate-typing</h6>
+            <span class="text-[10px] text-neutral-500 font-mono">scale(0) &rarr; scale(1) 1.4s</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- 6. ICONS SYSTEM                                                   -->
+  <!-- ================================================================= -->
+  <section id="icons" class="relative z-20 w-full py-32 bg-[#0A0A0A] border-t border-white/5">
+    <div class="max-w-[1600px] mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center mb-20 reveal-on-scroll">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gold-400/20 blur-[60px] rounded-full opacity-40"></div>
+          <h2 class="relative text-4xl md:text-7xl font-serif text-white mb-4 tracking-tight z-10">
+            06. <span class="text-gold-300 italic font-light">Icon-System</span>
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 mt-2 opacity-80">
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+          <span class="text-[11px] uppercase tracking-cinematic text-neutral-400">Lucide Icon Family &bull; Größen-Skala &amp; Farbvererbung</span>
+          <span class="w-12 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+        </div>
+      </div>
+
+      <!-- Icon Specimens Grid -->
+      <div class="mb-20">
+        <h3 class="text-gold-300 text-xs uppercase tracking-cinematic border-b border-white/10 pb-2 mb-8">
+          Kanonische Icons aus der Referenz
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+          
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:arrow-right" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">arrow-right</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:clock" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">clock</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:map-pin" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">map-pin</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:phone" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">phone</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:message-square" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">message-square</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:sparkles" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">sparkles</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:calendar" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">calendar</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:send" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">send</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:menu" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">menu</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:x" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">x (close)</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:chevron-left" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">chevron-left</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:chevron-right" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">chevron-right</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:instagram" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">instagram</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:facebook" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">facebook</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:message-circle" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">whatsapp</span>
+          </div>
+
+          <div class="bg-neutral-900/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center justify-center text-center hover:border-gold-300/40 transition-colors group">
+            <span class="iconify text-gold-300 group-hover:scale-110 transition-transform mb-3" data-icon="lucide:check" width="24"></span>
+            <span class="text-[11px] font-mono text-neutral-300">check</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Icon Scale & Color Inheritance Matrix -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Size Scale -->
+        <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8">
+          <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Scale Variations</span>
+          <h4 class="text-xl font-cinzel text-white mb-6">Größen-Abstufung (12px bis 40px)</h4>
+          
+          <div class="flex items-end justify-around py-4 border-y border-white/5">
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:arrow-right" width="12"></span>
+              <span class="text-[10px] font-mono text-neutral-500">12px</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:arrow-right" width="16"></span>
+              <span class="text-[10px] font-mono text-neutral-500">16px</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:arrow-right" width="20"></span>
+              <span class="text-[10px] font-mono text-neutral-500">20px</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:arrow-right" width="24"></span>
+              <span class="text-[10px] font-mono text-neutral-500">24px</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:arrow-right" width="32"></span>
+              <span class="text-[10px] font-mono text-neutral-500">32px</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:arrow-right" width="40"></span>
+              <span class="text-[10px] font-mono text-neutral-500">40px</span>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-neutral-500 block mt-4">width="12" bis width="40"</span>
+        </div>
+
+        <!-- Color Inheritance -->
+        <div class="bg-neutral-900/40 border border-white/5 rounded-3xl p-8">
+          <span class="text-[10px] font-bold text-gold-400 uppercase tracking-widest block mb-1">Color Inheritance</span>
+          <h4 class="text-xl font-cinzel text-white mb-6">Farbvererbung via Tailwind Text-Classes</h4>
+          
+          <div class="flex items-center justify-around py-4 border-y border-white/5">
+            <div class="text-center">
+              <span class="iconify text-gold-300 mx-auto mb-2" data-icon="lucide:sparkles" width="24"></span>
+              <span class="text-[10px] font-mono text-neutral-400">text-gold-300</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-white mx-auto mb-2" data-icon="lucide:sparkles" width="24"></span>
+              <span class="text-[10px] font-mono text-neutral-400">text-white</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-neutral-400 mx-auto mb-2" data-icon="lucide:sparkles" width="24"></span>
+              <span class="text-[10px] font-mono text-neutral-400">text-neutral-400</span>
+            </div>
+            <div class="text-center">
+              <span class="iconify text-[#25D366] mx-auto mb-2" data-icon="lucide:sparkles" width="24"></span>
+              <span class="text-[10px] font-mono text-neutral-400">text-emerald</span>
+            </div>
+          </div>
+          <span class="text-[11px] font-mono text-neutral-500 block mt-4">stroke: currentColor (Iconify SVG)</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================================= -->
+  <!-- REDESIGNED EDITORIAL FOOTER                                       -->
+  <!-- ================================================================= -->
+  <footer class="bg-[#050505] border-t border-white/5 pt-20 pb-12 relative overflow-hidden">
+    <!-- Ambient gold blur -->
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-gold-500/5 blur-[140px] rounded-full pointer-events-none"></div>
+    
+    <div class="max-w-[1600px] mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+        
+        <!-- Brand Column -->
+        <div class="lg:col-span-2">
+          <span class="font-cinzel text-3xl text-white block mb-4 tracking-wider">SHERY</span>
+          <p class="text-neutral-400 text-sm font-light leading-relaxed max-w-sm mb-6">
+            Black Label Aesthetics. Kanonische Spezifikation und lebendes Design-System für digitale Spitzenästhetik im Luxussegment.
+          </p>
+          <div class="flex items-center gap-3">
+            <a class="w-9 h-9 border border-white/10 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:border-gold-300 transition-colors">
+              <span class="iconify" data-icon="lucide:instagram" width="16"></span>
+            </a>
+            <a class="w-9 h-9 border border-white/10 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:border-gold-300 transition-colors">
+              <span class="iconify" data-icon="lucide:facebook" width="16"></span>
+            </a>
+            <a class="w-9 h-9 border border-white/10 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:border-gold-300 transition-colors">
+              <span class="iconify" data-icon="lucide:phone" width="16"></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sitemap 1 -->
+        <div>
+          <h5 class="text-white font-cinzel text-sm uppercase tracking-wider mb-5">Dokumentation</h5>
+          <ul class="space-y-3 text-xs text-neutral-400 font-light">
+            <li><a href="#hero" class="hover:text-gold-300 transition-colors">00. Hero Spec</a></li>
+            <li><a href="#typography" class="hover:text-gold-300 transition-colors">01. Typografie</a></li>
+            <li><a href="#colors" class="hover:text-gold-300 transition-colors">02. Farben &amp; Surfaces</a></li>
+            <li><a href="#components" class="hover:text-gold-300 transition-colors">03. UI-Komponenten</a></li>
+          </ul>
+        </div>
+
+        <!-- Sitemap 2 -->
+        <div>
+          <h5 class="text-white font-cinzel text-sm uppercase tracking-wider mb-5">Systematik</h5>
+          <ul class="space-y-3 text-xs text-neutral-400 font-light">
+            <li><a href="#layout" class="hover:text-gold-300 transition-colors">04. Layout &amp; Spacing</a></li>
+            <li><a href="#motion" class="hover:text-gold-300 transition-colors">05. Motion &amp; Animation</a></li>
+            <li><a href="#icons" class="hover:text-gold-300 transition-colors">06. Icon-System</a></li>
+            <li><a href="index.html" class="hover:text-gold-300 transition-colors">Referenz-Website</a></li>
+          </ul>
+        </div>
+
+        <!-- System Status -->
+        <div>
+          <h5 class="text-white font-cinzel text-sm uppercase tracking-wider mb-5">Systemstatus</h5>
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-xs text-neutral-300 font-mono">Living Spec v2.0</span>
+            </div>
+            <p class="text-[11px] text-neutral-500 font-mono leading-relaxed">
+              100% Original HTML, CSS &amp; Asset-Wiederverwendung ohne Annäherungen.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-neutral-500 font-mono">
+        <p>&copy; 2024 Shery Beauty Center. Design System Showcase.</p>
+        <div class="flex items-center gap-6">
+          <a href="#hero" class="hover:text-gold-300 transition-colors flex items-center gap-1">
+            <span>Nach oben</span>
+            <span class="iconify" data-icon="lucide:arrow-up" width="12"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Interactive JavaScript Engine (Identical interactions to index.html) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Navigation Scroll Behavior
+      const navWrapper = document.getElementById('nav-wrapper');
+      const navContainer = document.getElementById('nav-container');
+      const navLogo = document.getElementById('nav-logo');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navWrapper.classList.remove('pt-6', 'mix-blend-difference');
+          navWrapper.classList.add('pt-4', 'mix-blend-normal');
+          navContainer.classList.add('bg-black/80', 'backdrop-blur-xl', 'rounded-full', 'py-2', 'px-8', 'border-white/10');
+          navContainer.classList.remove('w-full', 'py-6', 'px-8', 'lg:px-12', 'border-transparent');
+          if (navLogo) navLogo.classList.add('scale-90');
+        } else {
+          navWrapper.classList.add('pt-6', 'mix-blend-difference');
+          navWrapper.classList.remove('pt-4', 'mix-blend-normal');
+          navContainer.classList.remove('bg-black/80', 'backdrop-blur-xl', 'rounded-full', 'py-2', 'px-8', 'border-white/10');
+          navContainer.classList.add('w-full', 'py-6', 'px-8', 'lg:px-12', 'border-transparent');
+          if (navLogo) navLogo.classList.remove('scale-90');
+        }
+      });
+
+      // 2. Intersection Observer for Scroll Reveals
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-reveal-up");
+            entry.target.classList.remove("opacity-0", "translate-y-12");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: "0px 0px -10% 0px" });
+
+      document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+        el.classList.add("opacity-0", "translate-y-12", "will-change-transform");
+        observer.observe(el);
+      });
+
+      // 3. Mobile Navigation Toggle
+      window.toggleMobileNav = () => {
+        const menu = document.getElementById('mobile-nav');
+        if (menu) {
+          menu.classList.toggle('hidden');
+        }
+      };
+
+      // 4. Lucide Icons Init
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

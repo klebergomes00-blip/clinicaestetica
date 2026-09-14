@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full antialiased scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CERENZA — Living Design System &amp; Pattern Library v2</title>
+  <meta name="description" content="Living Design System, Specification and Canonical Pattern Library for CERENZA Modern Atelier.">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  
+  <!-- Inter Font (Local & CDN Fallback) -->
+  <link rel="stylesheet" href="assets/71de0c11c987f278_css2.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Additional Reference Fonts -->
+  <link rel="stylesheet" href="assets/8c515a27fa779fbd_css2.css">
+  <link rel="stylesheet" href="assets/02e6b7b1f83097fa_css2.css">
+  <link rel="stylesheet" href="assets/bd00c789617c97db_css2.css">
+  <link rel="stylesheet" href="assets/d1c378e8235aec47_css2.css">
+
+  <!-- Tailwind CSS Engine (Local with CDN fallback) -->
+  <script src="assets/176e894661aa9cdc_3.4.17"></script>
+  <script>
+    if (!window.tailwind) {
+      document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+    }
+  </script>
+
+  <!-- Lucide Icons Engine (Local with CDN fallback) -->
+  <script src="assets/468f56b91619c41d_lucide.min.js"></script>
+  <script>
+    if (!window.lucide) {
+      document.write('<script src="https://unpkg.com/lucide@latest"><\/script>');
+    }
+  </script>
+
+  <style>
+    .font-inter {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Reference Accordion Transition Classes */
+    .card-panel {
+      transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-panel:hover {
+      flex: 4;
+    }
+    .card-image {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-overlay {
+      transition: opacity 0.3s ease;
+    }
+
+    /* Documentation UI Utilities */
+    .doc-section {
+      scroll-margin-top: 5rem;
+    }
+    .doc-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+  </style>
+</head>
+<body class="min-h-full text-neutral-900 bg-white font-inter selection:bg-neutral-900 selection:text-white">
+
+  <!-- TOP HORIZONTAL STICKY NAVBAR -->
+  <header id="navbar" class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-neutral-200 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between gap-4">
+        
+        <!-- Brand & System Badge -->
+        <div class="flex items-center gap-3">
+          <a href="#hero" class="text-xl sm:text-2xl tracking-tight font-semibold text-neutral-900 hover:opacity-80 transition-opacity">
+            CERENZA
+          </a>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 tracking-wide uppercase">
+            Design System v2.0
+          </span>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-xs font-medium text-neutral-600">
+          <a href="#hero" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">00. Hero</a>
+          <a href="#typography" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">01. Typography</a>
+          <a href="#colors" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">02. Colors</a>
+          <a href="#components" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">03. Components</a>
+          <a href="#layout" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">04. Layout</a>
+          <a href="#motion" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">05. Motion</a>
+          <a href="#icons" class="px-3 py-1.5 rounded-md hover:text-black hover:bg-neutral-100 transition-colors">06. Icons</a>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="inline-flex items-center gap-1.5 rounded-md bg-black px-3.5 py-1.5 text-xs font-medium text-white hover:bg-neutral-800 transition-colors shadow-sm">
+            <span>Reference Site</span>
+            <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </a>
+          <!-- Mobile Menu Trigger -->
+          <button id="openMobileNav" class="lg:hidden p-2 rounded-md text-neutral-600 hover:text-black hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-300" aria-label="Open Navigation">
+            <i data-lucide="menu" class="h-5 w-5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobileNavMenu" class="hidden lg:hidden border-t border-neutral-200 bg-white px-4 py-3 space-y-1 text-sm text-neutral-700">
+      <a href="#hero" class="block px-3 py-2 rounded-md hover:bg-neutral-100">00. Hero (Exact Clone)</a>
+      <a href="#typography" class="block px-3 py-2 rounded-md hover:bg-neutral-100">01. Typography Hierarchy</a>
+      <a href="#colors" class="block px-3 py-2 rounded-md hover:bg-neutral-100">02. Colors &amp; Surfaces</a>
+      <a href="#components" class="block px-3 py-2 rounded-md hover:bg-neutral-100">03. UI Components Matrix</a>
+      <a href="#layout" class="block px-3 py-2 rounded-md hover:bg-neutral-100">04. Layout &amp; Spacing</a>
+      <a href="#motion" class="block px-3 py-2 rounded-md hover:bg-neutral-100">05. Motion &amp; Interaction</a>
+      <a href="#icons" class="block px-3 py-2 rounded-md hover:bg-neutral-100">06. Lucide Iconography</a>
+    </div>
+  </header>
+
+  <main class="space-y-24 pb-28">
+
+    <!-- ================================================================= -->
+    <!-- 0) HERO (EXACT DIRECT CLONE - ADAPTED COPY ONLY)                  -->
+    <!-- ================================================================= -->
+    <section class="doc-section relative top-0 right-0 bottom-0 left-0" id="hero">
+      <div class="sm:h-[78vh] lg:h-[86vh] h-[68vh] relative group" id="heroMediaContainer">
+        
+        <!-- Hero Background Image (Local with Supabase Fallback) -->
+        <img src="assets/e65ee0133b7d4bfc_b4fdf298-05b2-4493-a261-e0cad9.jpg" 
+             onerror="this.src='https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b4fdf298-05b2-4493-a261-e0cad9148ec7_3840w.jpg?w=800&amp;q=80'" 
+             alt="CERENZA Design System Showcase" 
+             class="absolute w-full h-full object-cover top-0 right-0 bottom-0 left-0">
+        
+        <!-- Video Hover Layer with Opacity Transition & Hover Script -->
+        <video id="heroHoverVideo" 
+               src="https://cdn.midjourney.com/video/844582ff-c0a9-4bcf-9c14-a38eaab38755/3.mp4" 
+               poster="assets/e65ee0133b7d4bfc_b4fdf298-05b2-4493-a261-e0cad9.jpg" 
+               muted playsinline preload="metadata" loop 
+               class="absolute w-full h-full object-cover top-0 right-0 bottom-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></video>
+        
+        <!-- Bottom Dark Gradient Overlay -->
+        <div class="bg-gradient-to-t from-black/50 via-black/10 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+        
+        <!-- Hero Content Container -->
+        <div class="relative z-10 flex sm:px-6 lg:px-8 h-full mr-auto ml-auto max-w-7xl pr-4 pb-16 pl-4 items-end justify-center">
+          <div class="max-w-2xl text-center">
+            <p class="sm:text-sm uppercase text-xs text-white/80 tracking-wide">
+              Living Design System • Pattern Library
+            </p>
+            <h1 class="mt-2 text-4xl sm:text-5xl lg:text-6xl tracking-tight font-semibold text-white">
+              The CERENZA Design System
+            </h1>
+            <p class="mt-3 text-sm sm:text-base text-white/90 max-w-xl mx-auto">
+              A comprehensive specification of minimal Parisian atelier aesthetics, editorial typography rhythm, flexible accordion surfaces, and responsive precision.
+            </p>
+            <div class="mt-6 flex gap-3 justify-center">
+              <a href="#typography" class="inline-flex items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-medium text-black hover:bg-neutral-100 transition-colors">
+                Explore System
+              </a>
+              <a href="#components" class="inline-flex items-center justify-center rounded-md border border-white/70 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10 transition-colors">
+                View Components
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Hero Video Playback Event Script -->
+      <script>
+        (function () {
+          const container = document.getElementById('heroMediaContainer');
+          const video = document.getElementById('heroHoverVideo');
+          if (!container || !video) return;
+
+          const playVideo = () => {
+            try {
+              video.currentTime = 0;
+              const p = video.play();
+              if (p && typeof p.catch === 'function') p.catch(() => {});
+            } catch (_) {}
+          };
+
+          const pauseVideo = () => {
+            try {
+              video.pause();
+              video.currentTime = 0;
+            } catch (_) {}
+          };
+
+          container.addEventListener('mouseenter', playVideo);
+          container.addEventListener('mouseleave', pauseVideo);
+
+          // Touch support
+          container.addEventListener('touchstart', playVideo, { passive: true });
+          container.addEventListener('touchend', pauseVideo, { passive: true });
+          container.addEventListener('touchcancel', pauseVideo, { passive: true });
+        })();
+      </script>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 1) TYPOGRAPHY SPECIFICATION TABLE                                -->
+    <!-- ================================================================= -->
+    <section class="doc-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="typography">
+      <div class="border-b border-neutral-200 pb-5 mb-10">
+        <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-500 font-medium mb-1">01 / Foundation</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Typography Scale &amp; Rhythm</h2>
+        <p class="mt-2 text-sm text-neutral-600 max-w-3xl">
+          CERENZA’s typographic system uses Inter with tight tracking, balanced line heights, and refined weights (300 to 700) to maintain an understated luxury editorial tone.
+        </p>
+      </div>
+
+      <!-- Spec Table Container -->
+      <div class="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-sm">
+        <div class="divide-y divide-neutral-200">
+          
+          <!-- Header Row -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-3.5 bg-neutral-50 text-xs font-semibold text-neutral-500 uppercase tracking-wider">
+            <div class="col-span-3 sm:col-span-2">Style Token</div>
+            <div class="col-span-7 sm:col-span-8">Live Specimen &amp; Markup</div>
+            <div class="col-span-2 text-right">Size / Leading</div>
+          </div>
+
+          <!-- Heading 1 -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Heading 1</span>
+              <span class="doc-tag text-[11px] text-neutral-500">h1.tracking-tight</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8 overflow-hidden">
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl tracking-tight font-semibold text-neutral-900 truncate">
+                The Première Edition
+              </h1>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-4xl sm:text-5xl lg:text-6xl tracking-tight font-semibold"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-medium text-neutral-700 block">36px / 40px (mob)</span>
+              <span class="doc-tag text-xs font-semibold text-neutral-900 block">60px / 60px (lg)</span>
+            </div>
+          </div>
+
+          <!-- Heading 2 -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Heading 2</span>
+              <span class="doc-tag text-[11px] text-neutral-500">h2.font-medium</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8 overflow-hidden">
+              <h2 class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900 truncate">
+                Curated Selections
+              </h2>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-neutral-900"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-medium text-neutral-700 block">30px / 36px (mob)</span>
+              <span class="doc-tag text-xs font-semibold text-neutral-900 block">48px / 48px (lg)</span>
+            </div>
+          </div>
+
+          <!-- Heading 3 -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Heading 3</span>
+              <span class="doc-tag text-[11px] text-neutral-500">h3.text-xl</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8 overflow-hidden">
+              <h3 class="text-xl font-medium tracking-tight text-neutral-900">
+                Urban Elegance
+              </h3>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-xl font-medium tracking-tight"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">20px / 28px</span>
+            </div>
+          </div>
+
+          <!-- Heading 4/5/6 -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Heading 4 / 5 / 6</span>
+              <span class="doc-tag text-[11px] text-neutral-500">h5.text-sm.font-semibold</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8 overflow-hidden">
+              <h5 class="text-sm tracking-tight font-semibold text-neutral-900">
+                Collections &amp; Product Stories
+              </h5>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-sm tracking-tight font-semibold text-neutral-900"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">14px / 20px</span>
+            </div>
+          </div>
+
+          <!-- Brand Display -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Brand Display</span>
+              <span class="doc-tag text-[11px] text-neutral-500">span.brand-logo</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8 overflow-hidden">
+              <span class="text-2xl sm:text-3xl tracking-tight font-semibold text-neutral-900">
+                CERENZA
+              </span>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-2xl sm:text-3xl tracking-tight font-semibold"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">30px / 36px</span>
+            </div>
+          </div>
+
+          <!-- Bold S / Category Overline -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Bold S / Overline</span>
+              <span class="doc-tag text-[11px] text-neutral-500">p.uppercase.tracking-wide</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8 overflow-hidden">
+              <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-600 font-medium">
+                Featured Collections — Spring / Summer
+              </p>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-xs sm:text-sm uppercase tracking-wide text-neutral-600"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">12px / 16px</span>
+            </div>
+          </div>
+
+          <!-- Paragraph Lead -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Paragraph (Lead)</span>
+              <span class="doc-tag text-[11px] text-neutral-500">p.text-base</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8">
+              <p class="text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl">
+                Discover our carefully curated collections, each telling a unique story of craftsmanship and contemporary design.
+              </p>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="mt-3 text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">16px / 24px</span>
+            </div>
+          </div>
+
+          <!-- Regular M -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Regular M / Body</span>
+              <span class="doc-tag text-[11px] text-neutral-500">p.text-sm</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8">
+              <p class="text-sm text-neutral-600">
+                A modern atelier of refined essentials. Designed in Paris. Assembled in Switzerland and Italy.
+              </p>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-sm text-neutral-600"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">14px / 20px</span>
+            </div>
+          </div>
+
+          <!-- Regular S / Caption -->
+          <div class="grid grid-cols-12 gap-4 px-6 py-6 items-center hover:bg-neutral-50/60 transition-colors">
+            <div class="col-span-12 sm:col-span-2">
+              <span class="font-semibold text-neutral-900 text-sm block">Regular S / Caption</span>
+              <span class="doc-tag text-[11px] text-neutral-500">p.text-xs</span>
+            </div>
+            <div class="col-span-9 sm:col-span-8">
+              <p class="text-xs text-neutral-500">
+                © 2025 Cerenza Studio. All rights reserved. Precision tailoring since 1994.
+              </p>
+              <p class="doc-tag text-xs text-neutral-400 mt-1">
+                class="text-xs text-neutral-500"
+              </p>
+            </div>
+            <div class="col-span-3 sm:col-span-2 text-right">
+              <span class="doc-tag text-xs font-semibold text-neutral-900">12px / 16px</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 2) COLORS & SURFACES                                              -->
+    <!-- ================================================================= -->
+    <section class="doc-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="colors">
+      <div class="border-b border-neutral-200 pb-5 mb-10">
+        <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-500 font-medium mb-1">02 / Color System</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Colors, Surfaces &amp; Overlays</h2>
+        <p class="mt-2 text-sm text-neutral-600 max-w-3xl">
+          The palette is restrained and monochromatic, focusing on tactile neutrals, obsidian black, crisp white, and subtle dark photographic overlays.
+        </p>
+      </div>
+
+      <!-- Core Surfaces Grid -->
+      <div class="mb-12">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Core Surfaces &amp; Materials</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Canvas White -->
+          <div class="rounded-xl border border-neutral-200 p-4 bg-white shadow-sm flex flex-col justify-between h-40">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-neutral-900">Page Canvas</span>
+              <span class="doc-tag text-xs text-neutral-400">#FFFFFF</span>
+            </div>
+            <div class="mt-auto">
+              <span class="doc-tag text-xs font-medium text-neutral-600 block">bg-white</span>
+              <span class="text-[11px] text-neutral-500">Primary layout background</span>
+            </div>
+          </div>
+
+          <!-- Neutral 50 Sub-surface -->
+          <div class="rounded-xl border border-neutral-200 p-4 bg-neutral-50 shadow-sm flex flex-col justify-between h-40">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-neutral-900">Sub-Surface</span>
+              <span class="doc-tag text-xs text-neutral-500">#FAFAFA</span>
+            </div>
+            <div class="mt-auto">
+              <span class="doc-tag text-xs font-medium text-neutral-700 block">bg-neutral-50</span>
+              <span class="text-[11px] text-neutral-500">Footer &amp; subtle container card</span>
+            </div>
+          </div>
+
+          <!-- Dark Slate Gray-800 -->
+          <div class="rounded-xl border border-neutral-800 p-4 bg-gray-800 text-white shadow-sm flex flex-col justify-between h-40">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-white">Media Frame</span>
+              <span class="doc-tag text-xs text-neutral-300">#1F2937</span>
+            </div>
+            <div class="mt-auto">
+              <span class="doc-tag text-xs font-medium text-neutral-200 block">bg-gray-800</span>
+              <span class="text-[11px] text-neutral-400">Accordion track wrapper</span>
+            </div>
+          </div>
+
+          <!-- Pure Black -->
+          <div class="rounded-xl border border-black p-4 bg-black text-white shadow-sm flex flex-col justify-between h-40">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-white">Obsidian Contrast</span>
+              <span class="doc-tag text-xs text-neutral-400">#000000</span>
+            </div>
+            <div class="mt-auto">
+              <span class="doc-tag text-xs font-medium text-neutral-300 block">bg-black</span>
+              <span class="text-[11px] text-neutral-400">Primary action CTAs &amp; badge</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Neutral Color Scale -->
+      <div class="mb-12">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Neutral Scale Tokens</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-2.5">
+          
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-50"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">50</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#FAFAFA</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-100"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">100</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#F5F5F5</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-200"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">200</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#E5E5E5</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-300"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">300</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#D4D4D4</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-400"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">400</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#A3A3A3</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-500"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">500</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#737373</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-600"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">600</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#525252</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-700"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">700</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#404040</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-800"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">800</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#262626</span>
+            </div>
+          </div>
+
+          <div class="rounded-lg border border-neutral-200 overflow-hidden">
+            <div class="h-14 bg-neutral-900"></div>
+            <div class="p-2 bg-white text-center">
+              <span class="text-[11px] font-semibold block text-neutral-900">900</span>
+              <span class="doc-tag text-[9px] text-neutral-400 block">#171717</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Gradients & Overlays -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Atmospheric Overlays &amp; Gradients</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Hero Overlay -->
+          <div class="relative h-44 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-800 flex items-end p-4">
+            <img src="assets/e65ee0133b7d4bfc_b4fdf298-05b2-4493-a261-e0cad9.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Hero vignette sample">
+            <div class="bg-gradient-to-t from-black/50 via-black/10 to-transparent absolute inset-0"></div>
+            <div class="relative z-10 text-white">
+              <span class="text-xs font-semibold block">Hero Vignette Fade</span>
+              <span class="doc-tag text-[10px] text-white/80">from-black/50 via-black/10 to-transparent</span>
+            </div>
+          </div>
+
+          <!-- Editorial Accent Overlay -->
+          <div class="relative h-44 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-800 flex items-end p-4">
+            <img src="assets/ae369065729c01dc_d4f665e4-d64e-4e04-9296-379076.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Editorial vignette sample">
+            <div class="bg-gradient-to-t from-black/55 via-black/10 to-transparent absolute inset-0"></div>
+            <div class="relative z-10 text-white">
+              <span class="text-xs font-semibold block">Section Contrast Fade</span>
+              <span class="doc-tag text-[10px] text-white/80">from-black/55 via-black/10 to-transparent</span>
+            </div>
+          </div>
+
+          <!-- Card Panel Overlay -->
+          <div class="relative h-44 rounded-xl overflow-hidden border border-neutral-200 bg-neutral-800 flex items-end p-4">
+            <img src="assets/eafe7a5f63595b7b_1366adb0-6622-49a5-81b2-abfd42.jpg" class="absolute inset-0 w-full h-full object-cover" alt="Card overlay sample">
+            <div class="bg-gradient-to-t from-black/70 via-transparent to-transparent absolute inset-0"></div>
+            <div class="relative z-10 text-white">
+              <span class="text-xs font-semibold block">Accordion Card Overlay</span>
+              <span class="doc-tag text-[10px] text-white/80">from-black/70 via-transparent to-transparent</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 3) UI COMPONENTS (STATE MATRICES)                                 -->
+    <!-- ================================================================= -->
+    <section class="doc-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="components">
+      <div class="border-b border-neutral-200 pb-5 mb-10">
+        <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-500 font-medium mb-1">03 / Interaction</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">UI Components &amp; State Matrices</h2>
+        <p class="mt-2 text-sm text-neutral-600 max-w-3xl">
+          Side-by-side interactive state matrix showcasing default, hover, focus, active, and disabled behaviors using exact reference classes.
+        </p>
+      </div>
+
+      <!-- BUTTON STATES -->
+      <div class="space-y-8 mb-16">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500">1. Button State Matrix</h3>
+
+        <!-- Dark Background Context: Primary White & Secondary Outline -->
+        <div class="p-6 rounded-xl bg-neutral-900 text-white">
+          <p class="text-xs font-medium text-neutral-400 uppercase tracking-wide mb-4">Hero Dark Context Buttons</p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Primary White Pill -->
+            <div>
+              <span class="text-xs font-medium text-neutral-400 block mb-2">Primary (Default)</span>
+              <button class="inline-flex items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-medium text-black">
+                See more
+              </button>
+            </div>
+
+            <div>
+              <span class="text-xs font-medium text-neutral-400 block mb-2">Primary (Hover Simulation)</span>
+              <button class="inline-flex items-center justify-center rounded-md bg-neutral-100 px-4 py-2.5 text-sm font-medium text-black">
+                See more
+              </button>
+            </div>
+
+            <!-- Secondary Outline -->
+            <div>
+              <span class="text-xs font-medium text-neutral-400 block mb-2">Secondary (Default)</span>
+              <button class="inline-flex items-center justify-center rounded-md border border-white/70 px-4 py-2.5 text-sm font-medium text-white">
+                Explore collection
+              </button>
+            </div>
+
+            <div>
+              <span class="text-xs font-medium text-neutral-400 block mb-2">Secondary (Hover Simulation)</span>
+              <button class="inline-flex items-center justify-center rounded-md border border-white/70 bg-white/10 px-4 py-2.5 text-sm font-medium text-white">
+                Explore collection
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Light Background Context: Action CTAs -->
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white">
+          <p class="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-4">Light Context Action Buttons</p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+            
+            <!-- Black Action Button -->
+            <div>
+              <span class="text-xs font-medium text-neutral-500 block mb-2">Black Button (Default)</span>
+              <button class="inline-flex items-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 transition-colors">
+                <span>Join</span>
+                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+              </button>
+            </div>
+
+            <!-- Outline Action Button -->
+            <div>
+              <span class="text-xs font-medium text-neutral-500 block mb-2">Outline Button (Default)</span>
+              <button class="inline-flex items-center gap-2 px-3 py-2 rounded-md border border-neutral-300 text-sm font-medium text-neutral-800 hover:bg-neutral-50 transition-colors">
+                <i data-lucide="shopping-bag" class="h-4 w-4"></i>
+                <span>Bag</span>
+              </button>
+            </div>
+
+            <!-- Disabled Button -->
+            <div>
+              <span class="text-xs font-medium text-neutral-500 block mb-2">Disabled State</span>
+              <button disabled class="inline-flex items-center gap-2 rounded-md bg-neutral-200 px-4 py-2 text-sm font-medium text-neutral-400 cursor-not-allowed">
+                <span>Unavailable</span>
+              </button>
+            </div>
+
+            <!-- Icon Round Button -->
+            <div>
+              <span class="text-xs font-medium text-neutral-500 block mb-2">Header Icon Button</span>
+              <div class="flex items-center gap-2">
+                <button class="p-2 rounded-md hover:bg-neutral-100 text-neutral-700" aria-label="Search">
+                  <i data-lucide="search" class="h-5 w-5"></i>
+                </button>
+                <button class="p-2 rounded-md hover:bg-neutral-100 text-neutral-700" aria-label="Account">
+                  <i data-lucide="user" class="h-5 w-5"></i>
+                </button>
+                <button class="p-2 rounded-md hover:bg-neutral-100 text-neutral-700" aria-label="Favorites">
+                  <i data-lucide="star" class="h-5 w-5"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FORM & INPUT CONTROLS -->
+      <div class="space-y-6 mb-16">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500">2. Form &amp; Input Elements</h3>
+        
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            
+            <!-- Default State -->
+            <div>
+              <label class="block text-xs font-medium text-neutral-700 mb-1.5">Newsletter Input (Default)</label>
+              <input type="email" placeholder="Email address" class="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-300 transition-all">
+              <span class="doc-tag text-[10px] text-neutral-400 mt-1 block">border-neutral-300</span>
+            </div>
+
+            <!-- Focus State Simulation -->
+            <div>
+              <label class="block text-xs font-medium text-neutral-700 mb-1.5">Newsletter Input (Active Focus)</label>
+              <input type="email" value="atelier@cerenza.com" class="w-full rounded-md border border-neutral-400 ring-2 ring-neutral-300 px-3 py-2 text-sm text-neutral-900 focus:outline-none transition-all">
+              <span class="doc-tag text-[10px] text-neutral-500 mt-1 block">ring-2 ring-neutral-300</span>
+            </div>
+
+            <!-- Disabled State -->
+            <div>
+              <label class="block text-xs font-medium text-neutral-700 mb-1.5">Newsletter Input (Disabled)</label>
+              <input type="email" disabled placeholder="Subscriptions closed" class="w-full rounded-md border border-neutral-200 bg-neutral-100 px-3 py-2 text-sm text-neutral-400 cursor-not-allowed">
+              <span class="doc-tag text-[10px] text-neutral-400 mt-1 block">bg-neutral-100 cursor-not-allowed</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD PATTERNS -->
+      <div class="space-y-6">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500">3. Card &amp; Panel Patterns</h3>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- Mini Live Accordion Card Preview -->
+          <div class="border border-neutral-200 rounded-xl p-5 bg-white">
+            <span class="text-xs font-semibold text-neutral-900 block mb-1">Interactive Expanding Card Panel</span>
+            <span class="text-xs text-neutral-500 block mb-4">Hover over any card below to test the flex: 4 easing transition</span>
+            
+            <div class="flex gap-1.5 bg-gray-800 w-full h-[280px] rounded p-1.5 overflow-hidden">
+              
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/eafe7a5f63595b7b_1366adb0-6622-49a5-81b2-abfd42.jpg" alt="Urban Elegance" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-4 absolute inset-0 justify-end">
+                  <h4 class="text-white text-base font-medium tracking-tight">Urban Elegance</h4>
+                  <p class="text-gray-200 text-xs">Spring 2024</p>
+                </div>
+              </div>
+
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/ae369065729c01dc_d4f665e4-d64e-4e04-9296-379076.jpg" alt="Classic Grace" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-4 absolute inset-0 justify-end">
+                  <h4 class="text-white text-base font-medium tracking-tight">Classic Grace</h4>
+                  <p class="text-gray-200 text-xs">Heritage</p>
+                </div>
+              </div>
+
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/0638a1ec16f55564_e46db625-c1cb-4014-ba55-f5baeb.jpg" alt="Bold Expression" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-4 absolute inset-0 justify-end">
+                  <h4 class="text-white text-base font-medium tracking-tight">Bold Expression</h4>
+                  <p class="text-gray-200 text-xs">Avant-Garde</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Editorial Headline Card Pattern -->
+          <div class="border border-neutral-200 rounded-xl p-5 bg-white">
+            <span class="text-xs font-semibold text-neutral-900 block mb-1">Full-Bleed Editorial Media Card</span>
+            <span class="text-xs text-neutral-500 block mb-4">Combines high-res image, bottom gradient, and center text lockup</span>
+            
+            <div class="relative h-[280px] rounded-lg overflow-hidden bg-neutral-900 flex items-end justify-center p-6 text-center">
+              <img src="assets/282e49e7dd4e517b_f615ff41-fad5-45aa-9b1d-fcb2bd.jpg" alt="Editorial Collection" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              <div class="relative z-10 text-white">
+                <p class="text-[10px] uppercase tracking-wider text-white/80 font-medium">Beauty Collection</p>
+                <h3 class="text-xl font-semibold tracking-tight mt-1 text-white">The Atelier Makeup</h3>
+                <div class="mt-3 flex gap-2 justify-center">
+                  <span class="inline-flex rounded-md bg-white px-3 py-1.5 text-xs font-medium text-black">Shop now</span>
+                  <span class="inline-flex rounded-md border border-white/70 px-3 py-1.5 text-xs font-medium text-white">Tutorials</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 4) LAYOUT & SPACING PATTERNS                                      -->
+    <!-- ================================================================= -->
+    <section class="doc-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="layout">
+      <div class="border-b border-neutral-200 pb-5 mb-10">
+        <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-500 font-medium mb-1">04 / Layout Architecture</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Canonical Layout Patterns</h2>
+        <p class="mt-2 text-sm text-neutral-600 max-w-3xl">
+          Real architectural layout structures extracted directly from CERENZA: top header with overflow category navigation, the signature 6-card interactive accordion grid, and the responsive 4-column footer.
+        </p>
+      </div>
+
+      <div class="space-y-16">
+        
+        <!-- Pattern A: Header & Category Overflow Scroll -->
+        <div class="border border-neutral-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div class="p-4 bg-neutral-50 border-b border-neutral-200 flex justify-between items-center">
+            <div>
+              <span class="text-xs font-semibold text-neutral-900 block">Pattern A: Sticky Navigation &amp; Category Scroll Bar</span>
+              <span class="text-xs text-neutral-500">max-w-7xl mx-auto with flex h-16 and overflow-x-auto category track</span>
+            </div>
+            <span class="doc-tag text-xs bg-neutral-200 text-neutral-700 px-2 py-0.5 rounded">Header Component</span>
+          </div>
+          
+          <div class="border-b border-neutral-200 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex h-16 items-center justify-between">
+                <button class="inline-flex items-center justify-center rounded-md p-2 text-neutral-600 hover:text-black hover:bg-neutral-100 lg:hidden">
+                  <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+                <a href="#" class="flex-1 lg:flex-none text-center lg:text-left">
+                  <span class="text-2xl sm:text-3xl tracking-tight font-semibold">CERENZA</span>
+                </a>
+                <div class="flex items-center gap-4">
+                  <button class="p-2 rounded-md hover:bg-neutral-100" aria-label="Search"><i data-lucide="search" class="h-5 w-5"></i></button>
+                  <button class="hidden sm:inline-flex p-2 rounded-md hover:bg-neutral-100" aria-label="Account"><i data-lucide="user" class="h-5 w-5"></i></button>
+                  <button class="hidden sm:inline-flex p-2 rounded-md hover:bg-neutral-100" aria-label="Favorites"><i data-lucide="star" class="h-5 w-5"></i></button>
+                  <button class="inline-flex p-2 rounded-md hover:bg-neutral-100" aria-label="Bag"><i data-lucide="shopping-bag" class="h-5 w-5"></i></button>
+                </div>
+              </div>
+            </div>
+            <nav class="border-t border-neutral-200">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <ul class="flex gap-6 overflow-x-auto py-3 text-sm text-neutral-700 no-scrollbar">
+                  <li><a class="hover:text-black whitespace-nowrap font-medium text-black" href="#">Haute Couture</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Ready-to-Wear</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">High Jewelry</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Fine Jewelry</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Watches</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Eyewear</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Fragrance</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Beauty</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">Skincare</a></li>
+                  <li><a class="hover:text-black whitespace-nowrap" href="#">About</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Pattern B: Full Curated Selections Expanding 6-Card Accordion Track -->
+        <div class="border border-neutral-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div class="p-4 bg-neutral-50 border-b border-neutral-200 flex justify-between items-center">
+            <div>
+              <span class="text-xs font-semibold text-neutral-900 block">Pattern B: Signature 6-Card Flex Accordion Track</span>
+              <span class="text-xs text-neutral-500">h-[600px] track with .card-panel hover:flex-4 and full image reveal</span>
+            </div>
+            <span class="doc-tag text-xs bg-neutral-200 text-neutral-700 px-2 py-0.5 rounded">Core Feature Section</span>
+          </div>
+
+          <div class="p-4 sm:p-6 lg:p-8">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+              <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-600 mb-2">Featured Collections</p>
+              <h2 class="text-3xl sm:text-4xl font-medium tracking-tight text-neutral-900">Curated Selections</h2>
+              <p class="mt-2 text-sm text-neutral-600">
+                Discover our carefully curated collections, each telling a unique story of craftsmanship and contemporary design.
+              </p>
+            </div>
+
+            <!-- The Full 6-Card Accordion Track -->
+            <div class="flex gap-1.5 bg-gray-800 w-full h-[520px] rounded pt-1.5 pr-1.5 pb-1.5 pl-1.5 overflow-hidden">
+              
+              <!-- Card 1 -->
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/eafe7a5f63595b7b_1366adb0-6622-49a5-81b2-abfd42.jpg" alt="Urban Elegance" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-6 absolute inset-0 justify-end">
+                  <h3 class="text-white text-xl font-medium mb-1 tracking-tight">Urban Elegance</h3>
+                  <p class="text-gray-200 text-sm">Contemporary minimalist design with clean lines</p>
+                  <p class="text-gray-400 text-xs mt-2">Spring Collection 2024</p>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="https://cdn.midjourney.com/72c699b7-87ef-40b7-b5bd-59e7cddad312/0_0.png?w=800&amp;q=80" onerror="this.src='assets/eafe7a5f63595b7b_1366adb0-6622-49a5-81b2-abfd42.jpg'" alt="Modern Minimalism" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-6 absolute inset-0 justify-end">
+                  <h3 class="text-white text-xl font-medium mb-1 tracking-tight">Modern Minimalism</h3>
+                  <p class="text-gray-200 text-sm">Refined simplicity with architectural precision</p>
+                  <p class="text-gray-400 text-xs mt-2">Contemporary Essentials</p>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/ae369065729c01dc_d4f665e4-d64e-4e04-9296-379076.jpg" alt="Classic Grace" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-6 absolute inset-0 justify-end">
+                  <h3 class="text-white text-xl font-medium mb-1 tracking-tight">Classic Grace</h3>
+                  <p class="text-gray-200 text-sm">Timeless sophistication meets modern comfort</p>
+                  <p class="text-gray-400 text-xs mt-2">Heritage Collection</p>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/0638a1ec16f55564_e46db625-c1cb-4014-ba55-f5baeb.jpg" alt="Bold Expression" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-6 absolute inset-0 justify-end">
+                  <h3 class="text-white text-xl font-medium mb-1 tracking-tight">Bold Expression</h3>
+                  <p class="text-gray-200 text-sm">Vibrant textures and daring silhouettes</p>
+                  <p class="text-gray-400 text-xs mt-2">Avant-Garde Series</p>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/282e49e7dd4e517b_f615ff41-fad5-45aa-9b1d-fcb2bd.jpg" alt="Natural Beauty" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-6 absolute inset-0 justify-end">
+                  <h3 class="text-white text-xl font-medium mb-1 tracking-tight">Natural Beauty</h3>
+                  <p class="text-gray-200 text-sm">Organic forms inspired by nature's elegance</p>
+                  <p class="text-gray-400 text-xs mt-2">Earth Tones Collection</p>
+                </div>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="card-panel flex-1 overflow-hidden cursor-pointer flex hover:flex-4 group bg-gray-800 h-full rounded-sm relative items-center justify-center">
+                <img src="assets/f81d63702550b542_548251c7-a97a-4c25-8e2d-79f449.jpg" alt="Modern Romance" class="card-image w-full h-full object-cover rounded-sm">
+                <div class="card-overlay group-hover:opacity-100 flex flex-col bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 rounded-sm p-6 absolute inset-0 justify-end">
+                  <h3 class="text-white text-xl font-medium mb-1 tracking-tight">Modern Romance</h3>
+                  <p class="text-gray-200 text-sm">Delicate details with contemporary edge</p>
+                  <p class="text-gray-400 text-xs mt-2">Evening Collection</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Pattern C: Responsive 4-Column Footer -->
+        <div class="border border-neutral-200 rounded-xl overflow-hidden bg-white shadow-sm">
+          <div class="p-4 bg-neutral-50 border-b border-neutral-200 flex justify-between items-center">
+            <div>
+              <span class="text-xs font-semibold text-neutral-900 block">Pattern C: 4-Column Responsive Footer Grid</span>
+              <span class="text-xs text-neutral-500">grid gap-10 sm:grid-cols-2 lg:grid-cols-4 with newsletter subscription</span>
+            </div>
+            <span class="doc-tag text-xs bg-neutral-200 text-neutral-700 px-2 py-0.5 rounded">Footer Architecture</span>
+          </div>
+
+          <footer class="border-t border-neutral-200 bg-neutral-50">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+              <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                  <h5 class="text-sm tracking-tight font-semibold">CERENZA</h5>
+                  <p class="mt-3 text-sm text-neutral-600 max-w-xs">
+                    A modern atelier of refined essentials. Designed in Paris. Assembled in Switzerland and Italy.
+                  </p>
+                </div>
+                <div>
+                  <h6 class="text-sm tracking-tight font-semibold">Collections</h6>
+                  <ul class="mt-3 space-y-2 text-sm text-neutral-700">
+                    <li><a class="hover:text-black" href="#">Timepieces</a></li>
+                    <li><a class="hover:text-black" href="#">Jewelry</a></li>
+                    <li><a class="hover:text-black" href="#">Eyewear</a></li>
+                    <li><a class="hover:text-black" href="#">Fragrance</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h6 class="text-sm tracking-tight font-semibold">Company</h6>
+                  <ul class="mt-3 space-y-2 text-sm text-neutral-700">
+                    <li><a class="hover:text-black" href="#">Careers</a></li>
+                    <li><a class="hover:text-black" href="#">Sustainability</a></li>
+                    <li><a class="hover:text-black" href="#">Press</a></li>
+                    <li><a class="hover:text-black" href="#">Contact</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h6 class="text-sm tracking-tight font-semibold">Newsletter</h6>
+                  <p class="mt-3 text-sm text-neutral-600">Receive product stories and early releases.</p>
+                  <form class="mt-4 flex gap-2" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Email address" class="w-full rounded-md border border-neutral-300 px-3 py-2 text-sm placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-300">
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 transition-colors">
+                      Join <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="mt-10 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-neutral-500">© 2025 Cerenza Studio. All rights reserved.</p>
+                <div class="flex gap-4 text-neutral-600">
+                  <a href="#" class="text-xs hover:text-black">Privacy</a>
+                  <a href="#" class="text-xs hover:text-black">Terms</a>
+                  <a href="#" class="text-xs hover:text-black">Cookies</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 5) MOTION & INTERACTION GALLERY                                   -->
+    <!-- ================================================================= -->
+    <section class="doc-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="motion">
+      <div class="border-b border-neutral-200 pb-5 mb-10">
+        <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-500 font-medium mb-1">05 / Dynamics</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Motion &amp; Interaction Gallery</h2>
+        <p class="mt-2 text-sm text-neutral-600 max-w-3xl">
+          Showcases the transitions and micro-animations that give CERENZA its tactile elegance.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Accordion Flex Motion Spec -->
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="p-1.5 rounded bg-neutral-100 text-neutral-800">
+                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+              </span>
+              <h3 class="text-base font-semibold text-neutral-900">Accordion Flex Expansion</h3>
+            </div>
+            <p class="text-xs text-neutral-600 mb-4">
+              Smooth horizontal ratio expansion from flex: 1 to flex: 4 with quadratic easing.
+            </p>
+            <div class="p-3 bg-neutral-50 rounded-lg doc-tag text-[11px] text-neutral-700 leading-relaxed">
+              <code>transition: flex 0.5s ease;<br>.card-panel:hover { flex: 4; }</code>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+            <span>Duration: 500ms</span>
+            <span>Timing: cubic-bezier</span>
+          </div>
+        </div>
+
+        <!-- Video Crossfade Motion -->
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="p-1.5 rounded bg-neutral-100 text-neutral-800">
+                <i data-lucide="search" class="h-4 w-4"></i>
+              </span>
+              <h3 class="text-base font-semibold text-neutral-900">Video Hover Crossfade</h3>
+            </div>
+            <p class="text-xs text-neutral-600 mb-4">
+              Instant opacity crossfade revealing live video on desktop mouseenter or mobile touch.
+            </p>
+            <div class="p-3 bg-neutral-50 rounded-lg doc-tag text-[11px] text-neutral-700 leading-relaxed">
+              <code>opacity-0 group-hover:opacity-100<br>transition-opacity duration-300</code>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+            <span>Duration: 300ms</span>
+            <span>Trigger: Hover &amp; Touch</span>
+          </div>
+        </div>
+
+        <!-- Drawer Slide & Fade -->
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="p-1.5 rounded bg-neutral-100 text-neutral-800">
+                <i data-lucide="menu" class="h-4 w-4"></i>
+              </span>
+              <h3 class="text-base font-semibold text-neutral-900">Mobile Drawer Toggle</h3>
+            </div>
+            <p class="text-xs text-neutral-600 mb-4">
+              Modal backdrop fade paired with an off-canvas slide-in menu drawer.
+            </p>
+            <div class="p-3 bg-neutral-50 rounded-lg doc-tag text-[11px] text-neutral-700 leading-relaxed">
+              <code>bg-black/30 backdrop-blur<br>max-w-[85%] shadow-xl</code>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
+            <span>State: Class toggle</span>
+            <button onclick="document.getElementById('demoDrawer').classList.toggle('hidden')" class="text-xs font-semibold text-black underline">
+              Test Drawer
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Live Drawer Test Modal -->
+      <div id="demoDrawer" class="hidden fixed inset-0 z-50">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="document.getElementById('demoDrawer').classList.add('hidden')"></div>
+        <div class="ml-auto h-full w-80 max-w-[85%] bg-white shadow-2xl p-6 flex flex-col relative z-10">
+          <div class="flex items-center justify-between border-b border-neutral-200 pb-4">
+            <span class="text-lg font-semibold tracking-tight">Navigation Drawer</span>
+            <button onclick="document.getElementById('demoDrawer').classList.add('hidden')" class="p-1.5 rounded-md hover:bg-neutral-100">
+              <i data-lucide="x" class="h-5 w-5"></i>
+            </button>
+          </div>
+          <div class="py-6 space-y-4 text-sm text-neutral-800">
+            <a href="#hero" class="block hover:text-black">Haute Couture</a>
+            <a href="#typography" class="block hover:text-black">Timepieces</a>
+            <a href="#colors" class="block hover:text-black">Fine Jewelry</a>
+            <a href="#components" class="block hover:text-black">Fragrance</a>
+          </div>
+          <div class="mt-auto pt-4 border-t border-neutral-200 text-xs text-neutral-500">
+            Press ESC or click backdrop to close
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- 6) ICONS SYSTEM                                                   -->
+    <!-- ================================================================= -->
+    <section class="doc-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="icons">
+      <div class="border-b border-neutral-200 pb-5 mb-10">
+        <p class="text-xs sm:text-sm uppercase tracking-wide text-neutral-500 font-medium mb-1">06 / Iconography</p>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-neutral-900">Lucide Icon Collection</h2>
+        <p class="mt-2 text-sm text-neutral-600 max-w-3xl">
+          Clean vector iconography from Lucide rendered with 2px stroke width, rounded caps and joins, demonstrating scale variants and color inheritance.
+        </p>
+      </div>
+
+      <!-- Icon Specimens Grid -->
+      <div class="mb-12">
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Complete Reference Icons (10)</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4">
+          
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="menu" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">menu</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="search" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">search</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="user" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">user</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="star" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">star</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="shopping-bag" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">shopping-bag</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="x" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">x</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="arrow-right" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">arrow-right</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="instagram" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">instagram</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="twitter" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">twitter</span>
+          </div>
+
+          <div class="p-4 rounded-xl border border-neutral-200 bg-white text-center flex flex-col items-center justify-center gap-2 hover:border-neutral-400 transition-colors">
+            <i data-lucide="facebook" class="h-6 w-6 text-neutral-800"></i>
+            <span class="doc-tag text-xs text-neutral-700">facebook</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Size Scale & Color Inheritance Matrix -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Size Scale -->
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Size Scale Variants</h3>
+          <div class="flex items-end gap-8">
+            <div class="text-center">
+              <i data-lucide="shopping-bag" class="h-4 w-4 text-neutral-900 mx-auto mb-2"></i>
+              <span class="doc-tag text-[10px] text-neutral-500 block">h-4 w-4 (16px)</span>
+            </div>
+            <div class="text-center">
+              <i data-lucide="shopping-bag" class="h-5 w-5 text-neutral-900 mx-auto mb-2"></i>
+              <span class="doc-tag text-[10px] text-neutral-500 block">h-5 w-5 (20px)</span>
+            </div>
+            <div class="text-center">
+              <i data-lucide="shopping-bag" class="h-6 w-6 text-neutral-900 mx-auto mb-2"></i>
+              <span class="doc-tag text-[10px] text-neutral-500 block">h-6 w-6 (24px)</span>
+            </div>
+            <div class="text-center">
+              <i data-lucide="shopping-bag" class="h-8 w-8 text-neutral-900 mx-auto mb-2"></i>
+              <span class="doc-tag text-[10px] text-neutral-500 block">h-8 w-8 (32px)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Inheritance -->
+        <div class="p-6 rounded-xl border border-neutral-200 bg-white">
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-500 mb-4">Color Inheritance</h3>
+          <div class="flex items-center gap-6">
+            <div class="text-center">
+              <i data-lucide="star" class="h-6 w-6 text-black mx-auto mb-1"></i>
+              <span class="doc-tag text-[10px] text-neutral-500">text-black</span>
+            </div>
+            <div class="text-center">
+              <i data-lucide="star" class="h-6 w-6 text-neutral-600 mx-auto mb-1"></i>
+              <span class="doc-tag text-[10px] text-neutral-500">text-neutral-600</span>
+            </div>
+            <div class="text-center">
+              <i data-lucide="star" class="h-6 w-6 text-neutral-400 mx-auto mb-1"></i>
+              <span class="doc-tag text-[10px] text-neutral-500">text-neutral-400</span>
+            </div>
+            <div class="text-center p-2 rounded-lg bg-black">
+              <i data-lucide="star" class="h-6 w-6 text-white mx-auto mb-1"></i>
+              <span class="doc-tag text-[10px] text-neutral-300">text-white</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIVING DESIGN SYSTEM FOOTER -->
+  <footer class="border-t border-neutral-200 bg-neutral-50 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="font-semibold text-neutral-900 tracking-tight">CERENZA</span>
+        <span class="text-xs text-neutral-500">Living Design System &amp; Pattern Library</span>
+      </div>
+      <div class="flex items-center gap-6 text-xs text-neutral-600">
+        <a href="#hero" class="hover:text-black transition-colors">Back to Top</a>
+        <a href="index.html" class="hover:text-black transition-colors">Reference Site</a>
+        <span class="text-neutral-400">© 2025 Cerenza Studio</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INITIALIZE LUCIDE ICONS & MOBILE NAV -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize Lucide Icons
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+      // 2. Mobile Nav Toggle
+      const openBtn = document.getElementById('openMobileNav');
+      const navMenu = document.getElementById('mobileNavMenu');
+      if (openBtn && navMenu) {
+        openBtn.addEventListener('click', () => {
+          navMenu.classList.toggle('hidden');
+        });
+      }
+
+      // 3. Highlight Active Nav Item on Scroll
+      const sections = document.querySelectorAll('.doc-section');
+      const navLinks = document.querySelectorAll('#navbar nav a');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('text-black', 'bg-neutral-100');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('text-black', 'bg-neutral-100');
+          }
+        });
+      }, { passive: true });
+    });
+  </script>
+
+</body>
+</html>

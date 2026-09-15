@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Marnie Aesthetics — Script de Otimização e Remoção de Áudio de Vídeo da Hero
+# Level Up Aesthetics — Script de Otimização e Remoção de Áudio de Vídeo da Hero
 # ==============================================================================
 set -e
 

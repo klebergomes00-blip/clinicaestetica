@@ -6,9 +6,20 @@
   <meta name="theme-color" content="#F6F1EA">
   <meta name="msapplication-navbutton-color" content="#F6F1EA">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="icon" type="image/png" href="media/Marta%20Peres%20(1).png">
-  <title>Level Up Aesthetics — Beleza Natural &amp; Confiança Atemporal</title>
-  <meta name="description" content="Clínica de estética avançada em Queenstown. Tratamentos faciais personalizados, injetáveis de alta precisão e cuidado individualizado para realçar sua beleza natural.">
+  <link rel="icon" type="image/png" href="media/level-up-logo.png">
+  <title>Level Up Aesthetics — Beleza Natural &amp; Confiança Atemporal | Cabeceiras - GO</title>
+  <meta name="description" content="Level Up Aesthetics — Clínica de estética avançada em Cabeceiras - GO. Tratamentos faciais personalizados, injetáveis de alta precisão e cuidado individualizado para realçar sua beleza natural com sutileza e elegância.">
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:title" content="Level Up Aesthetics — Beleza Natural &amp; Confiança Atemporal | Cabeceiras - GO">
+  <meta property="og:description" content="Level Up Aesthetics — Clínica de estética avançada em Cabeceiras - GO. Tratamentos faciais personalizados, injetáveis de alta precisão e cuidado individualizado.">
+  <meta property="og:image" content="media/level-up-logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Local SEO & Geo Tags -->
+  <meta name="geo.region" content="BR-GO">
+  <meta name="geo.placename" content="Cabeceiras">
 
   <!-- Preconnect to Google Fonts & CDNs -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -679,7 +690,7 @@
     }
 
     /* ========================================================================= */
-    /* 7. SÉTIMA DOBRA: O ESPAÇO MARNIE (ESTILOS & TRANSIÇÕES EDITORIAIS)        */
+    /* 7. SÉTIMA DOBRA: O ESPAÇO LEVEL UP (ESTILOS & TRANSIÇÕES EDITORIAIS)     */
     /* ========================================================================= */
     .espaco-reveal {
       opacity: 0;
@@ -775,9 +786,15 @@
           class="w-full h-full object-cover object-[center_26%] lg:object-[74%_center]"
           aria-hidden="true"
         >
-          <source src="media/hero-video-final.webm" type="video/webm">
-          <source src="media/hero-video-final.mp4" type="video/mp4">
-          <source src="media/hero-bg-fluid.mp4" type="video/mp4">
+          <source src="media/hero-video-final.webm" type="video/webm" media="(min-width: 1024px)">
+          <source src="media/hero-video-final.mp4" type="video/mp4" media="(min-width: 1024px)">
+          <img 
+            src="media/video-preview-thumb.jpg" 
+            alt="Ambiente e procedimentos estéticos Level Up Aesthetics" 
+            class="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
         </video>
       </div>
 
@@ -814,7 +831,7 @@
         
         <!-- Brand Logo / Identity: Level Up Aesthetics -->
         <a href="/" class="flex items-center focus:outline-none rounded-lg group" aria-label="Level Up Aesthetics Início">
-          <img src="media/Marta%20Peres%20(1).png" alt="Level Up Aesthetics" class="h-12 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"/>
+          <img src="media/level-up-logo.png" alt="Level Up Aesthetics" class="h-12 sm:h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"/>
         </a>
 
         <!-- Desktop Navigation Links com Espaçamento Editorial Equilibrado -->
@@ -873,9 +890,15 @@
         poster="media/video-preview-thumb-mobile.jpg"
         class="w-full h-full object-cover object-[center_28%]"
       >
-        <source src="media/hero-video-mobile.webm" type="video/webm">
-        <source src="media/hero-video-mobile.mp4" type="video/mp4">
-        <source src="media/versao mobile.mp4" type="video/mp4">
+        <source src="media/hero-video-mobile.webm" type="video/webm" media="(max-width: 1023px)">
+        <source src="media/hero-video-mobile.mp4" type="video/mp4" media="(max-width: 1023px)">
+        <img 
+          src="media/video-preview-thumb-mobile.jpg" 
+          alt="Level Up Aesthetics — Cuidado estético e beleza natural" 
+          class="w-full h-full object-cover object-[center_28%]"
+          loading="eager"
+          decoding="async"
+        />
       </video>
       <div class="mobile-video-tint-overlay"></div>
       <div class="mobile-visual-fade-bottom"></div>
@@ -1021,6 +1044,7 @@
               muted 
               loop 
               playsinline 
+              webkit-playsinline
               preload="metadata"
               poster="media/filosofia-care.jpg"
               class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 will-change-transform"
@@ -1028,6 +1052,13 @@
             >
               <source src="media/filosofia-care.webm" type="video/webm">
               <source src="media/filosofia-care.mp4" type="video/mp4">
+              <img 
+                src="media/filosofia-care.jpg" 
+                alt="Atendimento cuidadoso e avaliação clínica na Level Up Aesthetics" 
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
             </video>
 
             <!-- SCRIM SUAVE INFERIOR PARA PROFUNDIDADE -->
@@ -1155,7 +1186,7 @@
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
             <img 
               src="assets/104b472995a38098_anti-wrinkle.jpg" 
-              alt="Aplicação clínica e avaliação facial para Toxina Botulínica"
+              alt="Aplicação clínica e avaliação facial para Toxina Botulínica — Level Up Aesthetics"
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transform-none will-change-transform"
               loading="lazy"
             />
@@ -1198,7 +1229,7 @@
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
             <img 
               src="media/Woman_receiving_facial_treatment_2K_20260911022650.jpeg" 
-              alt="Harmonização e restauração delicada de contornos com Preenchimento Facial"
+              alt="Harmonização e restauração delicada de contornos com Preenchimento Facial — Level Up Aesthetics"
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transform-none will-change-transform"
               loading="lazy"
             />
@@ -1241,7 +1272,7 @@
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
             <img 
               src="media/video-preview-thumb-15s.jpg" 
-              alt="Aplicação de bioestimuladores para regeneração celular e luminosidade da pele"
+              alt="Aplicação de bioestimuladores para regeneração celular e luminosidade da pele — Level Up Aesthetics"
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transform-none will-change-transform"
               loading="lazy"
             />
@@ -1335,16 +1366,20 @@
           muted
           loop
           playsinline
-          poster="assets/6e5a86fae900757c_hero-marnie.jpg"
+          webkit-playsinline
+          preload="metadata"
+          poster="assets/hero-level-up.jpg"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out will-change-transform motion-reduce:transform-none"
-          aria-label="Vídeo cinematográfico demonstrando beleza natural e resultados sutis"
+          aria-label="Vídeo cinematográfico demonstrando beleza natural e resultados sutis na Level Up Aesthetics"
         >
           <source src="media/resultados-naturais.webm" type="video/webm">
           <source src="media/resultados-naturais.mp4" type="video/mp4">
           <img 
-            src="assets/6e5a86fae900757c_hero-marnie.jpg" 
-            alt="Pele iluminada e beleza natural autêntica" 
+            src="assets/hero-level-up.jpg" 
+            alt="Pele iluminada e beleza natural autêntica — Level Up Aesthetics" 
             class="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </video>
         <!-- SUTIL VINHETA CINEMATOGRÁFICA -->
@@ -1437,26 +1472,30 @@
               Camila V. — Paciente Level Up
             </cite>
             <span id="testimonialDetail" class="font-body text-[11px] sm:text-xs text-espresso/60 font-light tracking-wide block">
-              Protocolo Rejuvenescimento Natural • <span class="font-mono text-[10px] text-caramel/80 uppercase">Estrutura Demonstrativa</span>
+              Toxina Botulínica Preventiva • Cabeceiras - GO
             </span>
           </div>
 
         </div>
 
-        <!-- NAVEGAÇÃO MINIMALISTA DISCRETA: ← 1 / 4 → -->
-        <div class="mt-12 sm:mt-16 flex items-center justify-center gap-6">
+        <!-- NAVEGAÇÃO MINIMALISTA DISCRETA (SEM CONTAGEM NUMÉRICA) -->
+        <div class="mt-10 sm:mt-14 flex items-center justify-center gap-5">
           <button 
             id="prevTestimonial" 
             type="button"
             class="group w-10 h-10 rounded-full border border-chocolate/15 flex items-center justify-center text-espresso/70 hover:text-caramel hover:border-caramel transition-all duration-300 active:scale-95 cursor-pointer"
             aria-label="Avaliação anterior"
           >
-            <span class="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">←</span>
+            <span class="inline-block transition-transform duration-300 group-hover:-translate-x-0.5" aria-hidden="true">←</span>
           </button>
 
-          <span id="testimonialCounter" class="font-mono text-xs sm:text-[13px] text-espresso/60 tracking-widest select-none">
-            1 / 4
-          </span>
+          <!-- Indicadores Sutis de Paginação (sem expor contagem numérica) -->
+          <div id="testimonialDots" class="flex items-center gap-2" role="tablist" aria-label="Navegação entre avaliações">
+            <button type="button" class="testimonial-dot w-6 h-1.5 rounded-full bg-caramel transition-all duration-300 cursor-pointer" aria-label="Depoimento 1" aria-selected="true" data-index="0"></button>
+            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 2" aria-selected="false" data-index="1"></button>
+            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 3" aria-selected="false" data-index="2"></button>
+            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 4" aria-selected="false" data-index="3"></button>
+          </div>
 
           <button 
             id="nextTestimonial" 
@@ -1464,7 +1503,7 @@
             class="group w-10 h-10 rounded-full border border-chocolate/15 flex items-center justify-center text-espresso/70 hover:text-caramel hover:border-caramel transition-all duration-300 active:scale-95 cursor-pointer"
             aria-label="Próxima avaliação"
           >
-            <span class="inline-block transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+            <span class="inline-block transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">→</span>
           </button>
         </div>
 
@@ -1581,9 +1620,9 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 9. SÉTIMA DOBRA: O ESPAÇO MARNIE (ARQUITETURA & ACOLHIMENTO EDITORIAL)    -->
+  <!-- 9. SÉTIMA DOBRA: O ESPAÇO LEVEL UP (ARQUITETURA & ACOLHIMENTO EDITORIAL) -->
   <!-- ========================================================================= -->
-  <section id="espaco-marnie" class="relative bg-cream text-espresso py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/10 overflow-hidden" aria-label="O Espaço Marnie Aesthetics">
+  <section id="espaco-level-up" class="relative bg-cream text-espresso py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/10 overflow-hidden" aria-label="O Espaço Level Up Aesthetics">
     
     <div class="max-w-[1240px] mx-auto">
       
@@ -1597,7 +1636,7 @@
           <!-- EYEBROW -->
           <div class="espaco-reveal inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel/8 border border-caramel/20 text-[10px] sm:text-[11px] font-mono tracking-cinematic text-caramel uppercase mb-4 sm:mb-5">
             <span class="w-1.5 h-1.5 rounded-full bg-caramel" aria-hidden="true"></span>
-            <span>O ESPAÇO MARNIE</span>
+            <span>O ESPAÇO LEVEL UP</span>
           </div>
 
           <!-- HEADLINE EDITORIAL -->
@@ -1618,7 +1657,7 @@
           <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] overflow-hidden">
             <img 
               src="media/interior.png" 
-              alt="Ambiente acolhedor da clínica Marnie Aesthetics, com recepção em mármore travertino, iluminação suave e salas privativas" 
+              alt="Ambiente acolhedor da clínica Level Up Aesthetics em Cabeceiras - GO, com recepção em mármore travertino, iluminação suave e salas privativas" 
               class="w-full h-full object-cover object-center transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.025]"
               loading="lazy"
               decoding="async"
@@ -1634,7 +1673,7 @@
           
           <!-- MICROINFORMAÇÕES: 4 ATRIBUTOS DA EXPERIÊNCIA -->
           <div class="espaco-reveal pt-6 sm:pt-7 border-t border-chocolate/10 mb-7 sm:mb-8" style="transition-delay: 240ms;">
-            <ul class="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2.5 list-none p-0 m-0" aria-label="Atributos da experiência Marnie">
+            <ul class="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2.5 list-none p-0 m-0" aria-label="Atributos da experiência Level Up">
               <li class="inline-flex items-center gap-3 sm:gap-4 font-body text-[11px] sm:text-xs font-medium tracking-luxury uppercase text-espresso/70">
                 <span>Cuidado</span>
                 <span class="w-1 h-1 rounded-full bg-caramel/50 select-none" aria-hidden="true"></span>
@@ -1655,9 +1694,9 @@
 
           <!-- CTA EDITORIAL DISCRETO -->
           <div class="espaco-reveal" style="transition-delay: 300ms;">
-            <a href="#agendamento" class="group inline-flex items-center gap-3 text-xs sm:text-[13px] font-body tracking-luxury uppercase text-espresso hover:text-caramel transition-all duration-300 py-2.5" aria-label="Conheça a Marnie Aesthetics">
+            <a href="#agendamento" class="group inline-flex items-center gap-3 text-xs sm:text-[13px] font-body tracking-luxury uppercase text-espresso hover:text-caramel transition-all duration-300 py-2.5" aria-label="Conheça a Level Up Aesthetics">
               <span class="border-b border-espresso/30 group-hover:border-caramel pb-0.5 transition-colors duration-300">
-                CONHEÇA A MARNIE
+                CONHEÇA A LEVEL UP
               </span>
               <span class="w-7 h-7 rounded-full border border-chocolate/15 flex items-center justify-center text-espresso group-hover:text-caramel group-hover:border-caramel group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-all duration-300 select-none" aria-hidden="true">
                 ↗
@@ -1675,7 +1714,7 @@
   <!-- ========================================================================= -->
   <!-- 10. OITAVA DOBRA: SEÇÃO PRINCIPAL DE CONVERSÃO (VAMOS CUIDAR DE VOCÊ?)    -->
   <!-- ========================================================================= -->
-  <section id="agendamento" class="relative bg-espresso text-cream py-28 sm:py-36 lg:py-44 px-5 sm:px-8 lg:px-12 border-t border-chocolate/30 overflow-hidden" aria-label="Agendamento de Avaliação Marnie Aesthetics">
+  <section id="agendamento" class="relative bg-espresso text-cream py-28 sm:py-36 lg:py-44 px-5 sm:px-8 lg:px-12 border-t border-chocolate/30 overflow-hidden" aria-label="Agendamento de Avaliação Level Up Aesthetics">
     
     <!-- SUTIL AMBIENT WARM GLOW CENTRAL (PROFUNDIDADE SEM POLUIÇÃO VISUAL) -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[700px] h-[70vw] max-h-[700px] rounded-full bg-caramel/6 blur-[120px] pointer-events-none" aria-hidden="true"></div>
@@ -1700,7 +1739,7 @@
 
       <!-- CTA PRINCIPAL: AGENDAR AVALIAÇÃO → -->
       <div class="conversao-reveal mb-6 sm:mb-7" style="transition-delay: 180ms;">
-        <a href="#contato" class="beam-btn group inline-flex" aria-label="Agendar Avaliação na Marnie Aesthetics">
+        <a href="#contato" class="beam-btn group inline-flex" aria-label="Agendar Avaliação na Level Up Aesthetics">
           <div class="beam-btn-conic" aria-hidden="true"></div>
           <div class="beam-btn-inner px-8 sm:px-10 py-4 sm:py-4.5 text-[11px] sm:text-[12px] font-medium tracking-luxury">
             <span>AGENDAR AVALIAÇÃO</span>
@@ -1711,7 +1750,7 @@
 
       <!-- CTA SECUNDÁRIO: PREFERE FALAR PRIMEIRO? WHATSAPP → -->
       <div class="conversao-reveal" style="transition-delay: 240ms;">
-        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-body text-cream/65 hover:text-caramel-light transition-colors duration-300 py-2.5" aria-label="Falar primeiro pelo WhatsApp">
+        <a id="whatsappCta" href="https://wa.me/5566999042946" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-body text-cream/65 hover:text-caramel-light transition-colors duration-300 py-2.5" aria-label="Falar primeiro pelo WhatsApp da Level Up Aesthetics">
           <span class="border-b border-cream/25 group-hover:border-caramel-light pb-0.5 transition-colors duration-300">
             Prefere falar primeiro? WhatsApp
           </span>
@@ -1765,35 +1804,48 @@
         {
           quote: "“O atendimento foi de um acolhimento ímpar. Minha maior preocupação era perder a naturalidade da minha expressão, e o resultado superou todas as expectativas: sutil, preciso e completamente meu.”",
           author: "Camila V. — Paciente Level Up",
-          detail: "Protocolo Rejuvenescimento Natural • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+          detail: "Toxina Botulínica Preventiva • Cabeceiras - GO"
         },
         {
-          quote: "“A consulta individualizada fez toda a diferença. Senti segurança clínica absoluta do início ao fim, com um olhar médico que realmente respeitou a harmonia e a arquitetura do meu rosto.”",
+          quote: "“A consulta individualizada fez toda a diferença. Senti segurança clínica absoluta do início ao fim, com um olhar que realmente respeitou a harmonia e a arquitetura natural do meu rosto.”",
           author: "Mariana S. — Paciente Level Up",
-          detail: "Harmonização Estrutural & Volume • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+          detail: "Harmonização Estrutural Suave • Cabeceiras - GO"
         },
         {
           quote: "“Cuidado excepcional e atenção a cada detalhe. O ambiente transmite calma profunda e o tratamento devolveu a luminosidade e firmeza da minha pele com elegância e discrição.”",
           author: "Helena B. — Paciente Level Up",
-          detail: "Bioestimuladores & Qualidade da Pele • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+          detail: "Bioestimuladores de Colágeno • Cabeceiras - GO"
         },
         {
-          quote: "“Encontrar uma clínica que preza pela sutileza antes de qualquer procedimento é raro. O respeito à minha identidade foi absoluto. Uma experiência verdadeiramente premium.”",
+          quote: "“Encontrar uma clínica em Cabeceiras que preza pela sutileza antes de qualquer procedimento é um privilégio. O respeito à minha identidade foi absoluto em cada etapa.”",
           author: "Beatriz M. — Paciente Level Up",
-          detail: "Injetáveis de Precisão & Cuidado Contínuo • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+          detail: "Cuidado Contínuo & Luminosidade • Cabeceiras - GO"
         }
       ];
 
       let currentIndex = 0;
+      let autoTimer = null;
       const container = document.getElementById('testimonialContainer');
       const quoteEl = document.getElementById('testimonialQuote');
       const authorEl = document.getElementById('testimonialAuthor');
       const detailEl = document.getElementById('testimonialDetail');
-      const counterEl = document.getElementById('testimonialCounter');
       const prevBtn = document.getElementById('prevTestimonial');
       const nextBtn = document.getElementById('nextTestimonial');
+      const dots = document.querySelectorAll('.testimonial-dot');
 
       if (!container || !quoteEl || !prevBtn || !nextBtn) return;
+
+      function updateDots(activeIdx) {
+        dots.forEach((dot, idx) => {
+          if (idx === activeIdx) {
+            dot.className = 'testimonial-dot w-6 h-1.5 rounded-full bg-caramel transition-all duration-300 cursor-pointer';
+            dot.setAttribute('aria-selected', 'true');
+          } else {
+            dot.className = 'testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer';
+            dot.setAttribute('aria-selected', 'false');
+          }
+        });
+      }
 
       function render(index) {
         container.style.opacity = '0';
@@ -1801,21 +1853,72 @@
           const item = testimonials[index];
           quoteEl.textContent = item.quote;
           authorEl.textContent = item.author;
-          detailEl.innerHTML = item.detail;
-          counterEl.textContent = `${index + 1} / ${testimonials.length}`;
+          detailEl.textContent = item.detail;
+          updateDots(index);
           container.style.opacity = '1';
-        }, 220);
+        }, 180);
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        render(currentIndex);
+      }
+
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+        render(currentIndex);
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(nextSlide, 7500);
       }
 
       prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-        render(currentIndex);
+        prevSlide();
+        resetAutoPlay();
       });
 
       nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % testimonials.length;
-        render(currentIndex);
+        nextSlide();
+        resetAutoPlay();
       });
+
+      dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          if (currentIndex !== idx) {
+            currentIndex = idx;
+            render(currentIndex);
+            resetAutoPlay();
+          }
+        });
+      });
+
+      // Pausar autoplay quando o usuário passar o mouse ou focar no carrossel
+      container.parentElement.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      container.parentElement.addEventListener('mouseleave', resetAutoPlay);
+
+      // Suporte a gestos touch swipe no celular
+      let touchStartX = 0;
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+          resetAutoPlay();
+        }
+      }, { passive: true });
+
+      // Iniciar autoplay suave
+      resetAutoPlay();
     })();
 
     // -------------------------------------------------------------------------
@@ -1853,10 +1956,10 @@
     })();
 
     // -------------------------------------------------------------------------
-    // REVELAÇÃO ESCALONADA DA SÉTIMA DOBRA (O ESPAÇO MARNIE)
+    // REVELAÇÃO ESCALONADA DA SÉTIMA DOBRA (O ESPAÇO LEVEL UP)
     // -------------------------------------------------------------------------
     (() => {
-      const espacoSec = document.getElementById('espaco-marnie');
+      const espacoSec = document.getElementById('espaco-level-up');
       if (!espacoSec) return;
 
       const animItems = espacoSec.querySelectorAll('.espaco-reveal');
@@ -1932,6 +2035,23 @@
         document.addEventListener('visibilitychange', () => {
           if (!document.hidden) playMobileVideo();
         });
+      }
+
+      // Otimização de Performance Mobile: Pausa vídeos secundários fora do viewport para economizar CPU e dados
+      if ('IntersectionObserver' in window) {
+        const secondaryVideos = document.querySelectorAll('section:not(#heroSection) video');
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const vid = entry.target;
+            if (entry.isIntersecting) {
+              if (vid.paused) vid.play().catch(() => {});
+            } else {
+              if (!vid.paused) vid.pause();
+            }
+          });
+        }, { threshold: 0.15 });
+
+        secondaryVideos.forEach(v => videoObserver.observe(v));
       }
     }
 

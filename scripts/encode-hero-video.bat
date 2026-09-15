@@ -1,6 +1,6 @@
 @echo off
 REM ==============================================================================
-REM Marnie Aesthetics — Script de Otimizacao e Remocao de Audio de Video da Hero
+REM Level Up Aesthetics — Script de Otimizacao e Remocao de Audio de Video da Hero
 REM ==============================================================================
 
 set INPUT="media\Design sem nome (7).mp4"

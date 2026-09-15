@@ -1,6 +1,6 @@
 @echo off
 REM ==============================================================================
-REM Marnie Aesthetics — Script de Otimizacao de Video Mobile da Hero
+REM Level Up Aesthetics — Script de Otimizacao de Video Mobile da Hero
 REM ==============================================================================
 
 set INPUT="media\versao mobile.mp4"

@@ -647,6 +647,94 @@
         animation: none !important;
         top: 50% !important;
       }
+      .jornada-reveal,
+      .jornada-line-reveal,
+      .espaco-reveal,
+      .conversao-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* ========================================================================= */
+    /* 6. SEXTA DOBRA: JORNADA DE CUIDADO (ESTILOS & TRANSIÇÕES EDITORIAIS)      */
+    /* ========================================================================= */
+    .jornada-reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .jornada-reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .jornada-line-reveal {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .jornada-line-reveal.is-revealed {
+      transform: scaleX(1);
+    }
+
+    /* ========================================================================= */
+    /* 7. SÉTIMA DOBRA: O ESPAÇO MARNIE (ESTILOS & TRANSIÇÕES EDITORIAIS)        */
+    /* ========================================================================= */
+    .espaco-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .espaco-reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Estrutura Editorial Assimétrica Desktop (>= 1024px) */
+    @media (min-width: 1024px) {
+      .espaco-layout {
+        display: grid;
+        grid-template-columns: 54% 46%;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+          "media header"
+          "media footer";
+        column-gap: 4.5rem;
+        row-gap: 2.25rem;
+        align-items: center;
+      }
+      .espaco-media {
+        grid-area: media;
+        margin-bottom: 0 !important;
+      }
+      .espaco-header {
+        grid-area: header;
+        margin-bottom: 0 !important;
+        align-self: end;
+      }
+      .espaco-footer {
+        grid-area: footer;
+        align-self: start;
+      }
+    }
+    @media (min-width: 1280px) {
+      .espaco-layout {
+        column-gap: 5.5rem;
+      }
+    }
+
+    /* ========================================================================= */
+    /* 8. OITAVA DOBRA: SEÇÃO PRINCIPAL DE CONVERSÃO (VAMOS CUIDAR DE VOCÊ?)    */
+    /* ========================================================================= */
+    .conversao-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .conversao-reveal.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -1289,6 +1377,352 @@
   </section>
 
   <!-- ========================================================================= -->
+  <!-- 7. QUINTA DOBRA: AVALIAÇÕES (PROVA SOCIAL EDITORIAL)                       -->
+  <!-- ========================================================================= -->
+  <section id="avaliacoes" class="relative bg-cream text-espresso py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/10 overflow-hidden" aria-label="Avaliações e Experiências Level Up Aesthetics">
+    
+    <div class="max-w-[1240px] mx-auto">
+      
+      <!-- CABEÇALHO DA SEÇÃO -->
+      <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 lg:mb-20">
+        
+        <!-- EYEBROW -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel/8 border border-caramel/20 text-[10px] sm:text-[11px] font-mono tracking-cinematic text-caramel uppercase mb-4 sm:mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-caramel"></span>
+          <span>Avaliações</span>
+        </div>
+
+        <!-- HEADLINE EDITORIAL -->
+        <h2 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[50px] text-espresso leading-[1.15] tracking-[-0.015em] font-normal mb-5 sm:mb-6">
+          Experiências que falam por si.
+        </h2>
+
+        <!-- TEXTO DE APOIO -->
+        <p class="font-body text-base sm:text-lg text-espresso/70 font-light leading-relaxed max-w-xl mx-auto">
+          Cada história é única. Cada cuidado também. O que permanece é a sensação de ser acolhida e cuidada em cada detalhe.
+        </p>
+
+      </div>
+
+      <!-- GRANDE BLOCO EDITORIAL DE DEPOIMENTO CENTRALIZADO -->
+      <div class="relative max-w-3xl lg:max-w-4xl mx-auto text-center px-4 sm:px-8">
+        
+        <!-- ASPAS EDITORIAIS DISCRETAS -->
+        <div class="mb-4 sm:mb-6 flex justify-center text-caramel/20 select-none" aria-hidden="true">
+          <svg class="w-12 h-12 sm:w-16 sm:h-16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+        </div>
+
+        <!-- CONTAINER DINÂMICO DOS DEPOIMENTOS (TRANSIÇÃO SUAVE) -->
+        <div id="testimonialContainer" class="min-h-[220px] sm:min-h-[190px] flex flex-col justify-center transition-opacity duration-300 ease-out">
+          
+          <!-- TEXTO DO DEPOIMENTO -->
+          <blockquote id="testimonialQuote" class="font-heading text-xl sm:text-2xl md:text-3xl lg:text-[32px] text-espresso leading-[1.4] font-normal italic mb-6 sm:mb-8">
+            “O atendimento foi de um acolhimento ímpar. Minha maior preocupação era perder a naturalidade da minha expressão, e o resultado superou todas as expectativas: sutil, preciso e completamente meu.”
+          </blockquote>
+
+          <!-- 5 ESTRELAS DISCRETAS (SEM CARA DE MARKETPLACE) -->
+          <div class="flex items-center justify-center gap-1.5 mb-4 text-caramel select-none" aria-label="Avaliação 5 estrelas">
+            <span class="text-xs sm:text-sm">★</span>
+            <span class="text-xs sm:text-sm">★</span>
+            <span class="text-xs sm:text-sm">★</span>
+            <span class="text-xs sm:text-sm">★</span>
+            <span class="text-xs sm:text-sm">★</span>
+          </div>
+
+          <!-- IDENTIFICAÇÃO DA CLIENTE -->
+          <div>
+            <cite id="testimonialAuthor" class="not-italic font-body text-xs sm:text-[13px] font-semibold tracking-luxury uppercase text-espresso block mb-1">
+              Camila V. — Paciente Level Up
+            </cite>
+            <span id="testimonialDetail" class="font-body text-[11px] sm:text-xs text-espresso/60 font-light tracking-wide block">
+              Protocolo Rejuvenescimento Natural • <span class="font-mono text-[10px] text-caramel/80 uppercase">Estrutura Demonstrativa</span>
+            </span>
+          </div>
+
+        </div>
+
+        <!-- NAVEGAÇÃO MINIMALISTA DISCRETA: ← 1 / 4 → -->
+        <div class="mt-12 sm:mt-16 flex items-center justify-center gap-6">
+          <button 
+            id="prevTestimonial" 
+            type="button"
+            class="group w-10 h-10 rounded-full border border-chocolate/15 flex items-center justify-center text-espresso/70 hover:text-caramel hover:border-caramel transition-all duration-300 active:scale-95 cursor-pointer"
+            aria-label="Avaliação anterior"
+          >
+            <span class="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">←</span>
+          </button>
+
+          <span id="testimonialCounter" class="font-mono text-xs sm:text-[13px] text-espresso/60 tracking-widest select-none">
+            1 / 4
+          </span>
+
+          <button 
+            id="nextTestimonial" 
+            type="button"
+            class="group w-10 h-10 rounded-full border border-chocolate/15 flex items-center justify-center text-espresso/70 hover:text-caramel hover:border-caramel transition-all duration-300 active:scale-95 cursor-pointer"
+            aria-label="Próxima avaliação"
+          >
+            <span class="inline-block transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. SEXTA DOBRA: SUA JORNADA DE CUIDADO (PROCESSO EDITORIAL 01-02-03)       -->
+  <!-- ========================================================================= -->
+  <section id="jornada" class="relative bg-cream text-espresso py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/10 overflow-hidden" aria-label="Sua Jornada de Cuidado Level Up Aesthetics">
+    
+    <div class="max-w-[1240px] mx-auto">
+      
+      <!-- CABEÇALHO DA SEÇÃO -->
+      <div class="text-center max-w-2xl mx-auto mb-16 sm:mb-20 lg:mb-24">
+        
+        <!-- EYEBROW -->
+        <div class="jornada-reveal inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel/8 border border-caramel/20 text-[10px] sm:text-[11px] font-mono tracking-cinematic text-caramel uppercase mb-4 sm:mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-caramel"></span>
+          <span>Sua Jornada de Cuidado</span>
+        </div>
+
+        <!-- HEADLINE EDITORIAL -->
+        <h2 class="jornada-reveal font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[50px] text-espresso leading-[1.15] tracking-[-0.015em] font-normal mb-5 sm:mb-6" style="transition-delay: 50ms;">
+          Cuidar de você começa com uma conversa.
+        </h2>
+
+        <!-- TEXTO DE APOIO -->
+        <p class="jornada-reveal font-body text-base sm:text-lg text-espresso/70 font-light leading-relaxed max-w-xl mx-auto" style="transition-delay: 100ms;">
+          Um processo pensado para entender você, respeitar suas necessidades e construir um plano de cuidado personalizado.
+        </p>
+
+      </div>
+
+      <!-- AS TRÊS ETAPAS: COMPOSIÇÃO EDITORIAL (01 ─── 02 ─── 03) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14 relative max-w-lg md:max-w-xl lg:max-w-5xl mx-auto">
+        
+        <!-- ETAPA 01: AVALIAÇÃO INDIVIDUAL -->
+        <div class="jornada-reveal relative border-l-2 border-caramel/25 pl-6 sm:pl-8 lg:border-l-0 lg:pl-0 flex flex-col justify-between" style="transition-delay: 150ms;">
+          <div>
+            <div class="flex items-center gap-5 mb-5 sm:mb-6">
+              <span class="text-3xl sm:text-4xl lg:text-[46px] font-normal text-caramel leading-none select-none" style="font-family: 'Cormorant Garamond', Georgia, serif; font-feature-settings: 'lnum' 1; font-variant-numeric: lining-nums;">
+                01
+              </span>
+              <div class="h-[1px] bg-chocolate/15 flex-grow hidden lg:block jornada-line-reveal" style="transition-delay: 220ms;"></div>
+            </div>
+
+            <h3 class="font-body text-xs sm:text-[13px] font-semibold tracking-luxury uppercase text-espresso mb-3 sm:mb-3.5">
+              Avaliação Individual
+            </h3>
+
+            <p class="font-body text-[14px] sm:text-[15px] text-espresso/70 font-light leading-relaxed max-w-sm">
+              Entendemos suas necessidades, objetivos e características antes de indicar qualquer protocolo.
+            </p>
+          </div>
+        </div>
+
+        <!-- ETAPA 02: PLANO PERSONALIZADO -->
+        <div class="jornada-reveal relative border-l-2 border-caramel/25 pl-6 sm:pl-8 lg:border-l-0 lg:pl-0 flex flex-col justify-between" style="transition-delay: 220ms;">
+          <div>
+            <div class="flex items-center gap-5 mb-5 sm:mb-6">
+              <span class="text-3xl sm:text-4xl lg:text-[46px] font-normal text-caramel leading-none select-none" style="font-family: 'Cormorant Garamond', Georgia, serif; font-feature-settings: 'lnum' 1; font-variant-numeric: lining-nums;">
+                02
+              </span>
+              <div class="h-[1px] bg-chocolate/15 flex-grow hidden lg:block jornada-line-reveal" style="transition-delay: 280ms;"></div>
+            </div>
+
+            <h3 class="font-body text-xs sm:text-[13px] font-semibold tracking-luxury uppercase text-espresso mb-3 sm:mb-3.5">
+              Plano Personalizado
+            </h3>
+
+            <p class="font-body text-[14px] sm:text-[15px] text-espresso/70 font-light leading-relaxed max-w-sm">
+              Definimos os protocolos mais adequados para você, com precisão e naturalidade.
+            </p>
+          </div>
+        </div>
+
+        <!-- ETAPA 03: CUIDADO CONTÍNUO -->
+        <div class="jornada-reveal relative border-l-2 border-caramel/25 pl-6 sm:pl-8 lg:border-l-0 lg:pl-0 flex flex-col justify-between" style="transition-delay: 290ms;">
+          <div>
+            <div class="flex items-center gap-5 mb-5 sm:mb-6">
+              <span class="text-3xl sm:text-4xl lg:text-[46px] font-normal text-caramel leading-none select-none" style="font-family: 'Cormorant Garamond', Georgia, serif; font-feature-settings: 'lnum' 1; font-variant-numeric: lining-nums;">
+                03
+              </span>
+              <div class="h-[1px] bg-transparent flex-grow hidden lg:block"></div>
+            </div>
+
+            <h3 class="font-body text-xs sm:text-[13px] font-semibold tracking-luxury uppercase text-espresso mb-3 sm:mb-3.5">
+              Cuidado Contínuo
+            </h3>
+
+            <p class="font-body text-[14px] sm:text-[15px] text-espresso/70 font-light leading-relaxed max-w-sm">
+              Acompanhamos sua evolução com atenção, ajustando cada etapa quando necessário.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA PRINCIPAL DA SEÇÃO -->
+      <div class="jornada-reveal mt-16 sm:mt-20 lg:mt-24 text-center" style="transition-delay: 350ms;">
+        <a href="#agendamento" class="beam-btn group inline-flex" aria-label="Agendar Avaliação na Level Up Aesthetics">
+          <div class="beam-btn-conic" aria-hidden="true"></div>
+          <div class="beam-btn-inner">
+            <span>Agendar Avaliação</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true"></i>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. SÉTIMA DOBRA: O ESPAÇO MARNIE (ARQUITETURA & ACOLHIMENTO EDITORIAL)    -->
+  <!-- ========================================================================= -->
+  <section id="espaco-marnie" class="relative bg-cream text-espresso py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/10 overflow-hidden" aria-label="O Espaço Marnie Aesthetics">
+    
+    <div class="max-w-[1240px] mx-auto">
+      
+      <!-- COMPOSIÇÃO EDITORIAL ASSIMÉTRICA: ADAPTATIVA DESKTOP & MOBILE -->
+      <div class="espaco-layout flex flex-col">
+        
+        <!-- 1. BLOCO DE TEXTO SUPERIOR (EYEBROW + HEADLINE + TEXTO) -->
+        <!-- No mobile: 1º elemento. No desktop: Coluna direita, linha superior -->
+        <div class="espaco-header mb-8 lg:mb-0 max-w-xl">
+          
+          <!-- EYEBROW -->
+          <div class="espaco-reveal inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel/8 border border-caramel/20 text-[10px] sm:text-[11px] font-mono tracking-cinematic text-caramel uppercase mb-4 sm:mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-caramel" aria-hidden="true"></span>
+            <span>O ESPAÇO MARNIE</span>
+          </div>
+
+          <!-- HEADLINE EDITORIAL -->
+          <h2 class="espaco-reveal font-heading text-3xl sm:text-4xl md:text-[42px] lg:text-[44px] xl:text-[48px] text-espresso leading-[1.14] tracking-[-0.015em] font-normal mb-5 sm:mb-6" style="transition-delay: 60ms;">
+            Onde cuidado e beleza encontram seu tempo.
+          </h2>
+
+          <!-- TEXTO DE APOIO -->
+          <p class="espaco-reveal font-body text-[15px] sm:text-[16px] text-espresso/75 font-light leading-[1.75] max-w-md mb-0" style="transition-delay: 120ms;">
+            Um ambiente pensado para acolher, cuidar e proporcionar uma experiência tranquila em cada etapa da sua jornada.
+          </p>
+
+        </div>
+
+        <!-- 2. DESTAQUE VISUAL (IMAGEM DO ESPAÇO DA CLÍNICA) -->
+        <!-- No mobile: 2º elemento. No desktop: Coluna esquerda dominante (~54%) -->
+        <div class="espaco-reveal espaco-media group relative overflow-hidden rounded-2xl sm:rounded-[22px] border border-chocolate/10 bg-oat/25 shadow-[0_16px_40px_-16px_rgba(74,53,42,0.08)] mb-8 lg:mb-0" style="transition-delay: 180ms;">
+          <div class="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] overflow-hidden">
+            <img 
+              src="media/interior.png" 
+              alt="Ambiente acolhedor da clínica Marnie Aesthetics, com recepção em mármore travertino, iluminação suave e salas privativas" 
+              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.025]"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Sutil vinheta de iluminação natural na base -->
+            <div class="absolute inset-0 bg-gradient-to-t from-espresso/15 via-transparent to-transparent opacity-40 pointer-events-none" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- 3. BLOCO INFERIOR (MICROINFORMAÇÕES + CTA) -->
+        <!-- No mobile: 3º elemento (atributos e depois CTA). No desktop: Coluna direita, linha inferior -->
+        <div class="espaco-footer flex flex-col justify-start max-w-xl">
+          
+          <!-- MICROINFORMAÇÕES: 4 ATRIBUTOS DA EXPERIÊNCIA -->
+          <div class="espaco-reveal pt-6 sm:pt-7 border-t border-chocolate/10 mb-7 sm:mb-8" style="transition-delay: 240ms;">
+            <ul class="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2.5 list-none p-0 m-0" aria-label="Atributos da experiência Marnie">
+              <li class="inline-flex items-center gap-3 sm:gap-4 font-body text-[11px] sm:text-xs font-medium tracking-luxury uppercase text-espresso/70">
+                <span>Cuidado</span>
+                <span class="w-1 h-1 rounded-full bg-caramel/50 select-none" aria-hidden="true"></span>
+              </li>
+              <li class="inline-flex items-center gap-3 sm:gap-4 font-body text-[11px] sm:text-xs font-medium tracking-luxury uppercase text-espresso/70">
+                <span>Precisão</span>
+                <span class="w-1 h-1 rounded-full bg-caramel/50 select-none" aria-hidden="true"></span>
+              </li>
+              <li class="inline-flex items-center gap-3 sm:gap-4 font-body text-[11px] sm:text-xs font-medium tracking-luxury uppercase text-espresso/70">
+                <span>Conforto</span>
+                <span class="w-1 h-1 rounded-full bg-caramel/50 select-none" aria-hidden="true"></span>
+              </li>
+              <li class="inline-flex items-center font-body text-[11px] sm:text-xs font-medium tracking-luxury uppercase text-espresso/70">
+                <span>Privacidade</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CTA EDITORIAL DISCRETO -->
+          <div class="espaco-reveal" style="transition-delay: 300ms;">
+            <a href="#agendamento" class="group inline-flex items-center gap-3 text-xs sm:text-[13px] font-body tracking-luxury uppercase text-espresso hover:text-caramel transition-all duration-300 py-2.5" aria-label="Conheça a Marnie Aesthetics">
+              <span class="border-b border-espresso/30 group-hover:border-caramel pb-0.5 transition-colors duration-300">
+                CONHEÇA A MARNIE
+              </span>
+              <span class="w-7 h-7 rounded-full border border-chocolate/15 flex items-center justify-center text-espresso group-hover:text-caramel group-hover:border-caramel group-hover:translate-x-1.5 group-hover:-translate-y-0.5 transition-all duration-300 select-none" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. OITAVA DOBRA: SEÇÃO PRINCIPAL DE CONVERSÃO (VAMOS CUIDAR DE VOCÊ?)    -->
+  <!-- ========================================================================= -->
+  <section id="agendamento" class="relative bg-espresso text-cream py-28 sm:py-36 lg:py-44 px-5 sm:px-8 lg:px-12 border-t border-chocolate/30 overflow-hidden" aria-label="Agendamento de Avaliação Marnie Aesthetics">
+    
+    <!-- SUTIL AMBIENT WARM GLOW CENTRAL (PROFUNDIDADE SEM POLUIÇÃO VISUAL) -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[700px] h-[70vw] max-h-[700px] rounded-full bg-caramel/6 blur-[120px] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+      
+      <!-- EYEBROW -->
+      <div class="conversao-reveal inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-caramel/15 border border-caramel/30 text-[10px] sm:text-[11px] font-mono tracking-cinematic text-caramel-light uppercase mb-6 sm:mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-caramel" aria-hidden="true"></span>
+        <span>SUA JORNADA COMEÇA AQUI</span>
+      </div>
+
+      <!-- HEADLINE EDITORIAL -->
+      <h2 class="conversao-reveal font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[68px] text-cream leading-[1.08] tracking-[-0.02em] font-normal mb-6 sm:mb-7" style="transition-delay: 60ms;">
+        Vamos cuidar de você?
+      </h2>
+
+      <!-- TEXTO DE APOIO -->
+      <p class="conversao-reveal font-body text-base sm:text-lg text-cream/75 font-light leading-relaxed max-w-xl mx-auto mb-10 sm:mb-12" style="transition-delay: 120ms;">
+        Agende sua avaliação e descubra um plano de cuidado pensado especialmente para você.
+      </p>
+
+      <!-- CTA PRINCIPAL: AGENDAR AVALIAÇÃO → -->
+      <div class="conversao-reveal mb-6 sm:mb-7" style="transition-delay: 180ms;">
+        <a href="#contato" class="beam-btn group inline-flex" aria-label="Agendar Avaliação na Marnie Aesthetics">
+          <div class="beam-btn-conic" aria-hidden="true"></div>
+          <div class="beam-btn-inner px-8 sm:px-10 py-4 sm:py-4.5 text-[11px] sm:text-[12px] font-medium tracking-luxury">
+            <span>AGENDAR AVALIAÇÃO</span>
+            <span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5 select-none" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- CTA SECUNDÁRIO: PREFERE FALAR PRIMEIRO? WHATSAPP → -->
+      <div class="conversao-reveal" style="transition-delay: 240ms;">
+        <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1.5 text-xs sm:text-[13px] font-body text-cream/65 hover:text-caramel-light transition-colors duration-300 py-2.5" aria-label="Falar primeiro pelo WhatsApp">
+          <span class="border-b border-cream/25 group-hover:border-caramel-light pb-0.5 transition-colors duration-300">
+            Prefere falar primeiro? WhatsApp
+          </span>
+          <span class="inline-block transition-transform duration-300 group-hover:translate-x-1 select-none" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
   <!-- JAVASCRIPT: MOTOR 3D PARALLAX, MOUSE, GIROSCÓPIO E SCROLLTRIGGER         -->
   <!-- ========================================================================= -->
   <script>
@@ -1322,6 +1756,161 @@
         });
       });
     }
+
+    // -------------------------------------------------------------------------
+    // GERENCIADOR DE DEPOIMENTOS EDITORIAL (QUINTA DOBRA)
+    // -------------------------------------------------------------------------
+    (() => {
+      const testimonials = [
+        {
+          quote: "“O atendimento foi de um acolhimento ímpar. Minha maior preocupação era perder a naturalidade da minha expressão, e o resultado superou todas as expectativas: sutil, preciso e completamente meu.”",
+          author: "Camila V. — Paciente Level Up",
+          detail: "Protocolo Rejuvenescimento Natural • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+        },
+        {
+          quote: "“A consulta individualizada fez toda a diferença. Senti segurança clínica absoluta do início ao fim, com um olhar médico que realmente respeitou a harmonia e a arquitetura do meu rosto.”",
+          author: "Mariana S. — Paciente Level Up",
+          detail: "Harmonização Estrutural & Volume • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+        },
+        {
+          quote: "“Cuidado excepcional e atenção a cada detalhe. O ambiente transmite calma profunda e o tratamento devolveu a luminosidade e firmeza da minha pele com elegância e discrição.”",
+          author: "Helena B. — Paciente Level Up",
+          detail: "Bioestimuladores & Qualidade da Pele • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+        },
+        {
+          quote: "“Encontrar uma clínica que preza pela sutileza antes de qualquer procedimento é raro. O respeito à minha identidade foi absoluto. Uma experiência verdadeiramente premium.”",
+          author: "Beatriz M. — Paciente Level Up",
+          detail: "Injetáveis de Precisão & Cuidado Contínuo • <span class=\"font-mono text-[10px] text-caramel/80 uppercase\">Estrutura Demonstrativa</span>"
+        }
+      ];
+
+      let currentIndex = 0;
+      const container = document.getElementById('testimonialContainer');
+      const quoteEl = document.getElementById('testimonialQuote');
+      const authorEl = document.getElementById('testimonialAuthor');
+      const detailEl = document.getElementById('testimonialDetail');
+      const counterEl = document.getElementById('testimonialCounter');
+      const prevBtn = document.getElementById('prevTestimonial');
+      const nextBtn = document.getElementById('nextTestimonial');
+
+      if (!container || !quoteEl || !prevBtn || !nextBtn) return;
+
+      function render(index) {
+        container.style.opacity = '0';
+        setTimeout(() => {
+          const item = testimonials[index];
+          quoteEl.textContent = item.quote;
+          authorEl.textContent = item.author;
+          detailEl.innerHTML = item.detail;
+          counterEl.textContent = `${index + 1} / ${testimonials.length}`;
+          container.style.opacity = '1';
+        }, 220);
+      }
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+        render(currentIndex);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        render(currentIndex);
+      });
+    })();
+
+    // -------------------------------------------------------------------------
+    // REVELAÇÃO ESCALONADA DA SEXTA DOBRA (SUA JORNADA DE CUIDADO)
+    // -------------------------------------------------------------------------
+    (() => {
+      const jornadaSec = document.getElementById('jornada');
+      if (!jornadaSec) return;
+
+      const animItems = jornadaSec.querySelectorAll('.jornada-reveal');
+      const lineItems = jornadaSec.querySelectorAll('.jornada-line-reveal');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        animItems.forEach(el => el.classList.add('is-revealed'));
+        lineItems.forEach(el => el.classList.add('is-revealed'));
+        return;
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animItems.forEach(el => el.classList.add('is-revealed'));
+              lineItems.forEach(el => el.classList.add('is-revealed'));
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        observer.observe(jornadaSec);
+      } else {
+        animItems.forEach(el => el.classList.add('is-revealed'));
+        lineItems.forEach(el => el.classList.add('is-revealed'));
+      }
+    })();
+
+    // -------------------------------------------------------------------------
+    // REVELAÇÃO ESCALONADA DA SÉTIMA DOBRA (O ESPAÇO MARNIE)
+    // -------------------------------------------------------------------------
+    (() => {
+      const espacoSec = document.getElementById('espaco-marnie');
+      if (!espacoSec) return;
+
+      const animItems = espacoSec.querySelectorAll('.espaco-reveal');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        animItems.forEach(el => el.classList.add('is-revealed'));
+        return;
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animItems.forEach(el => el.classList.add('is-revealed'));
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        observer.observe(espacoSec);
+      } else {
+        animItems.forEach(el => el.classList.add('is-revealed'));
+      }
+    })();
+
+    // -------------------------------------------------------------------------
+    // REVELAÇÃO ESCALONADA DA OITAVA DOBRA (PRINCIPAL SEÇÃO DE CONVERSÃO)
+    // -------------------------------------------------------------------------
+    (() => {
+      const conversaoSec = document.getElementById('agendamento');
+      if (!conversaoSec) return;
+
+      const animItems = conversaoSec.querySelectorAll('.conversao-reveal');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        animItems.forEach(el => el.classList.add('is-revealed'));
+        return;
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animItems.forEach(el => el.classList.add('is-revealed'));
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        observer.observe(conversaoSec);
+      } else {
+        animItems.forEach(el => el.classList.add('is-revealed'));
+      }
+    })();
 
     // Verificação de preferência por redução de movimento (A11y)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -32,8 +32,8 @@
   <!-- Original Design System Core Stylesheet -->
   <link rel="stylesheet" href="assets/00229412573a4838_styles-N9V2HjBQ.css">
 
-  <!-- Tailwind CSS Engine -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Production Compiled & Minified Tailwind CSS -->
+  <link rel="stylesheet" href="dist/styles.css">
 
   <!-- Lucide Icons Engine -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -41,80 +41,6 @@
   <!-- GSAP 3.12+ & ScrollTrigger (Cinematic 3D Motion & Parallax Engine) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- Tailwind Extended Config matching Design System Tokens -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            cream: '#F6F1EA',
-            oat: '#E7DDD2',
-            taupe: '#C9B9AA',
-            chocolate: '#4A352A',
-            espresso: '#241A14',
-            gold: '#B08D57',
-            caramel: {
-              DEFAULT: '#835629',
-              dark: '#6A4520',
-              light: '#A16D3A',
-            },
-            warmWhite: '#FFFAF4',
-          },
-          fontFamily: {
-            heading: ['Athelas', 'Cormorant Garamond', 'Playfair Display', 'Georgia', 'serif'],
-            body: ['Montserrat', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-          },
-          letterSpacing: {
-            cinematic: '0.32em',
-            editorial: '0.22em',
-            luxury: '0.14em',
-          },
-          animation: {
-            'fade-in-up': 'fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
-            'fade-in-down': 'fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
-            'float-slow': 'floatSlow 7s ease-in-out infinite',
-            'aurora': 'aurora 18s ease-in-out infinite alternate',
-            'beam-spin': 'beamSpin 3.5s linear infinite',
-            'zoom-slow': 'zoomSlow 30s linear infinite alternate',
-            'pulse-subtle': 'pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-          },
-          keyframes: {
-            fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            fadeInDown: {
-              '0%': { opacity: '0', transform: 'translateY(-14px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            floatSlow: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-8px)' },
-            },
-            aurora: {
-              '0%': { opacity: '0.2', transform: 'scale(1) translate(0, 0)' },
-              '50%': { opacity: '0.4', transform: 'scale(1.15) translate(4%, -4%)' },
-              '100%': { opacity: '0.2', transform: 'scale(1) translate(-4%, 4%)' },
-            },
-            beamSpin: {
-              to: { transform: 'rotate(360deg)' },
-            },
-            zoomSlow: {
-              '0%': { transform: 'scale(1)' },
-              '100%': { transform: 'scale(1.08)' },
-            },
-            pulseSubtle: {
-              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-              '50%': { opacity: '0.4', transform: 'scale(1.15)' },
-            },
-          }
-        }
-      }
-    };
-  </script>
 
   <style>
     /* ========================================================================= */

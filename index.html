@@ -35,12 +35,12 @@
   <!-- Production Compiled & Minified Tailwind CSS -->
   <link rel="stylesheet" href="dist/styles.css">
 
-  <!-- Lucide Icons Engine -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons Engine (Deferred to prevent render blocking) -->
+  <script defer src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- GSAP 3.12+ & ScrollTrigger (Cinematic 3D Motion & Parallax Engine) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- GSAP 3.12+ & ScrollTrigger (Cinematic 3D Motion & Parallax Engine - Deferred in execution order) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
     /* ========================================================================= */
@@ -1691,12 +1691,22 @@
   <!-- JAVASCRIPT: MOTOR 3D PARALLAX, MOUSE, GIROSCÓPIO E SCROLLTRIGGER         -->
   <!-- ========================================================================= -->
   <script>
-    // Inicialização segura dos ícones Lucide
-    if (window.lucide && typeof lucide.createIcons === 'function') {
-      lucide.createIcons();
-    }
+    function initClinicExperience() {
+      // Inicialização segura dos ícones Lucide
+      function initLucideIcons() {
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+          lucide.createIcons();
+        } else {
+          window.addEventListener('load', () => {
+            if (window.lucide && typeof lucide.createIcons === 'function') {
+              lucide.createIcons();
+            }
+          }, { once: true });
+        }
+      }
+      initLucideIcons();
 
-    // Gerenciamento Acessível do Menu Mobile
+      // Gerenciamento Acessível do Menu Mobile
     const mobileBtn = document.getElementById('mobileNavButton');
     const mobileMenu = document.getElementById('mobileNavMenu');
 
@@ -1821,8 +1831,10 @@
       });
 
       // Pausar autoplay quando o usuário passar o mouse ou focar no carrossel
-      container.parentElement.addEventListener('mouseenter', () => clearInterval(autoTimer));
-      container.parentElement.addEventListener('mouseleave', resetAutoPlay);
+      if (container.parentElement) {
+        container.parentElement.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        container.parentElement.addEventListener('mouseleave', resetAutoPlay);
+      }
 
       // Suporte a gestos touch swipe no celular
       let touchStartX = 0;
@@ -2159,6 +2171,14 @@
         if (scrollIndicator) scrollTimeline.to(scrollIndicator, { opacity: 0, y: -20, ease: "none" }, 0);
       }
     })();
+  }
+
+  // Executa assim que o DOM e os scripts com defer estiverem carregados, sem bloquear o primeiro paint
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initClinicExperience);
+  } else {
+    initClinicExperience();
+  }
   </script>
 
 </body>

@@ -742,6 +742,10 @@
     <div id="heroForegroundLayer" class="hero-fg-layer pointer-events-none" aria-hidden="true">
       <img 
         src="assets/fg-particles.webp" 
+        srcset="assets/fg-particles-sm.webp 640w, assets/fg-particles.webp 1280w"
+        sizes="100vw"
+        width="1280"
+        height="720"
         alt="" 
         class="hero-fg-texture pointer-events-none select-none" 
         loading="eager"
@@ -972,14 +976,18 @@
               playsinline 
               webkit-playsinline
               preload="metadata"
-              poster="media/filosofia-care.jpg"
+              poster="media/filosofia-care.webp"
               class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 will-change-transform"
               aria-label="Atendimento cuidadoso e avaliação clínica na Level Up Aesthetics"
             >
               <source src="media/filosofia-care.webm" type="video/webm">
               <source src="media/filosofia-care.mp4" type="video/mp4">
               <img 
-                src="media/filosofia-care.jpg" 
+                src="media/filosofia-care.webp" 
+                srcset="media/filosofia-care-sm.webp 400w, media/filosofia-care.webp 720w"
+                sizes="(max-width: 640px) 100vw, 400px"
+                width="720"
+                height="1280"
                 alt="Atendimento cuidadoso e avaliação clínica na Level Up Aesthetics" 
                 class="w-full h-full object-cover"
                 loading="lazy"
@@ -1111,10 +1119,15 @@
           <!-- IMAGEM COM MARCADOR NUMÉRICO -->
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
             <img 
-              src="assets/104b472995a38098_anti-wrinkle.jpg" 
+              src="assets/anti-wrinkle.webp" 
+              srcset="assets/anti-wrinkle-sm.webp 456w, assets/anti-wrinkle.webp 740w"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 456px"
+              width="740"
+              height="740"
               alt="Aplicação clínica e avaliação facial para Toxina Botulínica — Level Up Aesthetics"
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transform-none will-change-transform"
               loading="lazy"
+              decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-espresso/25 via-transparent to-transparent opacity-40"></div>
             <div class="absolute top-4 left-4 z-10">
@@ -1297,14 +1310,18 @@
           playsinline
           webkit-playsinline
           preload="metadata"
-          poster="assets/hero-level-up.jpg"
+          poster="assets/hero-level-up.webp"
           class="w-full h-full object-cover transition-transform duration-1000 ease-out will-change-transform motion-reduce:transform-none"
           aria-label="Vídeo cinematográfico demonstrando beleza natural e resultados sutis na Level Up Aesthetics"
         >
           <source src="media/resultados-naturais.webm" type="video/webm">
           <source src="media/resultados-naturais.mp4" type="video/mp4">
           <img 
-            src="assets/hero-level-up.jpg" 
+            src="assets/hero-level-up.webp" 
+            srcset="assets/hero-level-up-sm.webp 520w, assets/hero-level-up.webp 1040w"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1040px"
+            width="1040"
+            height="552"
             alt="Pele iluminada e beleza natural autêntica — Level Up Aesthetics" 
             class="w-full h-full object-cover"
             loading="lazy"

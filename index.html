@@ -372,29 +372,6 @@
       );
     }
 
-    /* Camada Flutuante de Primeiro Plano (Macro Depth Layer — Gotículas / Pétalas 3D) */
-    .hero-fg-layer {
-      position: absolute;
-      inset: -10% -10%;
-      width: 120%;
-      height: 120%;
-      pointer-events: none !important;
-      z-index: 25;
-      will-change: transform;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-      overflow: hidden;
-    }
-    .hero-fg-texture {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: 72% center;
-      opacity: 0.60;
-      pointer-events: none !important;
-      user-select: none;
-    }
-
     /* Ambient Warm Glow Light Orb — Estritamente atrás do texto */
     .hero-warm-orb-1 {
       position: absolute;
@@ -501,18 +478,6 @@
         z-index: 3;
       }
 
-      /* Camada de partículas adaptada ao topo no mobile */
-      .hero-fg-layer {
-        height: 44vh;
-        max-height: 420px;
-        inset: -6% -6%;
-        width: 112%;
-      }
-      .hero-fg-texture {
-        opacity: 0.40;
-        object-position: center top;
-      }
-
       /* Oculta canvas 3D desktop em telas mobile para economizar recursos */
       .desktop-parallax-canvas {
         display: none !important;
@@ -572,8 +537,7 @@
         background-size: cover;
         background-position: center 28%;
       }
-      .parallax-layer,
-      .hero-fg-layer {
+      .parallax-layer {
         transform: none !important;
         transition: none !important;
         will-change: auto !important;
@@ -738,25 +702,6 @@
 
       <!-- TRANSIÇÃO SUAVE NA BASE PARA O RIBBON (Feathering Contínuo em Cream) -->
       <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#F6F1EA] via-[#F6F1EA]/65 to-transparent pointer-events-none z-[7]"></div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- 3. CAMADA FLUTUANTE DE PROFUNDIDADE EM PRIMEIRO PLANO (PARTÍCULAS/BOKEH)  -->
-    <!-- Textura macro desfocada que reage com alta amplitude a mouse e giroscópio -->
-    <!-- Não intercepta cliques (pointer-events: none)                             -->
-    <!-- ========================================================================= -->
-    <div id="heroForegroundLayer" class="hero-fg-layer pointer-events-none" aria-hidden="true">
-      <img 
-        src="assets/fg-particles.webp" 
-        srcset="assets/fg-particles-sm.webp 640w, assets/fg-particles.webp 1280w"
-        sizes="100vw"
-        width="1280"
-        height="720"
-        alt="" 
-        class="hero-fg-texture pointer-events-none select-none" 
-        loading="eager"
-        decoding="async"
-      />
     </div>
 
     <!-- ========================================================================= -->
@@ -2040,7 +1985,6 @@
       const layer2 = document.querySelector('.parallax-layer-2');
       const layer3 = document.querySelector('.parallax-layer-3');
       const layer4 = document.querySelector('.parallax-layer-4');
-      const fgLayer = document.getElementById('heroForegroundLayer') || document.querySelector('.hero-fg-layer');
       const editorialCol = document.querySelector('.hero-editorial-col');
       const scrollIndicator = document.querySelector('.scroll-indicator-wrap');
 
@@ -2067,10 +2011,6 @@
           q4Y = gsap.quickTo(layer4, "y", { duration: 0.85, ease: "power2.out" });
           q4RotX = gsap.quickTo(layer4, "rotationX", { duration: 0.85, ease: "power2.out" });
           q4RotY = gsap.quickTo(layer4, "rotationY", { duration: 0.85, ease: "power2.out" });
-        }
-        if (fgLayer) {
-          q5X = gsap.quickTo(fgLayer, "x", { duration: 0.65, ease: "power2.out" });
-          q5Y = gsap.quickTo(fgLayer, "y", { duration: 0.65, ease: "power2.out" });
         }
       }
 
@@ -2101,12 +2041,6 @@
             q4RotX(-normY * 4.5);
             q4RotY(normX * 4.5);
           }
-
-          // Camada Flutuante em Primeiro Plano — Partículas/Gotículas (amplitude perceptível ~72px)
-          if (fgLayer && q5X && q5Y) {
-            q5X(normX * 72);
-            q5Y(normY * 48);
-          }
         } else {
           // Fallback nativo via requestAnimationFrame com amortecimento exponencial
           targetX = normX;
@@ -2123,7 +2057,6 @@
           if (layer2) layer2.style.transform = `translate3d(${currentX * 8}px, ${currentY * 6}px, 0)`;
           if (layer3) layer3.style.transform = `translate3d(${currentX * 22}px, ${currentY * 16}px, 0)`;
           if (layer4) layer4.style.transform = `translate3d(${currentX * 38}px, ${currentY * 26}px, 0) rotateX(${-currentY * 4.5}deg) rotateY(${currentX * 4.5}deg)`;
-          if (fgLayer) fgLayer.style.transform = `translate3d(${currentX * 72}px, ${currentY * 48}px, 0)`;
 
           requestAnimationFrame(lerpLoop);
         }
@@ -2197,8 +2130,6 @@
         if (layer3) scrollTimeline.to(layer3, { y: 120, scale: 1.09, ease: "none" }, 0);
         // Camada 4 (caso ativa): Mãos passam à frente com leve fade out
         if (layer4) scrollTimeline.to(layer4, { y: 180, scale: 1.15, opacity: 0.78, ease: "none" }, 0);
-        // Camada Flutuante em Primeiro Plano: Partículas aceleram e dissipam (efeito atravessar lente)
-        if (fgLayer) scrollTimeline.to(fgLayer, { y: 240, scale: 1.28, opacity: 0, ease: "none" }, 0);
         // Coluna Editorial: Deslocamento vertical elegante e fade out gradual
         if (editorialCol) scrollTimeline.to(editorialCol, { y: -70, opacity: 0.08, ease: "none" }, 0);
         // Indicador de Scroll: Some logo no início da rolagem

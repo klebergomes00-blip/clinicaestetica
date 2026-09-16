@@ -1404,11 +1404,11 @@
           </button>
 
           <!-- Indicadores Sutis de Paginação (sem expor contagem numérica) -->
-          <div id="testimonialDots" class="flex items-center gap-2" role="tablist" aria-label="Navegação entre avaliações">
-            <button type="button" class="testimonial-dot w-6 h-1.5 rounded-full bg-caramel transition-all duration-300 cursor-pointer" aria-label="Depoimento 1" aria-selected="true" data-index="0"></button>
-            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 2" aria-selected="false" data-index="1"></button>
-            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 3" aria-selected="false" data-index="2"></button>
-            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 4" aria-selected="false" data-index="3"></button>
+          <div id="testimonialDots" class="flex items-center gap-2" aria-label="Navegação entre avaliações">
+            <button type="button" class="testimonial-dot w-6 h-1.5 rounded-full bg-caramel transition-all duration-300 cursor-pointer" aria-label="Depoimento 1" aria-current="true" data-index="0"></button>
+            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 2" data-index="1"></button>
+            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 3" data-index="2"></button>
+            <button type="button" class="testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer" aria-label="Depoimento 4" data-index="3"></button>
           </div>
 
           <button 
@@ -1856,10 +1856,12 @@
         dots.forEach((dot, idx) => {
           if (idx === activeIdx) {
             dot.className = 'testimonial-dot w-6 h-1.5 rounded-full bg-caramel transition-all duration-300 cursor-pointer';
-            dot.setAttribute('aria-selected', 'true');
+            dot.setAttribute('aria-current', 'true');
+            dot.removeAttribute('aria-selected');
           } else {
             dot.className = 'testimonial-dot w-2 h-1.5 rounded-full bg-chocolate/20 hover:bg-chocolate/40 transition-all duration-300 cursor-pointer';
-            dot.setAttribute('aria-selected', 'false');
+            dot.removeAttribute('aria-current');
+            dot.removeAttribute('aria-selected');
           }
         });
       }

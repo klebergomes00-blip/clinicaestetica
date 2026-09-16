@@ -328,13 +328,15 @@
       background: radial-gradient(circle at 75% 42%, rgba(235, 220, 216, 0.35) 0%, rgba(246, 241, 234, 0.65) 45%, #F6F1EA 85%);
     }
 
-    /* Camada 2 — Vídeo Cinematográfico com Transparência e Contraste Naturais */
+    /* Camada 2 — Vídeo Cinematográfico com Transparência e Fundo 100% Fixo/Estático */
     .parallax-layer-2 {
-      inset: -4% -4%;
-      width: 108%;
-      height: 108%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       z-index: 2;
       opacity: 1; /* Pure clarity — zero wash */
+      transform: none !important;
+      will-change: auto;
     }
     .parallax-layer-2 video,
     .parallax-layer-2 img {
@@ -369,17 +371,16 @@
       );
     }
 
-    /* Camada Flutuante de Primeiro Plano (Macro Depth Layer — Gotículas / Pétalas 3D) */
+    /* Camada Flutuante de Primeiro Plano (Textura Estática) */
     .hero-fg-layer {
       position: absolute;
-      inset: -10% -10%;
-      width: 120%;
-      height: 120%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none !important;
       z-index: 25;
-      will-change: transform;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
+      transform: none !important;
+      will-change: auto;
       overflow: hidden;
     }
     .hero-fg-texture {
@@ -1994,157 +1995,28 @@
     }
 
     // =========================================================================
-    // MOTOR DE PARALLAX 3D MULTICAMADAS (MOUSE, GIROSCÓPIO & SCROLL)
+    // MOTOR DE APRESENTAÇÃO HERO (BACKGROUND 100% FIXO & ESTÁVEL)
     // =========================================================================
     (function init3DHeroParallax() {
       // 1. Checagem de preferência por redução de movimento (Acessibilidade)
       if (prefersReducedMotion) {
-        return; // Desativa animações contínuas graciosamente
+        return;
       }
 
       const heroSection = document.getElementById('heroSection');
-      const layer2 = document.querySelector('.parallax-layer-2');
-      const layer3 = document.querySelector('.parallax-layer-3');
-      const layer4 = document.querySelector('.parallax-layer-4');
-      const fgLayer = document.getElementById('heroForegroundLayer') || document.querySelector('.hero-fg-layer');
       const editorialCol = document.querySelector('.hero-editorial-col');
       const scrollIndicator = document.querySelector('.scroll-indicator-wrap');
 
-      if (!heroSection || !layer2) return;
+      if (!heroSection) return;
 
       const hasGSAP = typeof window.gsap !== 'undefined';
       if (hasGSAP && typeof window.ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
       }
 
-      // QuickTo setters para 60fps otimizado no GSAP (evita recriar tweens a cada frame)
-      let q2X, q2Y, q3X, q3Y, q4X, q4Y, q4RotX, q4RotY, q5X, q5Y;
-      if (hasGSAP) {
-        if (layer2) {
-          q2X = gsap.quickTo(layer2, "x", { duration: 1.2, ease: "power2.out" });
-          q2Y = gsap.quickTo(layer2, "y", { duration: 1.2, ease: "power2.out" });
-        }
-        if (layer3) {
-          q3X = gsap.quickTo(layer3, "x", { duration: 1.0, ease: "power2.out" });
-          q3Y = gsap.quickTo(layer3, "y", { duration: 1.0, ease: "power2.out" });
-        }
-        if (layer4) {
-          q4X = gsap.quickTo(layer4, "x", { duration: 0.85, ease: "power2.out" });
-          q4Y = gsap.quickTo(layer4, "y", { duration: 0.85, ease: "power2.out" });
-          q4RotX = gsap.quickTo(layer4, "rotationX", { duration: 0.85, ease: "power2.out" });
-          q4RotY = gsap.quickTo(layer4, "rotationY", { duration: 0.85, ease: "power2.out" });
-        }
-        if (fgLayer) {
-          q5X = gsap.quickTo(fgLayer, "x", { duration: 0.65, ease: "power2.out" });
-          q5Y = gsap.quickTo(fgLayer, "y", { duration: 0.65, ease: "power2.out" });
-        }
-      }
-
-      // Variáveis de amortecimento (LERP fallback caso offline)
-      let currentX = 0, currentY = 0;
-      let targetX = 0, targetY = 0;
-      let isGyroActive = false;
-
-      // Função unificada de atualização de deslocamento
-      function applyParallax(normX, normY) {
-        if (hasGSAP) {
-          // Camada 2 — Vídeo de fundo / Textura (amplitude sutil ~8px)
-          if (q2X && q2Y) {
-            q2X(normX * 8);
-            q2Y(normY * 6);
-          }
-
-          // Camada 3 — Modelo em repouso (caso ativa: amplitude ~22px)
-          if (q3X && q3Y) {
-            q3X(normX * 22);
-            q3Y(normY * 16);
-          }
-
-          // Camada 4 — Mãos aplicando produto (caso ativa: resposta média ~38px + 3D tilt)
-          if (q4X && q4Y && q4RotX && q4RotY) {
-            q4X(normX * 38);
-            q4Y(normY * 26);
-            q4RotX(-normY * 4.5);
-            q4RotY(normX * 4.5);
-          }
-
-          // Camada Flutuante em Primeiro Plano — Partículas/Gotículas (amplitude perceptível ~72px)
-          if (fgLayer && q5X && q5Y) {
-            q5X(normX * 72);
-            q5Y(normY * 48);
-          }
-        } else {
-          // Fallback nativo via requestAnimationFrame com amortecimento exponencial
-          targetX = normX;
-          targetY = normY;
-        }
-      }
-
-      // Loop LERP de fallback quando GSAP não estiver disponível
-      if (!hasGSAP) {
-        function lerpLoop() {
-          currentX += (targetX - currentX) * 0.08;
-          currentY += (targetY - currentY) * 0.08;
-
-          if (layer2) layer2.style.transform = `translate3d(${currentX * 8}px, ${currentY * 6}px, 0)`;
-          if (layer3) layer3.style.transform = `translate3d(${currentX * 22}px, ${currentY * 16}px, 0)`;
-          if (layer4) layer4.style.transform = `translate3d(${currentX * 38}px, ${currentY * 26}px, 0) rotateX(${-currentY * 4.5}deg) rotateY(${currentX * 4.5}deg)`;
-          if (fgLayer) fgLayer.style.transform = `translate3d(${currentX * 72}px, ${currentY * 48}px, 0)`;
-
-          requestAnimationFrame(lerpLoop);
-        }
-        requestAnimationFrame(lerpLoop);
-      }
-
       // -----------------------------------------------------------------------
-      // A. DESKTOP: Mouse-move com Coordenadas Centralizadas [-1, 1]
-      // -----------------------------------------------------------------------
-      window.addEventListener('mousemove', (e) => {
-        if (isGyroActive) return; // Prioriza giroscópio em dispositivos táteis
-        const halfWidth = window.innerWidth / 2;
-        const halfHeight = window.innerHeight / 2;
-        const normX = (e.clientX - halfWidth) / halfWidth;
-        const normY = (e.clientY - halfHeight) / halfHeight;
-        applyParallax(normX, normY);
-      }, { passive: true });
-
-      // -----------------------------------------------------------------------
-      // B. MOBILE: Giroscópio (DeviceOrientationEvent) com Permissão Discreta
-      // -----------------------------------------------------------------------
-      function handleOrientation(e) {
-        if (e.gamma === null || e.beta === null) return;
-        isGyroActive = true;
-
-        // gamma: inclinação lateral [-35° a +35°] normalizada em [-1, 1]
-        const normGamma = Math.max(-1, Math.min(1, e.gamma / 30));
-        
-        // beta: inclinação frontal/traseira (postura padrão ao segurar celular ~45°)
-        const normBeta = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
-
-        applyParallax(normGamma, normBeta);
-      }
-
-      function requestGyroscopePermission() {
-        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-          // iOS 13+ exige permissão disparada por gesto do usuário
-          DeviceOrientationEvent.requestPermission()
-            .then(state => {
-              if (state === 'granted') {
-                window.addEventListener('deviceorientation', handleOrientation, { passive: true });
-              }
-            })
-            .catch(() => {});
-        } else if ('ondeviceorientation' in window) {
-          // Android e navegadores modernos padrão
-          window.addEventListener('deviceorientation', handleOrientation, { passive: true });
-        }
-      }
-
-      // Ativa no primeiro toque na tela (sem popups no carregamento da página)
-      window.addEventListener('touchstart', requestGyroscopePermission, { once: true, passive: true });
-
-      // -----------------------------------------------------------------------
-      // C. SCROLL: GSAP ScrollTrigger com Sensação Tridimensional de Aproximação
+      // SCROLLTRIGGER: Animações suaves de saída para elementos de primeiro plano
+      // (O vídeo e o fundo permanecem 100% estáticos e fixos em sua posição)
       // -----------------------------------------------------------------------
       if (hasGSAP && window.ScrollTrigger) {
         const scrollTimeline = gsap.timeline({
@@ -2157,17 +2029,9 @@
           }
         });
 
-        // Camada 2: Desloca suavemente com leve scale de aproximação
-        if (layer2) scrollTimeline.to(layer2, { y: 65, scale: 1.06, ease: "none" }, 0);
-        // Camada 3 (caso ativa): Modelo expande com câmera aproximando
-        if (layer3) scrollTimeline.to(layer3, { y: 120, scale: 1.09, ease: "none" }, 0);
-        // Camada 4 (caso ativa): Mãos passam à frente com leve fade out
-        if (layer4) scrollTimeline.to(layer4, { y: 180, scale: 1.15, opacity: 0.78, ease: "none" }, 0);
-        // Camada Flutuante em Primeiro Plano: Partículas aceleram e dissipam (efeito atravessar lente)
-        if (fgLayer) scrollTimeline.to(fgLayer, { y: 240, scale: 1.28, opacity: 0, ease: "none" }, 0);
         // Coluna Editorial: Deslocamento vertical elegante e fade out gradual
-        if (editorialCol) scrollTimeline.to(editorialCol, { y: -70, opacity: 0.08, ease: "none" }, 0);
-        // Indicador de Scroll: Some logo no início da rolagem
+        if (editorialCol) scrollTimeline.to(editorialCol, { y: -60, opacity: 0.08, ease: "none" }, 0);
+        // Indicador de Scroll: Some no início da rolagem
         if (scrollIndicator) scrollTimeline.to(scrollIndicator, { opacity: 0, y: -20, ease: "none" }, 0);
       }
     })();

@@ -293,6 +293,31 @@
       box-shadow: none !important;
     }
 
+    /* Treatment Cards Glassmorphism (Frosted Glass) */
+    .treatment-card {
+      background: rgba(246, 241, 234, 0.28);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(246, 241, 234, 0.45);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .treatment-card:hover {
+      background: rgba(246, 241, 234, 0.48);
+      border-color: rgba(131, 86, 41, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(74, 53, 42, 0.12);
+    }
+    @supports not (backdrop-filter: blur(1px)) {
+      .treatment-card {
+        background: rgba(246, 241, 234, 0.95);
+      }
+    }
+
     /* ========================================================================= */
     /* 5. 3D PARALLAX DESKTOP STAGE & VISUAL CLARITY SYSTEM                      */
     /* ========================================================================= */
@@ -1043,8 +1068,13 @@
   <!-- ========================================================================= -->
   <!-- 5. TERCEIRA DOBRA: TRATAMENTOS (SEÇÃO COMERCIAL EDITORIAL)                -->
   <!-- ========================================================================= -->
-  <section id="tratamentos" class="relative bg-[#EFE8DF]/45 py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/8" aria-label="Tratamentos Level Up Aesthetics">
-    <div class="max-w-[1400px] mx-auto">
+  <section id="tratamentos" class="relative bg-[#EFE8DF]/45 py-24 sm:py-32 lg:py-36 px-5 sm:px-8 lg:px-12 border-t border-chocolate/8 overflow-hidden" aria-label="Tratamentos Level Up Aesthetics">
+    <!-- Elementos de profundidade/contraste para o efeito Glassmorphism desfocar -->
+    <div class="absolute -top-12 left-1/4 w-[480px] h-[480px] rounded-full bg-caramel/10 blur-[130px] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute bottom-10 right-1/4 w-[520px] h-[520px] rounded-full bg-gold/12 blur-[140px] pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-oat/60 blur-[110px] pointer-events-none" aria-hidden="true"></div>
+
+    <div class="max-w-[1400px] mx-auto relative z-10">
       
       <!-- CABEÇALHO DA SEÇÃO COMERCIAL -->
       <div class="text-center max-w-2xl mx-auto mb-14 sm:mb-20">
@@ -1072,7 +1102,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 xl:gap-10">
         
         <!-- TRATAMENTO 01: TOXINA BOTULÍNICA -->
-        <article class="group rounded-2xl lg:rounded-3xl overflow-hidden bg-warmWhite/85 border border-chocolate/10 hover:border-caramel/25 transition-colors duration-700 flex flex-col justify-between">
+        <article class="treatment-card group overflow-hidden flex flex-col justify-between">
           
           <!-- IMAGEM COM MARCADOR NUMÉRICO -->
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
@@ -1120,7 +1150,7 @@
         </article>
 
         <!-- TRATAMENTO 02: PREENCHIMENTO FACIAL -->
-        <article class="group rounded-2xl lg:rounded-3xl overflow-hidden bg-warmWhite/85 border border-chocolate/10 hover:border-caramel/25 transition-colors duration-700 flex flex-col justify-between">
+        <article class="treatment-card group overflow-hidden flex flex-col justify-between">
           
           <!-- IMAGEM COM MARCADOR NUMÉRICO -->
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
@@ -1166,7 +1196,7 @@
         </article>
 
         <!-- TRATAMENTO 03: BIOESTIMULADORES -->
-        <article class="group rounded-2xl lg:rounded-3xl overflow-hidden bg-warmWhite/85 border border-chocolate/10 hover:border-caramel/25 transition-colors duration-700 flex flex-col justify-between">
+        <article class="treatment-card group overflow-hidden flex flex-col justify-between">
           
           <!-- IMAGEM COM MARCADOR NUMÉRICO -->
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">

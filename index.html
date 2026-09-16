@@ -25,9 +25,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Typography: Local Asset with Google Fonts Fallback -->
-  <link rel="stylesheet" href="assets/99c4515b30a30010_css2.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Preload Hero Mobile & Desktop LCP Media with High Fetch Priority -->
+  <link rel="preload" as="image" href="media/video-preview-thumb-mobile.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high">
+  <link rel="preload" as="image" href="media/video-preview-thumb.webp" type="image/webp" media="(min-width: 1024px)" fetchpriority="high">
+
+  <!-- Typography: Streamlined Google Fonts (Only Active Weights & Subsets) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Original Design System Core Stylesheet -->
   <link rel="stylesheet" href="assets/00229412573a4838_styles-N9V2HjBQ.css">
@@ -560,12 +563,12 @@
         display: none !important;
       }
       .desktop-parallax-canvas {
-        background-image: url('media/video-preview-thumb.jpg');
+        background-image: url('media/video-preview-thumb.webp');
         background-size: cover;
         background-position: 72% center;
       }
       .mobile-visual-stage {
-        background-image: url('media/video-preview-thumb-mobile.jpg');
+        background-image: url('media/video-preview-thumb-mobile.webp');
         background-size: cover;
         background-position: center 28%;
       }
@@ -708,17 +711,20 @@
           playsinline 
           webkit-playsinline
           preload="metadata"
-          poster="media/video-preview-thumb.jpg"
+          poster="media/video-preview-thumb.webp"
           class="w-full h-full object-cover object-[center_26%] lg:object-[74%_center]"
           aria-hidden="true"
         >
           <source src="media/hero-video-final.webm" type="video/webm" media="(min-width: 1024px)">
           <source src="media/hero-video-final.mp4" type="video/mp4" media="(min-width: 1024px)">
           <img 
-            src="media/video-preview-thumb.jpg" 
+            src="media/video-preview-thumb.webp" 
             alt="Ambiente e procedimentos estéticos Level Up Aesthetics" 
+            width="1920"
+            height="1080"
             class="w-full h-full object-cover"
             loading="eager"
+            fetchpriority="high"
             decoding="async"
           />
         </video>
@@ -817,16 +823,19 @@
         playsinline 
         webkit-playsinline
         preload="metadata"
-        poster="media/video-preview-thumb-mobile.jpg"
+        poster="media/video-preview-thumb-mobile.webp"
         class="w-full h-full object-cover object-[center_28%]"
       >
         <source src="media/hero-video-mobile.webm" type="video/webm" media="(max-width: 1023px)">
         <source src="media/hero-video-mobile.mp4" type="video/mp4" media="(max-width: 1023px)">
         <img 
-          src="media/video-preview-thumb-mobile.jpg" 
+          src="media/video-preview-thumb-mobile.webp" 
           alt="Level Up Aesthetics — Cuidado estético e beleza natural" 
+          width="720"
+          height="1280"
           class="w-full h-full object-cover object-[center_28%]"
           loading="eager"
+          fetchpriority="high"
           decoding="async"
         />
       </video>
@@ -1213,10 +1222,15 @@
           <!-- IMAGEM COM MARCADOR NUMÉRICO -->
           <div class="relative aspect-[16/11] overflow-hidden bg-oat/40">
             <img 
-              src="media/video-preview-thumb-15s.jpg" 
+              src="media/video-preview-thumb-15s.webp" 
+              srcset="media/video-preview-thumb-15s-sm.webp 456w, media/video-preview-thumb-15s.webp 912w"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 456px"
+              width="912"
+              height="513"
               alt="Aplicação de bioestimuladores para regeneração celular e luminosidade da pele — Level Up Aesthetics"
               class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035] motion-reduce:transform-none will-change-transform"
               loading="lazy"
+              decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-espresso/25 via-transparent to-transparent opacity-40"></div>
             <div class="absolute top-4 left-4 z-10">
